@@ -250,5 +250,17 @@
       drawer.querySelectorAll('a').forEach(function(a) { a.addEventListener('click', function() { drawer.classList.remove('open'); btn.classList.remove('open'); document.body.style.overflow = ''; }); });
     })();
   </script>
+
+  <!-- SCROLL TO TOP -->
+  <button id="scroll-top" aria-label="Nach oben" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:2rem;right:2rem;width:2.5rem;height:2.5rem;border-radius:50%;background:var(--bordeaux);color:var(--weiss);border:none;cursor:pointer;font-size:1rem;display:none;align-items:center;justify-content:center;box-shadow:0 2px 12px rgba(61,18,25,0.25);z-index:999;transition:opacity 0.3s ease;" title="Nach oben">↑</button>
+  <script>
+    (function(){
+      var btn = document.getElementById('scroll-top');
+      window.addEventListener('scroll', function(){
+        btn.style.display = window.scrollY > 400 ? 'flex' : 'none';
+      }, {passive:true});
+    })();
+  </script>
+
 </body>
 </html>
