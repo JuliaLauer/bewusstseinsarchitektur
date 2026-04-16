@@ -1,0 +1,10 @@
+# Zu groß für GitHub (>100MB bzw. >50MB Warnung)
+# iCloud Fotos.zip und iCloud Fotos (1).zip — mit non-breaking space im Namen
+iCloud*Fotos*.zip
+
+# System
+.DS_Store
+Thumbs.db
+
+# Claude-interne Einstellungen
+.claude/settings.local.json

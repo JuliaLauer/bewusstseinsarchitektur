@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wo Entscheidungen längst gefallen sind · Julia Lauer · Bewusstseinsarchitektur</title>
+  <meta name="description" content="Gedanken kommen später. Emotionen auch. Davor liegt etwas anderes." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bordeaux: #3D1219; --terrakotta: #c95e46; --licht: #FAF8F5;
+      --weiss: #FFFFFF; --text-dunkel: #1A1A1A; --text-mittel: #2E2E2E;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Jost', system-ui, sans-serif;
+      --container-px: clamp(1.5rem, 5vw, 4rem);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: var(--font-body); font-weight: 400; color: var(--text-dunkel); background: var(--weiss); overflow-x: hidden; cursor: none; }
+    @media (pointer: coarse) { body { cursor: auto; } }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; text-decoration: none; }
+    @media (pointer: fine) {
+      .cursor-dot { position: fixed; width: 6px; height: 6px; background: var(--terrakotta); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); }
+      .cursor-ring { position: fixed; width: 32px; height: 32px; border: 1.5px solid var(--terrakotta); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); opacity: 0.6; transition: width 0.3s ease, height 0.3s ease; }
+      body.cursor-hover .cursor-ring { width: 48px; height: 48px; opacity: 0.4; }
+    }
+    #nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.5rem var(--container-px); display: flex; align-items: center; justify-content: space-between; transition: background 0.4s ease, box-shadow 0.4s ease, padding 0.4s ease; }
+    #nav.scrolled { background: rgba(250,248,245,0.96); backdrop-filter: blur(12px); box-shadow: 0 1px 0 rgba(0,0,0,0.06); padding-top: 1rem; padding-bottom: 1rem; }
+    .nav-logo { display: flex; flex-direction: column; }
+    .nav-logo-name { font-family: var(--font-display); font-style: italic; font-weight: 300; font-size: 1.35rem; color: var(--weiss); transition: color 0.4s ease; line-height: 1.2; }
+    #nav.scrolled .nav-logo-name { color: var(--bordeaux); }
+    .nav-logo-sub { font-family: var(--font-body); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.55); transition: color 0.4s ease; white-space: nowrap; }
+    #nav.scrolled .nav-logo-sub { color: var(--text-mittel); }
+    .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+    .nav-links a { font-family: var(--font-body); font-size: 0.9rem; letter-spacing: 0.06em; color: rgba(255,255,255,0.72); transition: color 0.3s ease; }
+    .nav-links a:hover { color: var(--weiss); }
+    #nav.scrolled .nav-links a { color: var(--text-mittel); }
+    #nav.scrolled .nav-links a:hover { color: var(--bordeaux); }
+    .nav-links a.active { color: var(--terrakotta); }
+    #nav.scrolled .nav-links a.active { color: var(--terrakotta); }
+    .nav-cta { font-family: var(--font-body); font-size: 0.78rem; font-weight: 400; letter-spacing: 0.06em; color: var(--weiss); background: var(--terrakotta); padding: 0.55rem 1.2rem; border-radius: 2px; transition: background 0.3s ease; cursor: none; }
+    @media (pointer: coarse) { .nav-cta { cursor: pointer; } }
+    .nav-cta:hover { background: #b54e37; }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; z-index: 101; }
+    .nav-hamburger span { display: block; width: 24px; height: 1.5px; background: var(--weiss); transition: background 0.4s ease, transform 0.4s ease, opacity 0.4s ease; }
+    #nav.scrolled .nav-hamburger span { background: var(--bordeaux); }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    .nav-drawer { position: fixed; inset: 0; background: var(--bordeaux); z-index: 99; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem; transform: translateX(100%); transition: transform 0.5s cubic-bezier(0.16,1,0.3,1); }
+    .nav-drawer.open { transform: translateX(0); }
+    .nav-drawer a { font-family: var(--font-display); font-style: italic; font-size: clamp(1.6rem,5vw,2.2rem); color: rgba(255,255,255,0.85); transition: color 0.3s ease; }
+    .nav-drawer a:hover { color: var(--terrakotta); }
+    @media (max-width: 860px) { .nav-links, .nav-cta { display: none; } .nav-hamburger { display: flex; } }
+    #artikel-hero { position: relative; background: var(--bordeaux); padding: clamp(8rem,14vw,12rem) var(--container-px) clamp(4rem,7vw,6rem); overflow: hidden; }
+    #artikel-hero::before { content: ''; position: absolute; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"); opacity: 0.03; pointer-events: none; }
+    .artikel-hero-inner { max-width: 760px; margin-inline: auto; position: relative; z-index: 2; }
+    .artikel-back { font-family: var(--font-body); font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.45); display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 2.5rem; transition: color 0.3s ease; }
+    .artikel-back:hover { color: var(--terrakotta); }
+    .artikel-datum { font-family: var(--font-body); font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--terrakotta); display: block; margin-bottom: 1.25rem; }
+    .artikel-titel { font-family: var(--font-display); font-style: italic; font-weight: 300; font-size: clamp(2.2rem,5vw,4rem); color: var(--weiss); line-height: 1.1; }
+    #artikel-inhalt { padding: clamp(4rem,7vw,7rem) var(--container-px); background: var(--weiss); }
+    .artikel-inhalt-inner { max-width: 660px; margin-inline: auto; }
+    .artikel-body { font-family: var(--font-body); font-size: 1.05rem; line-height: 1.9; color: var(--text-dunkel); }
+    .artikel-body p { margin-bottom: 1.5rem; }
+    .artikel-body p:last-child { margin-bottom: 0; }
+    .artikel-body strong { font-weight: 400; color: var(--bordeaux); }
+    #artikel-cta { background: var(--licht); border-top: 1px solid rgba(61,18,25,0.07); padding: clamp(3rem,6vw,5rem) var(--container-px); text-align: center; }
+    .artikel-cta-inner { max-width: 500px; margin-inline: auto; }
+    .artikel-cta-label { font-family: var(--font-body); font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--terrakotta); display: block; margin-bottom: 1rem; }
+    .artikel-cta-headline { font-family: var(--font-display); font-style: italic; font-weight: 300; font-size: clamp(1.6rem,3vw,2.2rem); color: var(--bordeaux); line-height: 1.2; margin-bottom: 1.5rem; }
+    .artikel-cta-btn { display: inline-flex; align-items: center; gap: 0.4rem; font-family: var(--font-body); font-size: 0.875rem; padding: 0.875rem 1.875rem; border-radius: 2px; background: var(--terrakotta); color: var(--weiss); cursor: none; transition: background 0.3s ease, transform 0.3s ease; }
+    @media (pointer: coarse) { .artikel-cta-btn { cursor: pointer; } }
+    .artikel-cta-btn:hover { background: #b54e37; transform: translateY(-2px); }
+    .artikel-cta-meta { display: block; margin-top: 0.875rem; font-family: var(--font-body); font-size: 0.72rem; color: rgba(26,26,26,0.4); }
+    .artikel-nav { display: flex; justify-content: center; margin-top: 2.5rem; }
+    .artikel-nav a { font-family: var(--font-body); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--bordeaux); opacity: 0.5; transition: opacity 0.3s ease; }
+    .artikel-nav a:hover { opacity: 1; }
+    #footer { position: relative; background: var(--bordeaux); border-top: 1px solid rgba(255,255,255,0.08); padding: 3.5rem var(--container-px) 2rem; }
+    .footer-inner { max-width: 1200px; margin-inline: auto; }
+    .footer-top { display: grid; grid-template-columns: 1fr auto; gap: 3rem; align-items: start; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .footer-logo-name { font-family: var(--font-display); font-style: italic; font-weight: 300; font-size: 1.4rem; color: var(--weiss); display: block; margin-bottom: 0.3rem; }
+    .footer-logo-sub { font-family: var(--font-body); font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
+    .footer-email { font-family: var(--font-body); font-size: 0.9rem; color: rgba(255,255,255,0.78); transition: color 0.3s ease; display: block; text-align: right; }
+    .footer-email:hover { color: var(--terrakotta); }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+    .footer-copy { font-family: var(--font-body); font-size: 0.72rem; color: rgba(255,255,255,0.3); }
+    .footer-links { display: flex; gap: 1.5rem; list-style: none; }
+    .footer-links a { font-family: var(--font-body); font-size: 0.72rem; color: rgba(255,255,255,0.35); transition: color 0.3s ease; }
+    .footer-links a:hover { color: rgba(255,255,255,0.7); }
+    @media (max-width: 600px) { .footer-top { grid-template-columns: 1fr; } .footer-email { text-align: left; } .footer-bottom { flex-direction: column; align-items: flex-start; } }
+  </style>
+</head>
+<body>
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
+  <nav id="nav" role="navigation">
+    <a href="../index.html" class="nav-logo">
+      <span class="nav-logo-name">Julia Lauer</span>
+      <span class="nav-logo-sub">Für Frauen, die wissen wie es richtig wäre.</span>
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="../index.html#fuerwen">Für wen</a></li>
+      <li><a href="../methode.html">Methode</a></li>
+      <li><a href="../ueber-mich.html">Über mich</a></li>
+      <li><a href="../index.html#angebote">Angebote</a></li>
+      <li><a href="../texte.html" class="active">Texte</a></li>
+    </ul>
+    <a href="https://calendly.com/zentrum-bewusstseinsarchitektur/30min" class="nav-cta" target="_blank" rel="noopener">System Check starten →</a>
+    <button class="nav-hamburger" aria-label="Menü öffnen" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div id="nav-drawer" class="nav-drawer">
+    <a href="../index.html#fuerwen">Für wen</a>
+    <a href="../methode.html">Methode</a>
+    <a href="../ueber-mich.html">Über mich</a>
+    <a href="../index.html#angebote">Angebote</a>
+    <a href="../texte.html">Texte</a>
+    <a href="https://calendly.com/zentrum-bewusstseinsarchitektur/30min" target="_blank" rel="noopener" style="background:var(--terrakotta);color:#fff;padding:0.875rem 1.875rem;border-radius:2px;font-family:var(--font-body);font-size:0.875rem;">System Check starten →</a>
+  </div>
+  <main>
+    <section id="artikel-hero">
+      <div class="artikel-hero-inner">
+        <a href="../texte.html" class="artikel-back">← Alle Texte</a>
+        <span class="artikel-datum">Januar 2026</span>
+        <h1 class="artikel-titel">Wo Entscheidungen längst gefallen sind</h1>
+      </div>
+    </section>
+    <section id="artikel-inhalt">
+      <div class="artikel-inhalt-inner">
+        <div class="artikel-body">
+          <p>Viele sprechen von Mindset.<br>
+          Von Gedanken.<br>
+          Von inneren Überzeugungen.</p>
+          <p>Das ist nicht die Ebene, auf der ich arbeite.</p>
+          <p>Gedanken kommen später.<br>
+          Emotionen auch.<br>
+          Reaktionen ohnehin.</p>
+          <p>Davor liegt etwas anderes.</p>
+          <p>Zwischen einem Reiz<br>
+          und deiner Reaktion darauf<br>
+          gibt es einen schmalen Raum.</p>
+          <p>Oft kaum wahrnehmbar.<br>
+          Und doch entscheidend.</p>
+          <p>In diesem Raum wird nicht gedacht.<br>
+          Nicht abgewogen.<br>
+          Nicht erklärt.</p>
+          <p>Hier entscheidet sich,<br>
+          ob etwas automatisch geschieht<br>
+          oder bewusst.</p>
+          <p>Welche Spannung entsteht.<br>
+          Welche Emotion aufkommt.<br>
+          Welcher Gedanke Form annimmt.</p>
+          <p>Nicht, weil du ihn wählst.<br>
+          Sondern weil dein inneres System ihn freigibt.</p>
+          <p>Diese Ebene liegt tiefer als Mindset.<br>
+          Dort, wo dein System in Sekundenbruchteilen entscheidet:<br>
+          sicher oder nicht.<br>
+          halten oder öffnen.<br>
+          anpassen oder stehen bleiben.</p>
+          <p>Die meisten Reaktionen entstehen hier,<br>
+          lange bevor sie dir bewusst werden.</p>
+          <p>Deshalb fühlen sich manche Antworten alternativlos an.<br>
+          Nicht gewählt.<br>
+          Sondern passiert.</p>
+          <p>Und genau hier taucht eine leise, unbequeme Frage auf:<br>
+          Wie frei ist diese Entscheidung wirklich?</p>
+          <p>Was diesen Raum prägt</p>
+          <p>Dieser Raum ist nicht leer.<br>
+          Er ist geformt.</p>
+          <p>Durch Prägungen.<br>
+          Frühe Erfahrungen darüber,<br>
+          wann Offenheit möglich war<br>
+          und wann sie zu viel gekostet hat.</p>
+          <p>Durch Erwartungen.<br>
+          Leise Annahmen darüber,<br>
+          was gleich passieren wird.<br>
+          Auch ohne konkreten Anlass.</p>
+          <p>Durch Erfahrungen.<br>
+          Nicht die erinnerten.<br>
+          Sondern die gespeicherten.<br>
+          Das, was dein System kennt,<br>
+          auch wenn dir dafür die Worte fehlen.</p>
+          <p>Glaubenssätze wirken hier mit.<br>
+          Nicht als Gedanken.<br>
+          Sondern als Grundannahmen:<br>
+          So ist die Welt.<br>
+          So bin ich.<br>
+          So reagiere ich.</p>
+          <p>Auch das, was vor dir war,<br>
+          wirkt an dieser Stelle.<br>
+          Nicht als Geschichte.<br>
+          Sondern als Haltung im System.<br>
+          Was getragen wurde.<br>
+          Was gehalten werden musste.<br>
+          Was keinen Raum hatte.</p>
+          <p>Und der Körper.<br>
+          Immer der Körper.</p>
+          <p>Seine Bereitschaft zu Spannung.<br>
+          Seine Geschwindigkeit.<br>
+          Seine Reflexe,<br>
+          sich zu schützen oder anzupassen.</p>
+          <p>All das entscheidet mit,<br>
+          wie eng oder weit dieser Raum ist.<br>
+          Ob zwischen Reiz und Reaktion<br>
+          überhaupt etwas spürbar wird.<br>
+          Oder ob alles sofort geschieht.</p>
+          <p>Wie Freiheit hier entsteht</p>
+          <p>Dieser Raum lässt sich nicht trainieren.<br>
+          Nicht vergrößern durch Disziplin.<br>
+          Nicht kontrollieren durch Techniken.</p>
+          <p>Er verändert sich,<br>
+          wenn das innere System entlastet wird.</p>
+          <p>Wenn weniger gehalten werden muss.<br>
+          Wenn Wachsamkeit nicht mehr Dauerzustand ist.<br>
+          Wenn der Körper nicht ständig vorentscheidet.</p>
+          <p>Dann entsteht Raum.<br>
+          Nicht als Methode.<br>
+          Sondern als Zustand.</p>
+          <p>Freiheit zeigt sich hier nicht darin,<br>
+          immer bewusst zu wählen.</p>
+          <p>Sondern darin,<br>
+          dass überhaupt eine Wahl entsteht.</p>
+          <p>Ein Moment,<br>
+          in dem nicht alles automatisch weiterläuft.<br>
+          Ein Atemzug mehr.<br>
+          Ein echtes Dazwischen.</p>
+          <p>Auf dieser Ebene arbeite ich.</p>
+          <p>Nicht am Denken.<br>
+          Nicht an der Emotion.</p>
+          <p>Sondern an dem Ort,<br>
+          der entscheidet,<br>
+          was überhaupt entstehen darf.</p>
+          <p>Leise.<br>
+          Präzise.<br>
+          Und tiefer, als es auf den ersten Blick scheint.</p>
+        </div>
+      </div>
+    </section>
+    <section id="artikel-cta">
+      <div class="artikel-cta-inner">
+        <span class="artikel-cta-label">Nächster Schritt</span>
+        <h2 class="artikel-cta-headline">Ein klarer Blick.</h2>
+        <a href="https://calendly.com/zentrum-bewusstseinsarchitektur/30min" class="artikel-cta-btn" target="_blank" rel="noopener">System Check starten →</a>
+        <span class="artikel-cta-meta">30 Min · kostenlos · kein Pitch · vertraulich</span>
+        <div class="artikel-nav">
+          <a href="../texte.html">← Zurück zu allen Texten</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer id="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <span class="footer-logo-name">Julia Lauer · Bewusstseinsarchitektur</span>
+          <span class="footer-logo-sub">Für Frauen, die wissen wie es richtig wäre.</span>
+        </div>
+        <div>
+          <a href="mailto:zentrum@bewusstseinsarchitektur.de" class="footer-email">zentrum@bewusstseinsarchitektur.de</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2026 Julia Lauer · Bewusstseinsarchitektur</p>
+        <ul class="footer-links">
+          <li><a href="../impressum.html">Impressum</a></li>
+          <li><a href="../datenschutz.html">Datenschutz</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+  <script>
+    'use strict';
+    (function() {
+      if (!window.matchMedia('(pointer: fine)').matches) return;
+      var dot = document.querySelector('.cursor-dot'), ring = document.querySelector('.cursor-ring');
+      if (!dot || !ring) return;
+      var mx = window.innerWidth/2, my = window.innerHeight/2, rx = mx, ry = my;
+      document.addEventListener('mousemove', function(e) { mx = e.clientX; my = e.clientY; dot.style.left = mx+'px'; dot.style.top = my+'px'; });
+      (function loop() { rx += (mx-rx)*0.12; ry += (my-ry)*0.12; ring.style.left = rx+'px'; ring.style.top = ry+'px'; requestAnimationFrame(loop); })();
+      document.querySelectorAll('a,button').forEach(function(el) { el.addEventListener('mouseenter', function() { document.body.classList.add('cursor-hover'); }); el.addEventListener('mouseleave', function() { document.body.classList.remove('cursor-hover'); }); });
+    })();
+    (function() {
+      var nav = document.getElementById('nav');
+      function u() { nav.classList.toggle('scrolled', window.scrollY > 40); }
+      window.addEventListener('scroll', u, {passive:true}); u();
+    })();
+    (function() {
+      var btn = document.querySelector('.nav-hamburger'), drawer = document.getElementById('nav-drawer');
+      if (!btn || !drawer) return;
+      btn.addEventListener('click', function() {
+        var open = drawer.classList.toggle('open');
+        btn.classList.toggle('open', open);
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        document.body.style.overflow = open ? 'hidden' : '';
+      });
+      drawer.querySelectorAll('a').forEach(function(a) { a.addEventListener('click', function() { drawer.classList.remove('open'); btn.classList.remove('open'); document.body.style.overflow = ''; }); });
+    })();
+  </script>
+</body>
+</html>

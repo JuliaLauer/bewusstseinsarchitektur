@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Datenschutz · Julia Lauer · Bewusstseinsarchitektur</title>
+  <meta name="description" content="Datenschutzerklärung — Bewusstseinsarchitektur Julia Lauer, Stuttgart." />
+  <meta name="robots" content="noindex, follow" />
+  <link rel="canonical" href="https://bewusstseinsarchitektur.de/datenschutz" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bordeaux: #3D1219;
+      --terrakotta: #c95e46;
+      --licht: #FAF8F5;
+      --weiss: #FFFFFF;
+      --text-dunkel: #1A1A1A;
+      --text-mittel: #2E2E2E;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Jost', system-ui, sans-serif;
+      --container-max: 1200px;
+      --container-px: clamp(1.5rem, 5vw, 4rem);
+      --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--font-body); font-weight: 400;
+      color: var(--text-dunkel); background: var(--weiss);
+      overflow-x: hidden; cursor: none;
+    }
+    @media (pointer: coarse) { body { cursor: auto; } }
+    a { color: inherit; text-decoration: none; }
+
+    @media (pointer: fine) {
+      .cursor-dot {
+        position: fixed; width: 6px; height: 6px;
+        background: var(--terrakotta); border-radius: 50%;
+        pointer-events: none; z-index: 9999;
+        transform: translate(-50%, -50%);
+        transition: transform 0.1s ease, opacity 0.3s ease;
+      }
+      .cursor-ring {
+        position: fixed; width: 32px; height: 32px;
+        border: 1.5px solid var(--terrakotta); border-radius: 50%;
+        pointer-events: none; z-index: 9998;
+        transform: translate(-50%, -50%);
+        transition: transform 0.15s ease, width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+        opacity: 0.6;
+      }
+    }
+
+    #nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1.5rem var(--container-px);
+      display: flex; align-items: center; justify-content: space-between;
+      transition: background 0.4s ease, box-shadow 0.4s ease, padding 0.4s ease;
+    }
+    #nav.scrolled {
+      background: rgba(250, 248, 245, 0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+      padding-top: 1rem; padding-bottom: 1rem;
+    }
+    .nav-logo { display: flex; flex-direction: column; }
+    .nav-logo-name {
+      font-family: var(--font-display); font-style: italic;
+      font-weight: 300; font-size: 1.35rem;
+      color: var(--bordeaux); line-height: 1.2;
+    }
+    .nav-logo-sub {
+      font-family: var(--font-body); font-size: 0.7rem;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--text-mittel);
+    }
+    .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-family: var(--font-body); font-size: 0.9rem;
+      letter-spacing: 0.06em; color: var(--text-mittel);
+      transition: color 0.3s ease;
+    }
+    .nav-links a:hover { color: var(--bordeaux); }
+    .nav-cta {
+      font-family: var(--font-body); font-size: 0.78rem;
+      font-weight: 400; letter-spacing: 0.06em;
+      color: var(--weiss); background: var(--terrakotta);
+      padding: 0.55rem 1.2rem; border-radius: 2px;
+      transition: background 0.3s ease, transform 0.3s ease; cursor: none;
+    }
+    @media (pointer: coarse) { .nav-cta { cursor: pointer; } }
+    .nav-cta:hover { background: #b54e37; transform: translateY(-1px); }
+
+    .nav-hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 4px; z-index: 101;
+    }
+    .nav-hamburger span {
+      display: block; width: 24px; height: 1.5px; background: var(--bordeaux);
+      transition: background 0.4s ease, transform 0.4s ease, opacity 0.4s ease;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    .nav-drawer {
+      position: fixed; inset: 0; background: var(--bordeaux); z-index: 99;
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; gap: 2.5rem;
+      transform: translateX(100%);
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .nav-drawer.open { transform: translateX(0); }
+    .nav-drawer a {
+      font-family: var(--font-display); font-style: italic;
+      font-size: clamp(1.6rem, 5vw, 2.2rem);
+      color: rgba(255,255,255,0.85); transition: color 0.3s ease;
+    }
+    .nav-drawer a:hover { color: var(--terrakotta); }
+
+    @media (max-width: 860px) {
+      .nav-links, .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
+    }
+
+    .page-hero {
+      background: var(--bordeaux);
+      padding: clamp(8rem, 14vw, 12rem) var(--container-px) clamp(4rem, 7vw, 6rem);
+    }
+    .page-hero-label {
+      font-family: var(--font-body); font-size: 0.75rem;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--terrakotta); display: block; margin-bottom: 1.25rem;
+    }
+    .page-hero-title {
+      font-family: var(--font-display); font-style: italic;
+      font-weight: 300; font-size: clamp(2.4rem, 5vw, 3.8rem);
+      color: var(--weiss); line-height: 1.15;
+    }
+
+    .legal-section {
+      background: var(--weiss);
+      padding: clamp(4rem, 8vw, 7rem) var(--container-px);
+    }
+    .legal-inner { max-width: 720px; margin-inline: auto; }
+    .legal-block { margin-bottom: 3rem; }
+    .legal-block:last-child { margin-bottom: 0; }
+    .legal-h2 {
+      font-family: var(--font-body); font-weight: 400;
+      font-size: 0.75rem; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--terrakotta);
+      margin-bottom: 0.875rem;
+    }
+    .legal-h3 {
+      font-family: var(--font-body); font-weight: 400;
+      font-size: 0.72rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: rgba(61,18,25,0.55);
+      margin-bottom: 0.75rem; margin-top: 1.75rem;
+    }
+    .legal-text {
+      font-family: var(--font-body); font-weight: 400;
+      font-size: 1rem; line-height: 1.85; color: var(--text-dunkel);
+    }
+    .legal-text + .legal-text { margin-top: 0.75rem; }
+    .legal-text strong { font-weight: 400; color: var(--bordeaux); }
+    .legal-list {
+      font-family: var(--font-body); font-size: 1rem;
+      line-height: 1.85; color: var(--text-dunkel);
+      margin-left: 1.5rem; margin-top: 0.5rem; margin-bottom: 0.5rem;
+    }
+    .legal-list li + li { margin-top: 0.25rem; }
+    .legal-link {
+      color: var(--bordeaux);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .legal-note {
+      font-family: var(--font-body); font-size: 0.78rem;
+      color: rgba(26,26,26,0.45); margin-top: 3rem; line-height: 1.7;
+    }
+
+    #footer {
+      position: relative; background: var(--bordeaux);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 3.5rem var(--container-px) 2rem;
+    }
+    .footer-inner { max-width: var(--container-max); margin-inline: auto; }
+    .footer-top {
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 3rem; align-items: start;
+      margin-bottom: 3rem; padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer-logo-name {
+      font-family: var(--font-display); font-style: italic;
+      font-weight: 300; font-size: 1.4rem;
+      color: var(--weiss); display: block; margin-bottom: 0.3rem;
+    }
+    .footer-logo-sub {
+      font-family: var(--font-body); font-size: 0.68rem;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+    .footer-contact { text-align: right; }
+    .footer-contact-label {
+      font-family: var(--font-body); font-size: 0.75rem;
+      color: rgba(255,255,255,0.4); margin-bottom: 0.5rem;
+    }
+    .footer-email {
+      font-family: var(--font-body); font-size: 0.9rem;
+      color: rgba(255,255,255,0.78); transition: color 0.3s ease; display: block;
+    }
+    .footer-email:hover { color: var(--terrakotta); }
+    .footer-insta {
+      display: block; margin-top: 0.4rem;
+      font-family: var(--font-body); font-size: 0.82rem;
+      color: rgba(255,255,255,0.5); transition: color 0.3s ease;
+    }
+    .footer-insta:hover { color: var(--terrakotta); }
+    .footer-bottom {
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+    }
+    .footer-copy {
+      font-family: var(--font-body); font-size: 0.72rem;
+      color: rgba(255,255,255,0.3);
+    }
+    .footer-links { display: flex; gap: 1.5rem; list-style: none; }
+    .footer-links a {
+      font-family: var(--font-body); font-size: 0.72rem;
+      color: rgba(255,255,255,0.35); transition: color 0.3s ease;
+    }
+    .footer-links a:hover { color: rgba(255,255,255,0.7); }
+
+    @media (max-width: 600px) {
+      .footer-top { grid-template-columns: 1fr; }
+      .footer-contact { text-align: left; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
+
+  <nav id="nav" role="navigation" aria-label="Hauptnavigation">
+    <a href="index.html" class="nav-logo" aria-label="Julia Lauer Bewusstseinsarchitektur — Startseite">
+      <span class="nav-logo-name">Julia Lauer</span>
+      <span class="nav-logo-sub">Für Frauen, die wissen wie es richtig wäre.</span>
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="index.html#fuerwen">Für wen</a></li>
+      <li><a href="methode.html">Methode</a></li>
+      <li><a href="ueber-mich.html">Über mich</a></li>
+      <li><a href="index.html#angebote">Angebote</a></li>
+      <li><a href="texte.html">Texte</a></li>
+      <li><a href="freebie.html">Audio</a></li>
+    </ul>
+    <a href="https://calendly.com/zentrum-bewusstseinsarchitektur/30min" class="nav-cta" target="_blank" rel="noopener">System Check starten →</a>
+    <button class="nav-hamburger" aria-label="Menü öffnen" aria-expanded="false" aria-controls="nav-drawer">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div id="nav-drawer" class="nav-drawer" role="dialog" aria-label="Mobilnavigation" aria-modal="true">
+    <a href="index.html#fuerwen">Für wen</a>
+    <a href="methode.html">Methode</a>
+    <a href="ueber-mich.html">Über mich</a>
+    <a href="index.html#angebote">Angebote</a>
+    <a href="texte.html">Texte</a>
+    <a href="freebie.html">Audio</a>
+    <a href="https://calendly.com/zentrum-bewusstseinsarchitektur/30min" target="_blank" rel="noopener" style="background:var(--terrakotta);color:#fff;padding:0.875rem 1.875rem;border-radius:2px;font-family:var(--font-body);font-size:0.875rem;">System Check starten →</a>
+  </div>
+
+  <main>
+
+    <section class="page-hero" aria-label="Datenschutz">
+      <span class="page-hero-label">Rechtliches</span>
+      <h1 class="page-hero-title">Datenschutzerklärung</h1>
+    </section>
+
+    <section class="legal-section">
+      <div class="legal-inner">
+
+        <div class="legal-block">
+          <p class="legal-h2">1. Datenschutz auf einen Blick</p>
+          <p class="legal-h3">Allgemeine Hinweise</p>
+          <p class="legal-text">Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen.</p>
+          <p class="legal-text">Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können.</p>
+          <p class="legal-text">Ausführliche Informationen zum Thema Datenschutz entnehmen Sie der nachfolgenden Datenschutzerklärung.</p>
+
+          <p class="legal-h3">Datenerfassung auf dieser Website</p>
+          <p class="legal-text"><strong>Wer ist verantwortlich für die Datenerfassung auf dieser Website?</strong></p>
+          <p class="legal-text">Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Dessen Kontaktdaten finden Sie im Abschnitt „Hinweis zur verantwortlichen Stelle" dieser Datenschutzerklärung.</p>
+
+          <p class="legal-text"><strong>Wie erfassen wir Ihre Daten?</strong></p>
+          <p class="legal-text">Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen, zum Beispiel durch Eingaben in ein Kontaktformular. Andere Daten werden automatisch oder nach Ihrer Einwilligung beim Besuch der Website durch unsere IT-Systeme erfasst. Dabei handelt es sich vor allem um technische Daten (z. B. Internetbrowser, Betriebssystem oder Uhrzeit des Seitenaufrufs). Die Erfassung dieser Daten erfolgt automatisch, sobald Sie diese Website betreten.</p>
+
+          <p class="legal-text"><strong>Wofür nutzen wir Ihre Daten?</strong></p>
+          <p class="legal-text">Ein Teil der Daten wird erhoben, um eine fehlerfreie Bereitstellung der Website zu gewährleisten. Andere Daten können zur Analyse Ihres Nutzerverhaltens verwendet werden. Sofern über die Website Verträge geschlossen oder angebahnt werden können, werden die übermittelten Daten auch für Vertragsangebote, Bestellungen oder sonstige Auftragsanfragen verarbeitet.</p>
+
+          <p class="legal-text"><strong>Welche Rechte haben Sie bezüglich Ihrer Daten?</strong></p>
+          <p class="legal-text">Sie haben jederzeit das Recht auf unentgeltliche Auskunft über Herkunft, Empfänger und Zweck Ihrer gespeicherten personenbezogenen Daten. Sie haben außerdem das Recht auf Berichtigung oder Löschung dieser Daten. Wenn Sie eine Einwilligung zur Datenverarbeitung erteilt haben, können Sie diese jederzeit für die Zukunft widerrufen. Zudem haben Sie das Recht, unter bestimmten Umständen die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen. Des Weiteren steht Ihnen ein Beschwerderecht bei der zuständigen Aufsichtsbehörde zu. Bei Fragen zum Datenschutz können Sie sich jederzeit an uns wenden.</p>
+
+          <p class="legal-text"><strong>Analyse-Tools und Tools von Drittanbietern</strong></p>
+          <p class="legal-text">Beim Besuch dieser Website kann Ihr Surf-Verhalten statistisch ausgewertet werden. Dies geschieht vor allem mit sogenannten Analyseprogrammen. Detaillierte Informationen hierzu finden Sie in den folgenden Abschnitten dieser Datenschutzerklärung.</p>
+        </div>
+
+        <div class="legal-block">
+          <p class="legal-h2">2. Hosting</p>
+          <p class="legal-text">Wir hosten die Inhalte unserer Website bei folgendem Anbieter:</p>
+
+          <p class="legal-h3">Externes Hosting</p>
+          <p class="legal-text">Diese Website wird extern gehostet. Die personenbezogenen Daten, die auf dieser Website erfasst werden, werden auf den Servern des Hosters gespeichert. Dabei kann es sich insbesondere um IP-Adressen, Kontaktanfragen, Meta- und Kommunikationsdaten, Vertragsdaten, Kontaktdaten, Namen, Websitezugriffe sowie sonstige Daten handeln, die über eine Website generiert werden.</p>
+          <p class="legal-text">Das externe Hosting erfolgt:</p>
+          <ul class="legal-list">
+            <li>zur Vertragserfüllung (Art. 6 Abs. 1 lit. b DSGVO)</li>
+            <li>im berechtigten Interesse an einer sicheren, schnellen und effizienten Bereitstellung unseres Online-Angebots (Art. 6 Abs. 1 lit. f DSGVO)</li>
+          </ul>
+          <p class="legal-text">Sofern eine Einwilligung abgefragt wurde, erfolgt die Verarbeitung ausschließlich auf Grundlage von Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TDDDG. Die Einwilligung ist jederzeit widerrufbar.</p>
+          <p class="legal-text">Unser Hoster verarbeitet Ihre Daten nur insoweit, wie dies zur Erfüllung seiner Leistungspflichten erforderlich ist, und befolgt unsere Weisungen.</p>
+          <p class="legal-text"><strong>Eingesetzter Hoster:</strong></p>
+          <p class="legal-text">Simvoly Applications Ltd.<br>24 Gotse Delchev Str.<br>Varna, Bulgaria<br>E-Mail: contact@simvoly.com</p>
+
+          <p class="legal-h3">Auftragsverarbeitung</p>
+          <p class="legal-text">Wir haben mit dem oben genannten Anbieter einen Vertrag über Auftragsverarbeitung (AVV) geschlossen. Dieser stellt sicher, dass personenbezogene Daten ausschließlich nach unseren Weisungen und unter Einhaltung der DSGVO verarbeitet werden.</p>
+        </div>
+
+        <div class="legal-block">
+          <p class="legal-h2">3. Allgemeine Hinweise und Pflichtinformationen</p>
+
+          <p class="legal-h3">Datenschutz</p>
+          <p class="legal-text">Wir nehmen den Schutz Ihrer persönlichen Daten sehr ernst und behandeln Ihre personenbezogenen Daten vertraulich sowie entsprechend den gesetzlichen Datenschutzvorschriften und dieser Datenschutzerklärung. Wir weisen darauf hin, dass die Datenübertragung im Internet (z. B. bei E-Mail-Kommunikation) Sicherheitslücken aufweisen kann. Ein vollständiger Schutz der Daten vor dem Zugriff durch Dritte ist nicht möglich.</p>
+
+          <p class="legal-h3">Hinweis zur verantwortlichen Stelle</p>
+          <p class="legal-text">Verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:</p>
+          <p class="legal-text">Julia Lauer<br>Daimlerstraße 26<br>70372 Stuttgart<br>Telefon: 0162 – 4374394<br>E-Mail: zentrum@bewusstseinsarchitektur.de</p>
+          <p class="legal-text">Verantwortliche Stelle ist die natürliche oder juristische Person, die über Zwecke und Mittel der Verarbeitung personenbezogener Daten entscheidet.</p>
+
+          <p class="legal-h3">Speicherdauer</p>
+          <p class="legal-text">Personenbezogene Daten verbleiben bei uns, bis der Zweck der Verarbeitung entfällt. Bei einem berechtigten Löschersuchen oder Widerruf einer Einwilligung werden die Daten gelöscht, sofern keine gesetzlichen Aufbewahrungspflichten entgegenstehen.</p>
+        </div>
+
+        <div class="legal-block">
+          <p class="legal-h2">4. Datenerfassung auf dieser Website</p>
+
+          <p class="legal-h3">Cookies</p>
+          <p class="legal-text">Unsere Website verwendet Cookies. Cookies sind kleine Datenpakete, die auf Ihrem Endgerät gespeichert werden und keinen Schaden anrichten.</p>
+          <p class="legal-text">Es gibt:</p>
+          <ul class="legal-list">
+            <li>Session-Cookies (werden nach dem Besuch gelöscht)</li>
+            <li>Permanente Cookies (bleiben gespeichert, bis sie gelöscht werden)</li>
+          </ul>
+          <p class="legal-text">Cookies können technisch notwendig sein oder zur Analyse des Nutzerverhaltens dienen. Die Speicherung notwendiger Cookies erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Sofern eine Einwilligung abgefragt wurde, erfolgt die Verarbeitung ausschließlich auf Grundlage Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO, § 25 Abs. 1 TDDDG). Sie können Ihren Browser so einstellen, dass Cookies eingeschränkt oder deaktiviert werden. Die Funktionalität der Website kann dadurch eingeschränkt sein.</p>
+
+          <p class="legal-h3">Kontaktformular</p>
+          <p class="legal-text">Wenn Sie uns per Kontaktformular Anfragen senden, werden Ihre Angaben inklusive Kontaktdaten zur Bearbeitung gespeichert. Die Verarbeitung erfolgt:</p>
+          <ul class="legal-list">
+            <li>zur Vertragserfüllung oder vorvertraglichen Maßnahmen (Art. 6 Abs. 1 lit. b DSGVO)</li>
+            <li>oder auf Grundlage berechtigter Interessen (Art. 6 Abs. 1 lit. f DSGVO)</li>
+            <li>oder auf Grundlage Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO)</li>
+          </ul>
+          <p class="legal-text">Die Daten verbleiben bei uns, bis Sie eine Löschung verlangen oder der Zweck entfällt.</p>
+        </div>
+
+        <div class="legal-block">
+          <p class="legal-h2">5. Soziale Medien</p>
+
+          <p class="legal-h3">Instagram</p>
+          <p class="legal-text">Auf dieser Website sind Funktionen des Dienstes Instagram eingebunden, angeboten durch:</p>
+          <p class="legal-text">Meta Platforms Ireland Limited<br>Merrion Road, Dublin 4, Irland</p>
+          <p class="legal-text">Bei Aktivierung wird eine Verbindung zu den Instagram-Servern hergestellt. Dabei erhält Instagram Informationen über Ihren Besuch auf dieser Website. Die Nutzung erfolgt ausschließlich auf Grundlage Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO, § 25 Abs. 1 TDDDG).</p>
+          <p class="legal-text">Weitere Informationen finden Sie in der Datenschutzerklärung von Instagram: <a href="https://privacycenter.instagram.com/policy/" target="_blank" rel="noopener" class="legal-link">https://privacycenter.instagram.com/policy/</a></p>
+        </div>
+
+        <div class="legal-block">
+          <p class="legal-h2">6. Newsletter</p>
+
+          <p class="legal-h3">Newsletterdaten</p>
+          <p class="legal-text">Für den Newsletter benötigen wir Ihre E-Mail-Adresse sowie Ihre Einwilligung. Die Verarbeitung erfolgt ausschließlich auf Grundlage Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO). Sie können den Newsletter jederzeit abbestellen. Nach Austragung werden Ihre Daten gelöscht oder ggf. in einer Blacklist gespeichert, um zukünftige Zusendungen zu verhindern.</p>
+        </div>
+
+        <p class="legal-note">Quelle: eRecht24</p>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer id="footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <span class="footer-logo-name">Julia Lauer · Bewusstseinsarchitektur</span>
+          <span class="footer-logo-sub">Für Frauen, die wissen wie es richtig wäre.</span>
+        </div>
+        <div class="footer-contact">
+          <p class="footer-contact-label">Noch Fragen? Schreib mir direkt.</p>
+          <a href="mailto:zentrum@bewusstseinsarchitektur.de" class="footer-email">zentrum@bewusstseinsarchitektur.de</a>
+          <a href="https://www.instagram.com/julia.bewusstseinsarchitektur" class="footer-insta" target="_blank" rel="noopener">@julia.bewusstseinsarchitektur</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2026 Julia Lauer · Bewusstseinsarchitektur</p>
+        <ul class="footer-links" role="list">
+          <li><a href="impressum.html">Impressum</a></li>
+          <li><a href="datenschutz.html">Datenschutz</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    'use strict';
+    (function() {
+      if (!window.matchMedia('(pointer: fine)').matches) return;
+      var dot = document.querySelector('.cursor-dot');
+      var ring = document.querySelector('.cursor-ring');
+      if (!dot || !ring) return;
+      var mx = window.innerWidth / 2, my = window.innerHeight / 2;
+      var rx = mx, ry = my;
+      document.addEventListener('mousemove', function(e) {
+        mx = e.clientX; my = e.clientY;
+        dot.style.left = mx + 'px'; dot.style.top = my + 'px';
+      });
+      (function animateRing() {
+        rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+        ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+        requestAnimationFrame(animateRing);
+      })();
+    })();
+    (function() {
+      var nav = document.getElementById('nav');
+      if (!nav) return;
+      function update() { nav.classList.toggle('scrolled', window.scrollY > 40); }
+      window.addEventListener('scroll', update, { passive: true });
+      update();
+    })();
+    (function() {
+      var btn = document.querySelector('.nav-hamburger');
+      var drawer = document.getElementById('nav-drawer');
+      if (!btn || !drawer) return;
+      btn.addEventListener('click', function() {
+        var open = drawer.classList.toggle('open');
+        btn.classList.toggle('open', open);
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        document.body.style.overflow = open ? 'hidden' : '';
+      });
+      drawer.querySelectorAll('a').forEach(function(a) {
+        a.addEventListener('click', function() {
+          drawer.classList.remove('open');
+          btn.classList.remove('open');
+          btn.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = '';
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>

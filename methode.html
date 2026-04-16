@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Methode · Julia Lauer · Bewusstseinsarchitektur</title>
+  <meta name="description" content="Bewusstseinsarchitektur — keine Therapie, kein Coaching. Direkter Zugang zu den Strukturen aus denen Verhalten entsteht. Ohne Hypnose, ohne Retraumatisierung." />
+  <link rel="canonical" href="https://bewusstseinsarchitektur.de/methode" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       CUSTOM PROPERTIES
+    ============================================================ */
+    :root {
+      --bordeaux: #3D1219;
+      --terrakotta: #c95e46;
+      --licht: #FAF8F5;
+      --weiss: #FFFFFF;
+      --text-dunkel: #1A1A1A;
+      --text-mittel: #2E2E2E;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Jost', system-ui, sans-serif;
+      --section-pad: clamp(5rem, 9vw, 9rem);
+      --container-max: 1200px;
+      --container-px: clamp(1.5rem, 5vw, 4rem);
+      --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+      }
+    }
+
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--font-body);
+      font-weight: 400;
+      color: var(--text-dunkel);
+      background: var(--weiss);
+      overflow-x: hidden;
+      cursor: none;
+    }
+    @media (pointer: coarse) { body { cursor: auto; } }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ============================================================
+       CURSOR
+    ============================================================ */
+    @media (pointer: fine) {
+      .cursor-dot {
+        position: fixed; width: 6px; height: 6px;
+        background: var(--terrakotta); border-radius: 50%;
+        pointer-events: none; z-index: 9999;
+        transform: translate(-50%, -50%);
+        transition: transform 0.1s ease, opacity 0.3s ease;
+      }
+      .cursor-ring {
+        position: fixed; width: 32px; height: 32px;
+        border: 1.5px solid var(--terrakotta); border-radius: 50%;
+        pointer-events: none; z-index: 9998;
+        transform: translate(-50%, -50%);
+        transition: transform 0.15s ease, width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+        opacity: 0.6;
+      }
+      body.cursor-hover .cursor-ring { width: 48px; height: 48px; opacity: 0.4; }
+    }
+
+    /* ============================================================
+       NOISE
+    ============================================================ */
+    .noise::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      opacity: 0.03; pointer-events: none; z-index: 1;
+    }
+
+    /* ============================================================
+       ANIMATIONS
+    ============================================================ */
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    [data-reveal].revealed { opacity: 1; transform: translateY(0); }
+
+    .divider {
+      width: 0; height: 1.5px;
+      background: var(--terrakotta);
+      transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+      margin: 2rem 0;
+    }
+    .divider.revealed { width: 48px; }
+
+    /* ============================================================
+       NAVIGATION
+    ============================================================ */
+    #nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1.5rem var(--container-px);
+      display: flex; align-items: center; justify-content: space-between;
+      transition: background 0.4s ease, box-shadow 0.4s ease, padding 0.4s ease;
+    }
+    #nav.scrolled {
+      background: rgba(250, 248, 245, 0.96);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+      padding-top: 1rem; padding-bottom: 1rem;
+    }
+    .nav-logo { display: flex; flex-direction: column; }
+    .nav-logo-name {
+      font-family: var(--font-display); font-style: italic;
+      font-weight: 300; font-size: 1.35rem; color: var(--weiss);
+      transition: color 0.4s ease; line-height: 1.2;
+    }
+    #nav.scrolled .nav-logo-name { color: var(--bordeaux); }
+    .nav-logo-sub {
+      font-family: var(--font-body); font-size: 0.7rem;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(255,255,255,0.55); transition: color 0.4s ease;
+      white-space: nowrap;
+    }
+    #nav.scrolled .nav-logo-sub { color: var(--text-mittel); }
+    .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-family: var(--font-body); font-size: 0.9rem;
+      letter-spacing: 0.06em; color: rgba(255,255,255,0.72);
+      transition: color 0.3s ease;
+    }
+    .nav-links a:hover { color: var(--weiss); }
+    #nav.scrolled .nav-links a { color: var(--text-mittel); }
+    #nav.scrolled .nav-links a:hover { color: var(--bordeaux); }
+    .nav-links a.active { color: var(--terrakotta); }
+    #nav.scrolled .nav-links a.active { color: var(--terrakotta); }
+    .nav-cta {
+      font-family: var(--font-body); font-size: 0.78rem;
+      font-weight: 400; letter-spacing: 0.06em;
+      color: var(--weiss); background: var(--terrakotta);
+      padding: 0.55rem 1.2rem; border-radius: 2px;
+      transition: background 0.3s ease, transform 0.3s ease; cursor: none;
+    }
+    @media (pointer: coarse) { .nav-cta { cursor: pointer; } }
+    .nav-cta:hover { background: #b54e37; transform: translateY(-1px); }
+
+    .nav-hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 4px; z-index: 101;
+    }
+    .nav-hamburger span {
+      display: block; width: 24px; height: 1.5px; background: var(--weiss);
+      transition: background 0.4s ease, transform 0.4s ease, opacity 0.4s ease;
+    }
+    #nav.scrolled .nav-hamburger span { background: var(--bordeaux); }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    .nav-drawer {
+      position: fixed; inset: 0; background: var(--bordeaux); z-index: 99;
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; gap: 2.5rem;
+      transform: translateX(100%);
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .nav-drawer.open { transform: translateX(0); }
+    .nav-drawer a {
+      font-family: var(--font-display); font-style: italic;
+      font-size: clamp(1.6rem, 5vw, 2.2rem);
+      color: rgba(255,255,255,0.85); transition: color 0.3s ease;
+    }
+    .nav-drawer a:hover { color: var(--terrakotta); }
+
+    @media (max-width: 860px) {
+      .nav-links, .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
+    }
+
+    /* ============================================================
+       UTILITIES
+    ============================================================ */
+    .label {
+      font-family: var(--font-body); font-weight: 400;
+      font-size: 0.75rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--terrakotta);
+      display: block; margin-bottom: 1.25rem;
+    }
+    .label--weiss { color: rgba(255,255,255,0.55); }
+    .label--bordeaux { color: var(--bordeaux); opacity: 0.85; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-family: var(--font-body); font-weight: 400;
+      font-size: 0.875rem; letter-spacing: 0.04em;
+      padding: 0.875rem 1.875rem; border-radius: 2px;
+      border: none; cursor: none;
+      transition: transform var(--transition), background var(--transition), box-shadow var(--transition);
+    }
+    @media (pointer: coarse) { .btn { cursor: pointer; } }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.18); }
+    .btn--terrakotta { background: var(--terrakotta); color: var(--weiss); }
+    .btn--light {
+      background: transparent; color: var(--weiss);
+      border: 1.5px solid rgba(255,255,255,0.5);
+    }
+    .btn--light:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.8); }
+
+    /* ============================================================
+       PAGE HERO
+    ============================================================ */
+    #page-hero {
+      position: relative;
+      background: var(--bordeaux);
+      padding: clamp(8rem, 14vw, 12rem) var(--container-px) clamp(5rem, 9vw, 8rem);
+      overflow: hidden;
+    }
+    .page-hero-inner {
+      max-width: var(--container-max);
+      margin-inline: auto;
+      position: relative; z-index: 2;
+    }
+    .page-hero-title {
+      font-family: var(--font-display); font-style: italic;
+      font-weight: 300; font-size: clamp(3rem, 6.5vw, 5.5rem);
+      color: var(--weiss); line-height: 1.05;
+      margin-bottom: 1.5rem;
+    }
+    .page-hero-sub {
+      font-family: var(--font-display); font-style: italic;
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      color: var(--terrakotta); line-height: 1.5;
+      margin-bottom: 1rem;
+    }
+    .page-hero-text {
+      font-family: var(--font-body); font-weight: 400;
+      font-size: 0.95rem; line-height: 1.85;
+      color: rgba(255,255,255,0.65);
+      max-width: 480px;
+    }
+
+    /* ============================================================
+       SECTION: AUSGANGSPUNKT
+    ============================================================ */
+    #ausgangspunkt {
+      background: var(--weiss);
+      padding: var(--section-pad) var(--container-px);
+    }
+    .ausgangspunkt-inner {
+      max-width: 700px;
+      margin-inline: auto;
+    }
+    .section-headline {
+      font-family: var(--font-display); font-style: italic;
+      font-weight: 300; font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--bordeaux); line-height: 1.2; margin-bottom: 2rem;
+    }
+    .body-text {
+      font-family: var(--font-body); font-weight: 400;
+      font-size: 1rem; line-height: 1.85;
+      color: var(--text-dunkel); margin-bottom: 1.25rem;
+    }
+    .pull-quote {
+      font-family: var(--font-display); font-style: italic;
+      font-size: clamp(1.1rem, 2vw, 1.3rem);
+      color: var(--text-dunkel); line-height: 1.65;
+      border-left: 3px solid var(--terrakotta);
+      padding: 1.25rem 1.75rem;
+      margin: 2rem 0;
+      background: rgba(201,94,70,0.04);
+    }
+
+    /* ============================================================
+       SECTION: MARKER
+    ============================================================ */
+    #marker {
+      background: var(--licht);
+      padding: var(--section-pad) var(--container-px);
+      border-top: 1px solid rgba(61,18,25,0.07);
+    }
+    .marker-inner {
+      max-width: var(--container-max);
+      margin-inline: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(3rem, 6vw, 6rem);
+      align-items: start;
+    }
+    .marker-list {
+      display: flex; flex-direction: column; gap: 0;
+      margin-top: 2rem;
+    }
+    .marker-item {
+      display: flex; align-items: baseline; gap: 0.875rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(61,18,25,0.07);
+    }
+    .marker-item:first-child { border-top: 1px solid rgba(61,18,25,0.07); }
+    .marker-dot {
+      flex-shrink: 0; width: 5px; height: 5px;
+      border-radius: 50%; background: var(--terrakotta);
+      margin-top: 0.5rem;
+    }
+    .marker-text {
+      font-family: var(--font-body); font-size: 0.95rem;
+      line-height: 1.7; color: var(--text-dunkel);
+    }
+    .marker-conclusion {
+      margin-top: 2.5rem;
+      padding: 1.5rem 2rem;
+      border-left: 3px solid var(--terrakotta);
+      background: rgba(201,94,70,0.05);
+    }
+    .marker-conclusion p {
+      font-family: var(--font-display); font-style: italic;
+      font-size: clamp(1.1rem, 2vw, 1.3rem);
+      color: var(--text-dunkel); line-height: 1.65;
+    }
+    .marker-image {
+      position: relative;
+    }
+    .marker-image img {
+      width: 100%; aspect-ratio: 3/4;
+      object-fit: cover; object-position: center top;
+    }
+
+    @media (max-width: 860px) {
+      .marker-inner { grid-template-columns: 1fr; }
+      .marker-image { max-width: 420px; }
+    }
+
+    /* ============================================================
+       SECTION: SCHUTZMODI
+    ============================================================ */
+    #schutzmodi {
+      background: var(--bordeaux);
+      padding: var(--section-pad) var(--container-px);
+      position: relative; overflow: hidden;
+    }
+    .schutzmodi-inner {
+      max-width: 700px;
+      margin-inline: auto;
+      position: relative; z-index: 2;
+    }
+    .schutzmodi-headline {
+      font-family: var(--font-display); font-style: italic;
+      font-weight: 300; font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--weiss); line-height: 1.2; margin-bottom: 2rem;
+    }
+    .schutzmodi-text {
+      font-family: var(--font-body); font-weight: 400;
+      font-size: 1rem; line-height: 1.85;
+      color: rgba(255,255,255,0.88); margin-bottom: 1.25rem;
+    }
+    .schutzmodi-punch {
+      font-family: var(--font-display); font-style: italic;
+      font-size: clamp(1.2rem, 2.2vw, 1.5rem);
+      color: var(--terrakotta); line-height: 1.5;
+      margin-top: 2.5rem;
+    }
+
+    /* ============================================================
+       SECTION: WAS ANDERS IST
+    ============================================================ */
+    #anders {
+      background: var(--weiss);
+      padding: var(--section-pad) var(--container-px);
+    }
+    .anders-inner {
+      max-width: 700px;
+      margin-inline: auto;
+    }
+    .anders-compare {
+      margin-top: 2.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border: 1px solid rgba(61,18,25,0.1);
+    }
+    .anders-col {
+      padding: 2rem 2rem;
+    }
+    .anders-col:first-child {
+      border-right: 1px solid rgba(61,18,25,0.1);
+    }
+    .anders-col-label {
+      font-family: var(--font-body); font-size: 0.72rem;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: rgba(61,18,25,0.4); margin-bottom: 1rem; display: block;
+    }
+    .anders-col:last-child .anders-col-label {
+      color: var(--terrakotta);
+    }
+    .anders-col-text {
+      font-family: var(--font-body); font-size: 0.95rem;
+      line-height: 1.8; color: var(--text-dunkel);
+    }
+    @media (max-width: 600px) {
+      .anders-compare { grid-template-columns: 1fr; }
+      .anders-col:first-child { border-right: none; border-bottom: 1px solid rgba(61,18,25,0.1); }
+    }
+
+    .anders-kernsatz {
+      margin-top: 2.5rem;
+      padding: 2rem 2.5rem;
+      background: var(--bordeaux);
+    }
+    .anders-kernsatz p {
+      font-family: var(--font-display); font-style: italic;
+      font-size: clamp(1.2rem, 2.2vw, 1.5rem);
+      color: var(--weiss); line-height: 1.5;
+    }
+
+    /* ============================================================
+       SECTION: METAPHERN
+    ============================================================ */
+    #metaphern {
+      background: var(--licht);
+      padding: var(--section-pad) var(--container-px);
+      border-top: 1px solid rgba(61,18,25,0.07);
+    }
+    .metaphern-inner {
+      max-width: var(--container-max);
+      margin-inline: auto;
+    }
+    .metaphern-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .metapher-card {
+      padding: 2.5rem;
+      background: var(--weiss);
+      border-top: 3px solid var(--terrakotta);
+    }
+    .metapher-label {
+      font-family: var(--font-body); font-size: 0.72rem;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--terrakotta); display: block; margin-bottom: 1rem;
+    }
+    .metapher-title {
+      font-family: var(--font-display); font-style: italic;
+      font-weight: 300; font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+      color: var(--bordeaux); line-height: 1.2; margin-bottom: 1.25rem;
+    }
+    .metapher-text {
+      font-family: var(--font-body); font-size: 0.95rem;
+      line-height: 1.85; color: var(--text-dunkel);
+    }
+    @media (max-width: 700px) {
+      .metaphern-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ============================================================
+       SECTION: WIE ES LÄUFT
+    ============================================================ */
+    #sitzung {
+      background: var(--bordeaux);
+      padding: var(--section-pad) var(--container-px);
+      position: relative; overflow: hidden;
+    }
+    .sitzung-inner {
+      max-width: 700px;
+      margin-inline: auto;
+      position: relative; z-index: 2;
+    }
+    .sitzung-list {
+      margin-top: 2.5rem;
+      display: flex; flex-direction: column; gap: 0;
+    }
+    .sitzung-item {
+      display: flex; gap: 2rem; align-items: flex-start;
+      padding: 2rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .sitzung-item:first-child { border-top: 1px solid rgba(255,255,255,0.08); }
+    .sitzung-num {
+      font-family: var(--font-display); font-style: italic;
+      font-weight: 300; font-size: 2.5rem;
+      color: rgba(255,255,255,0.35); line-height: 1;
+      flex-shrink: 0; width: 2.5rem; text-align: right;
+    }
+    .sitzung-content {}
+    .sitzung-title {
+      font-family: var(--font-body); font-size: 0.72rem;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--terrakotta); margin-bottom: 0.75rem; display: block;
+    }
+    .sitzung-text {
+      font-family: var(--font-body); font-size: 0.95rem;
+      line-height: 1.85; color: rgba(255,255,255,0.85);
+    }
+    .sitzung-close {
+      margin-top: 3rem;
+      font-family: var(--font-display); font-style: italic;
+      font-size: clamp(1.1rem, 2vw, 1.35rem);
+      color: rgba(255,255,255,0.9); line-height: 1.65;
+    }
+
+    /* ============================================================
+       SECTION: KEIN HINDERNISSE
+    ============================================================ */
+    #keine {
+      background: var(--weiss);
+      padding: var(--section-pad) var(--container-px);
+    }
+    .keine-inner {
+      max-width: var(--container-max);
+      margin-inline: auto;
+    }
+    .keine-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(61,18,25,0.08);
+      margin-top: 2.5rem;
+    }
+    .keine-item {
+      background: var(--weiss);
+      padding: 2rem 2rem;
+    }
+    .keine-item-label {
+      font-family: var(--font-body); font-size: 0.72rem;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--terrakotta); margin-bottom: 1rem; display: block;
+    }
+    .keine-item-text {
+      font-family: var(--font-body); font-size: 0.9rem;
+      line-height: 1.8; color: var(--text-dunkel);
+    }
+    .keine-note {
+      margin-top: 2.5rem;
+      font-family: var(--font-body); font-size: 0.85rem;
+      line-height: 1.75; color: rgba(26,26,26,0.5);
+      max-width: 640px;
+    }
+    @media (max-width: 700px) {
+      .keine-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ============================================================
+       SECTION: WAS SICH VERÄNDERT
+    ============================================================ */
+    #ergebnis {
+      background: var(--licht);
+      padding: var(--section-pad) var(--container-px);
+      border-top: 1px solid rgba(61,18,25,0.07);
+    }
+    .ergebnis-inner {
+      max-width: 700px;
+      margin-inline: auto;
+    }
+    .ergebnis-statements {
+      margin-top: 2.5rem;
+      display: flex; flex-direction: column; gap: 1rem;
+    }
+    .ergebnis-statement {
+      padding: 1.5rem 2rem;
+      border-left: 3px solid var(--terrakotta);
+      background: var(--weiss);
+      font-family: var(--font-display); font-style: italic;
+      font-size: clamp(1rem, 1.8vw, 1.2rem);
+      color: var(--text-dunkel); line-height: 1.65;
+    }
+    .ergebnis-close {
+      margin-top: 3rem;
+      font-family: var(--font-display); font-style: italic;
+      font-size: clamp(1.2rem, 2.2vw, 1.5rem);
+      color: var(--bordeaux); line-height: 1.5;
+    }
+
+    /* ============================================================
+       SECTION: TESTIMONIALS
+    ============================================================ */
+    #methode-testimonials {
+      position: relative;
+      background: var(--bordeaux);
+      padding: var(--section-pad) var(--container-px);
+      overflow: hidden;
+    }
+    #methode-testimonials .testimonials-inner {
+      max-width: var(--container-max);
+      margin-inline: auto;
+      position: relative;
+      z-index: 2;
+    }
+    #methode-testimonials .testimonials-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    @media (max-width: 680px) {
+      #methode-testimonials .testimonials-grid { grid-template-columns: 1fr; }
+    }
+    #methode-testimonials .testimonial-card {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 2px;
+      padding: 2.5rem;
+      position: relative;
+    }
+    #methode-testimonials .testimonial-card::before {
+      content: '\201C';
+      font-family: var(--font-display);
+      font-size: 6rem;
+      line-height: 0.7;
+      color: var(--terrakotta);
+      opacity: 0.6;
+      display: block;
+      margin-bottom: 1.25rem;
+    }
+    #methode-testimonials .testimonial-card--wide {
+      grid-column: 1 / -1;
+      max-width: 700px;
+      margin-inline: auto;
+      border-color: rgba(201,94,70,0.35);
+      background: rgba(201,94,70,0.07);
+      width: 100%;
+    }
+    #methode-testimonials .testimonial-quote {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(1.05rem, 1.9vw, 1.2rem);
+      line-height: 1.75;
+      color: rgba(255,255,255,0.96);
+      margin-bottom: 1.5rem;
+    }
+    #methode-testimonials .testimonial-author {
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--terrakotta);
+    }
+    #methode-testimonials .testimonials-disclaimer {
+      margin-top: 3rem;
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+      max-width: 700px;
+      margin-inline: auto;
+      text-align: center;
+    }
+
+    /* ============================================================
+       SECTION: CTA
+    ============================================================ */
+    #methode-cta {
+      position: relative;
+      background: var(--bordeaux);
+      padding: var(--section-pad) var(--container-px);
+      text-align: center; overflow: hidden;
+    }
+    .methode-cta-inner {
+      max-width: 560px;
+      margin-inline: auto;
+      position: relative; z-index: 2;
+    }
+    .methode-cta-headline {
+      font-family: var(--font-display); font-style: italic;
+      font-weight: 300; font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+      color: var(--weiss); line-height: 1.2; margin-bottom: 1.5rem;
+    }
+    .methode-cta-text {
+      font-family: var(--font-body); font-weight: 300;
+      font-size: 1rem; line-height: 1.85;
+      color: rgba(255,255,255,0.88); margin-bottom: 2rem;
+    }
+    .btn-meta {
+      display: block; margin-top: 0.875rem;
+      font-family: var(--font-body); font-size: 0.72rem;
+      letter-spacing: 0.04em; color: rgba(255,255,255,0.55);
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    #footer {
+      position: relative; background: var(--bordeaux);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 3.5rem var(--container-px) 2rem; overflow: hidden;
+    }
+    .footer-inner { max-width: var(--container-max); margin-inline: auto; position: relative; z-index: 2; }
+    .footer-top {
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 3rem; align-items: start;
+      margin-bottom: 3rem; padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer-logo-name {
+      font-family: var(--font-display); font-style: italic;
+      font-weight: 300; font-size: 1.4rem; color: var(--weiss);
+      display: block; margin-bottom: 0.3rem;
+    }
+    .footer-logo-sub {
+      font-family: var(--font-body); font-size: 0.68rem;
+      letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.4);
+    }
+    .footer-contact { text-align: right; }
+    .footer-email {
+      font-family: var(--font-body); font-size: 0.9rem;
+      color: rgba(255,255,255,0.78); transition: color 0.3s ease; display: block;
+    }
+    .footer-email:hover { color: var(--terrakotta); }
+    .footer-insta {
+      display: block; margin-top: 0.4rem;
+      font-family: var(--font-body); font-size: 0.82rem;
+      color: rgba(255,255,255,0.5); transition: color 0.3s ease;
+    }
+    .footer-insta:hover { color: var(--terrakotta); }
+    .footer-bottom {
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+    }
+    .footer-copy { font-family: var(--font-body); font-size: 0.72rem; color: rgba(255,255,255,0.3); }
+    .footer-links { display: flex; gap: 1.5rem; list-style: none; }
+    .footer-links a {
+      font-family: var(--font-body); font-size: 0.72rem;
+      color: rgba(255,255,255,0.35); transition: color 0.3s ease;
+    }
+    .footer-links a:hover { color: rgba(255,255,255,0.7); }
+
+    @media (max-width: 600px) {
+      .footer-top { grid-template-columns: 1fr; }
+      .footer-contact { text-align: left; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
+
+  <!-- NAVIGATION -->
+  <nav id="nav" role="navigation" aria-label="Hauptnavigation">
+    <a href="index.html" class="nav-logo" aria-label="Julia Lauer Bewusstseinsarchitektur Startseite">
+      <span class="nav-logo-name">Julia Lauer</span>
+      <span class="nav-logo-sub">Für Frauen, die wissen wie es richtig wäre.</span>
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="index.html#fuerwen">Für wen</a></li>
+      <li><a href="methode.html" class="active">Methode</a></li>
+      <li><a href="ueber-mich.html">Über mich</a></li>
+      <li><a href="index.html#angebote">Angebote</a></li>
+      <li><a href="texte.html">Texte</a></li>
+      <li><a href="freebie.html">Audio</a></li>
+    </ul>
+    <a href="https://calendly.com/zentrum-bewusstseinsarchitektur/30min" class="nav-cta" target="_blank" rel="noopener">System Check starten →</a>
+    <button class="nav-hamburger" aria-label="Menü öffnen" aria-expanded="false" aria-controls="nav-drawer">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div id="nav-drawer" class="nav-drawer" role="dialog" aria-label="Mobilnavigation" aria-modal="true">
+    <a href="index.html#fuerwen">Für wen</a>
+    <a href="methode.html">Methode</a>
+    <a href="ueber-mich.html">Über mich</a>
+    <a href="index.html#angebote">Angebote</a>
+    <a href="texte.html">Texte</a>
+    <a href="freebie.html">Audio</a>
+    <a href="https://calendly.com/zentrum-bewusstseinsarchitektur/30min" target="_blank" rel="noopener" style="background:var(--terrakotta);color:#fff;padding:0.875rem 1.875rem;border-radius:2px;font-family:var(--font-body);font-size:0.875rem;cursor:pointer;">System Check starten →</a>
+  </div>
+
+  <main>
+
+    <!-- HERO -->
+    <section id="page-hero" class="noise" aria-label="Methode">
+      <div class="page-hero-inner">
+        <span class="label label--weiss" data-reveal>Methode</span>
+        <h1 class="page-hero-title" data-reveal>
+          Bewusstseins&shy;architektur.
+        </h1>
+        <p class="page-hero-sub" data-reveal>
+          Keine Therapie. Kein Coaching.<br>Die Instanz danach.
+        </p>
+        <p class="page-hero-text" data-reveal>
+          Verhalten, Gedanken, Gefühle. Das sind meine Einstiegspunkte. Nicht mein Ziel. Was zählt ist nicht die Sitzung. Was zählt ist was danach anders ist.
+        </p>
+      </div>
+    </section>
+
+    <!-- AUSGANGSPUNKT -->
+    <section id="ausgangspunkt" aria-labelledby="ausgangspunkt-headline">
+      <div class="ausgangspunkt-inner">
+        <span class="label label--bordeaux" data-reveal>Der Ausgangspunkt</span>
+        <div class="divider" data-divider></div>
+        <h2 class="section-headline" id="ausgangspunkt-headline" data-reveal>
+          Du hast vieles versucht.
+        </h2>
+        <p class="body-text" data-reveal>
+          Und manches hat geholfen. Aber irgendetwas bleibt.
+        </p>
+        <p class="body-text" data-reveal>
+          Ein Muster das sich wiederholt. Eine Reaktion die du nicht willst, aber kennst. Das Gefühl, nie wirklich anzukommen. Egal was du erreichst.
+        </p>
+        <p class="body-text" data-reveal>
+          Therapie. Coaching. Meditation. Journaling. Sie setzen alle auf bewusster Ebene an. Mit Gedanken, Verhalten, Einsicht. Das sind Ergebnisse. Nicht Ursachen.
+        </p>
+        <blockquote class="pull-quote" data-reveal>
+          Die eigentlichen Ursachen sind innere Strukturen die im Unterbewusstsein gespeichert sind. Sie sind schneller als jeder Gedanke. Deshalb hilft Verstehen nur bis zu einem Punkt.
+        </blockquote>
+        <p class="body-text" data-reveal>
+          Du kannst alles wissen. Und trotzdem gleich reagieren. Das ist keine Frage des Willens. Das ist Biologie.
+        </p>
+      </div>
+    </section>
+
+    <!-- MARKER -->
+    <section id="marker" aria-labelledby="marker-headline">
+      <div class="marker-inner">
+        <div>
+          <span class="label label--bordeaux" data-reveal>Was dein System zeigt</span>
+          <div class="divider" data-divider></div>
+          <h2 class="section-headline" id="marker-headline" data-reveal>
+            Das sind keine Fehler. Das sind Marker.
+          </h2>
+          <p class="body-text" data-reveal>
+            Dein System zeigt dir wo etwas nicht stimmt. Präzise. Hartnäckig.
+          </p>
+
+          <div class="marker-list" data-reveal>
+            <div class="marker-item">
+              <span class="marker-dot"></span>
+              <span class="marker-text">Schlaf der nicht mehr erholt. Erschöpfung die kein Wochenende löst.</span>
+            </div>
+            <div class="marker-item">
+              <span class="marker-dot"></span>
+              <span class="marker-text">Entscheidungen die du nicht treffen kannst, obwohl du weißt was richtig wäre.</span>
+            </div>
+            <div class="marker-item">
+              <span class="marker-dot"></span>
+              <span class="marker-text">Reaktionen die du nicht willst und trotzdem kennst.</span>
+            </div>
+            <div class="marker-item">
+              <span class="marker-dot"></span>
+              <span class="marker-text">Innere Leere trotz äußerem Erfolg.</span>
+            </div>
+            <div class="marker-item">
+              <span class="marker-dot"></span>
+              <span class="marker-text">Beziehungsmuster die sich wiederholen.</span>
+            </div>
+          </div>
+
+          <div class="marker-conclusion" data-reveal>
+            <p>Das sind Hinweise. Dein System kommuniziert mit dir. Die Ursache liegt oft woanders als der Marker.</p>
+          </div>
+
+          <div class="body-text" data-reveal style="margin-top:1.5rem;">
+            <p style="font-family:var(--font-body);font-size:0.95rem;line-height:1.85;color:var(--text-dunkel);margin-bottom:1.25rem;">Wie beim Triggerpunkt: es tut im Schulterblatt weh. Aber die Verspannung die ausstrahlt, liegt ganz woanders. Ich folge dem Marker. Nicht dem Schmerz.</p>
+            <p style="font-family:var(--font-body);font-size:0.95rem;line-height:1.85;color:var(--text-dunkel);margin-bottom:1.25rem;">Ich kann keine Ergebnisse versprechen. Die innere Instanz weiß was bereit ist. Ich nicht. Was ich versprechen kann: die Arbeit ist nachhaltig. Was sich verändert, verändert sich an der Wurzel.</p>
+            <p style="font-family:var(--font-display);font-style:italic;font-size:clamp(1rem,1.8vw,1.2rem);color:var(--text-dunkel);line-height:1.65;border-left:3px solid var(--terrakotta);padding:1rem 1.5rem;background:rgba(201,94,70,0.04);">Ich hatte Klientinnen die mit Rückenschmerzen kamen und mit einem neuen Job rausgingen. Das ist kein Versprechen. Das ist was passiert wenn die richtige Struktur sich verändert.</p>
+          </div>
+        </div>
+
+        <div class="marker-image" data-reveal>
+          <img src="IMG_7901.JPEG" alt="Julia Lauer in der Arbeit" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <!-- SCHUTZMODI -->
+    <section id="schutzmodi" class="noise" aria-labelledby="schutzmodi-headline">
+      <div class="schutzmodi-inner">
+        <span class="label label--weiss" data-reveal>Das System</span>
+        <div class="divider" data-divider style="background:rgba(255,255,255,0.2);"></div>
+        <h2 class="schutzmodi-headline" id="schutzmodi-headline" data-reveal>
+          Schutzmodi.
+        </h2>
+        <p class="schutzmodi-text" data-reveal>
+          Dein System hat gelernt wie es mit Druck umgeht. Mit Nähe. Mit Ablehnung. Mit Verantwortung. Es hat Muster entwickelt die kontextabhängig schalten. Blitzschnell. Bevor du überhaupt gedacht hast. Außerhalb deines bewussten Einflusses.
+        </p>
+        <p class="schutzmodi-text" data-reveal>
+          Sie waren einmal sinnvoll. Sie haben dich geschützt. Irgendwann fangen sie an, dein Leben zu führen. Ohne dass du es gewählt hast.
+        </p>
+        <p class="schutzmodi-text" data-reveal>
+          Das lässt sich nicht wegdenken. Nicht wegtrainieren. Nicht wegcoachen.
+        </p>
+        <p class="schutzmodi-punch" data-reveal>
+          Es lässt sich verändern.<br>Direkt. An der Wurzel.
+        </p>
+      </div>
+    </section>
+
+    <!-- WAS ANDERS IST -->
+    <section id="anders" aria-labelledby="anders-headline">
+      <div class="anders-inner">
+        <span class="label label--bordeaux" data-reveal>Was anders ist</span>
+        <div class="divider" data-divider></div>
+        <h2 class="section-headline" id="anders-headline" data-reveal>
+          Warum andere Ansätze<br>hier nicht reichen.
+        </h2>
+        <p class="body-text" data-reveal>
+          Therapie, Coaching, Meditation: sie setzen alle an Ergebnissen an. An dem was sichtbar ist. An Verhalten, Gedanken, Emotionen. Das System dahinter bleibt unverändert.
+        </p>
+
+        <div class="anders-compare" data-reveal>
+          <div class="anders-col">
+            <span class="anders-col-label">Andere Ansätze</span>
+            <p class="anders-col-text">Arbeiten an Symptomen, Verhalten, Gedanken. Präzise und oft hilfreich. Aber das System das sie erzeugt, bleibt unverändert.</p>
+          </div>
+          <div class="anders-col">
+            <span class="anders-col-label">Bewusstseinsarchitektur</span>
+            <p class="anders-col-text">Arbeitet nicht an einzelnen Teilen. Kommuniziert direkt mit der Instanz in dir die alles weiß: jeden Eintrag, jeden Ursprung. An der Wurzel.</p>
+          </div>
+        </div>
+
+        <div class="anders-kernsatz" data-reveal>
+          <p>Ich verändere nicht was sichtbar ist.<br>Ich verändere die Struktur aus der es entsteht.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- METAPHERN -->
+    <section id="metaphern" aria-labelledby="metaphern-headline">
+      <div class="metaphern-inner">
+        <span class="label label--bordeaux" data-reveal>Zwei Bilder</span>
+        <div class="divider" data-divider></div>
+        <h2 class="section-headline" id="metaphern-headline" data-reveal>
+          Was das bedeutet.
+        </h2>
+        <p class="body-text" data-reveal style="max-width:600px;">
+          Zwei Bilder für das was hier anders ist.
+        </p>
+
+        <div class="metaphern-grid" data-reveal>
+          <div class="metapher-card">
+            <span class="metapher-label">Der Fahrer</span>
+            <h3 class="metapher-title">Es bringt nichts, die Mitfahrer auszutauschen.</h3>
+            <p class="metapher-text">Wenn immer derselbe Fahrer am Steuer sitzt, führt die Reise immer wieder an denselben Ort. Egal welche Route du planst, egal wer mitfährt. Ich arbeite direkt mit dem Fahrer.</p>
+          </div>
+          <div class="metapher-card">
+            <span class="metapher-label">Der Bernstein</span>
+            <h3 class="metapher-title">Manche Muster bleiben wie eingefroren.</h3>
+            <p class="metapher-text">Alles was du erlebt hast, hinterlässt Spuren. Manche sehr früh. Manche sehr tief. Wie kleine Bernsteinstücke. Sie entwickeln sich nicht weiter. Aber sie wirken weiter. Oft ohne dass wir es merken.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WAS IN EINER SITZUNG PASSIERT -->
+    <section id="sitzung" class="noise" aria-labelledby="sitzung-headline">
+      <div class="sitzung-inner">
+        <span class="label label--weiss" data-reveal>Was passiert</span>
+        <div class="divider" data-divider style="background:rgba(255,255,255,0.2);"></div>
+        <h2 class="schutzmodi-headline" id="sitzung-headline" data-reveal>
+          In einer Sitzung.
+        </h2>
+
+        <div class="sitzung-list" data-reveal>
+          <div class="sitzung-item">
+            <span class="sitzung-num">1</span>
+            <div class="sitzung-content">
+              <span class="sitzung-title">Erst das Gespräch</span>
+              <p class="sitzung-text">Keine Sitzung ohne Vorgespräch. Wir schauen gemeinsam ob es passt. Für dich und für mich. Kein Pitch, keine Agenda. Ein klarer Blick auf das was ist.</p>
+            </div>
+          </div>
+          <div class="sitzung-item">
+            <span class="sitzung-num">2</span>
+            <div class="sitzung-content">
+              <span class="sitzung-title">Die Vorbereitung</span>
+              <p class="sitzung-text">Wenn wir zusammenarbeiten, bekommst du einen kurzen Anamnesebogen zur Absicherung. Dazu Unterlagen die erklären wie alles abläuft, und je nach Bedarf eine Mentalreise zur Vorbereitung auf den Sitzungstag.</p>
+            </div>
+          </div>
+          <div class="sitzung-item">
+            <span class="sitzung-num">3</span>
+            <div class="sitzung-content">
+              <span class="sitzung-title">Online. Von zu Hause.</span>
+              <p class="sitzung-text">Die Arbeit findet online statt. Du kannst es dir gemütlich machen. Kein Büro, kein Wartezimmer. Und falls die Verbindung mal abbricht? Kein Problem. Wir sind in keinem Trancezustand. Du bist jederzeit vollständig bei dir.</p>
+            </div>
+          </div>
+          <div class="sitzung-item">
+            <span class="sitzung-num">4</span>
+            <div class="sitzung-content">
+              <span class="sitzung-title">Die Antworten kommen von dir</span>
+              <p class="sitzung-text">Die Kommunikation läuft über dich, nicht über mich. Dein inneres System gibt die Antworten selbst. Ich stelle die Fragen und begleite den Prozess. Ich interpretiere nichts. Ich bewerte nichts.</p>
+            </div>
+          </div>
+          <div class="sitzung-item">
+            <span class="sitzung-num">5</span>
+            <div class="sitzung-content">
+              <span class="sitzung-title">Stille Veränderung</span>
+              <p class="sitzung-text">Was sich verändert, verändert sich still. Oft merkst du es erst danach, in einem Moment wo du anders reagierst als sonst. Und dich fragst: Wann hat sich das verändert?</p>
+            </div>
+          </div>
+        </div>
+
+        <p class="sitzung-close" data-reveal>
+          Keine Hypnose. Keine Retraumatisierung. Kein Analysemarathon.<br>
+          Du bleibst vollständig bei dir. Geeignet auch für Schwangere und Kinder.
+        </p>
+
+        <div data-reveal style="margin-top:2.5rem;padding:1.5rem 2rem;border-left:2px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.04);">
+          <p style="font-family:var(--font-body);font-size:0.85rem;line-height:1.8;color:rgba(255,255,255,0.55);">Die Methode kann bei allen körperlichen und seelischen Symptomen begleitend angewandt werden. Sie ersetzt keine medizinische oder psychotherapeutische Behandlung. Wenn du dich gerade in ärztlicher oder therapeutischer Begleitung befindest, sprich das bitte vorher mit deinem Behandler ab.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- WAS SICH VERÄNDERT -->
+    <section id="ergebnis" aria-labelledby="ergebnis-headline">
+      <div class="ergebnis-inner">
+        <span class="label label--bordeaux" data-reveal>Das Ergebnis</span>
+        <div class="divider" data-divider></div>
+        <h2 class="section-headline" id="ergebnis-headline" data-reveal>
+          Was sich verändert.
+        </h2>
+
+        <div class="ergebnis-statements" data-reveal>
+          <div class="ergebnis-statement">Du reagierst anders. Nicht weil du es trainiert hast.</div>
+          <div class="ergebnis-statement">Du entscheidest klarer. Nicht weil du rationaler bist.</div>
+          <div class="ergebnis-statement">Du führst dich selbst, von innen, ohne Willenskraft, ohne dauernde Anstrengung.</div>
+          <div class="ergebnis-statement">Grenzen die keine Erklärung brauchen. Empathie ohne dich zu verlieren.</div>
+          <div class="ergebnis-statement">Der Körper als Information statt als Alarm.</div>
+        </div>
+
+        <p class="ergebnis-close" data-reveal>
+          Und das Stärkste: Wenn der Kanal einmal frei ist,<br>
+          kannst du selbst damit arbeiten. Unabhängig von mir.<br>
+          Das ist das Ziel.
+        </p>
+      </div>
+    </section>
+
+  <section id="methode-testimonials" aria-label="Erfahrungsberichte" style="background:var(--licht);padding:clamp(4rem,8vw,7rem) var(--container-px);">
+    <div style="max-width:var(--container-max);margin-inline:auto;">
+      <span class="label label--bordeaux" data-reveal>Was danach möglich wurde</span>
+      <div class="divider" data-divider></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:2.5rem;">
+        <div class="testimonial-card" data-reveal style="background:var(--weiss);padding:2.5rem 2rem;border:1px solid rgba(61,18,25,0.08);">
+          <p class="testimonial-quote">„Schuldgefühle haben mich jahrelang in Entscheidungen blockiert. Ich wusste dass sie nicht rational waren. Trotzdem waren sie da. Nach der Arbeit mit Julia: weg. Nicht reduziert. Weg."</p>
+          <p class="testimonial-author">S.L. &middot; Unternehmerin</p>
+        </div>
+        <div class="testimonial-card" data-reveal data-delay="100" style="background:var(--weiss);padding:2.5rem 2rem;border:1px solid rgba(61,18,25,0.08);">
+          <p class="testimonial-quote">„In Leistungssituationen bin ich regelmäßig unter meinen Möglichkeiten geblieben. Aufregung, Blackout, Ärger danach. Seit der Sitzung rufe ich ab was ich kann. Einfach so."</p>
+          <p class="testimonial-author">A.F. &middot; Führungskraft</p>
+        </div>
+      </div>
+      <p style="font-family:var(--font-body);font-size:0.72rem;color:rgba(26,26,26,0.35);margin-top:2rem;line-height:1.7;" data-reveal>Die beschriebenen Erfahrungen sind individuelle Erlebnisse. Bewusstseinsarchitektur ist kein therapeutisches oder medizinisches Verfahren und ersetzt keine ärztliche oder psychotherapeutische Behandlung.</p>
+    </div>
+  </section>
+
+    <!-- CTA -->
+    <section id="methode-cta" class="noise" aria-label="System Check starten">
+      <div class="methode-cta-inner">
+        <span class="label label--weiss" data-reveal>Bereit?</span>
+        <h2 class="methode-cta-headline" data-reveal>
+          Ein klarer Blick.
+        </h2>
+        <p class="methode-cta-text" data-reveal>
+          30 Minuten. Kein Umweg. Wir schauen gemeinsam hin.
+        </p>
+        <div data-reveal>
+          <a href="https://calendly.com/zentrum-bewusstseinsarchitektur/30min" class="btn btn--terrakotta" target="_blank" rel="noopener">
+            System Check starten →
+          </a>
+          <span class="btn-meta">30 Min · kostenlos · kein Pitch · vertraulich</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="footer" class="noise" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <span class="footer-logo-name">Julia Lauer · Bewusstseinsarchitektur</span>
+          <span class="footer-logo-sub">Für Frauen, die wissen wie es richtig wäre.</span>
+        </div>
+        <div class="footer-contact">
+          <a href="mailto:zentrum@bewusstseinsarchitektur.de" class="footer-email">zentrum@bewusstseinsarchitektur.de</a>
+          <a href="https://www.instagram.com/julia.bewusstseinsarchitektur" class="footer-insta" target="_blank" rel="noopener">@julia.bewusstseinsarchitektur</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2026 Julia Lauer · Bewusstseinsarchitektur</p>
+        <ul class="footer-links" role="list">
+          <li><a href="impressum.html">Impressum</a></li>
+          <li><a href="datenschutz.html">Datenschutz</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    'use strict';
+
+    // Cursor
+    (function() {
+      if (!window.matchMedia('(pointer: fine)').matches) return;
+      var dot = document.querySelector('.cursor-dot');
+      var ring = document.querySelector('.cursor-ring');
+      if (!dot || !ring) return;
+      var mx = window.innerWidth / 2, my = window.innerHeight / 2;
+      var rx = mx, ry = my;
+      document.addEventListener('mousemove', function(e) {
+        mx = e.clientX; my = e.clientY;
+        dot.style.left = mx + 'px'; dot.style.top = my + 'px';
+      });
+      (function animateRing() {
+        rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+        ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+        requestAnimationFrame(animateRing);
+      })();
+      document.querySelectorAll('a, button').forEach(function(el) {
+        el.addEventListener('mouseenter', function() { document.body.classList.add('cursor-hover'); });
+        el.addEventListener('mouseleave', function() { document.body.classList.remove('cursor-hover'); });
+      });
+    })();
+
+    // Nav scroll
+    (function() {
+      var nav = document.getElementById('nav');
+      if (!nav) return;
+      function update() { nav.classList.toggle('scrolled', window.scrollY > 40); }
+      window.addEventListener('scroll', update, { passive: true });
+      update();
+    })();
+
+    // Hamburger
+    (function() {
+      var btn = document.querySelector('.nav-hamburger');
+      var drawer = document.getElementById('nav-drawer');
+      if (!btn || !drawer) return;
+      btn.addEventListener('click', function() {
+        var open = drawer.classList.toggle('open');
+        btn.classList.toggle('open', open);
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        document.body.style.overflow = open ? 'hidden' : '';
+      });
+      drawer.querySelectorAll('a').forEach(function(a) {
+        a.addEventListener('click', function() {
+          drawer.classList.remove('open');
+          btn.classList.remove('open');
+          btn.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = '';
+        });
+      });
+    })();
+
+    // Reveal
+    (function() {
+      var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var revealEls = document.querySelectorAll('[data-reveal]');
+
+      if (prefersReduced) {
+        revealEls.forEach(function(el) { el.classList.add('revealed'); });
+        document.querySelectorAll('[data-divider]').forEach(function(el) { el.classList.add('revealed'); });
+        return;
+      }
+
+      setTimeout(function() {
+        document.querySelectorAll('#page-hero [data-reveal]').forEach(function(el, i) {
+          setTimeout(function() { el.classList.add('revealed'); }, i * 150 + 200);
+        });
+      }, 100);
+
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            setTimeout(function() { entry.target.classList.add('revealed'); }, 0);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+      revealEls.forEach(function(el) {
+        if (!el.closest('#page-hero')) observer.observe(el);
+      });
+
+      var dividerObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            dividerObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+
+      document.querySelectorAll('[data-divider]').forEach(function(el) {
+        dividerObserver.observe(el);
+      });
+    })();
+  </script>
+
+</body>
+</html>

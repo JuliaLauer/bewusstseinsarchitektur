@@ -1,0 +1,2867 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Julia Lauer · Bewusstseinsarchitektur — Du weißt wie es richtig wäre. Und machst trotzdem das Gleiche.</title>
+  <meta name="description" content="Du weißt wie es richtig wäre. Und machst trotzdem das Gleiche. Bewusstseinsarchitektur arbeitet direkt an den inneren Strukturen, aus denen Reaktionen, Verhalten und Körpersymptome entstehen. 1:1 online, weltweit." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://bewusstseinsarchitektur.de/" />
+  <meta property="og:title" content="Julia Lauer · Bewusstseinsarchitektur" />
+  <meta property="og:description" content="Du weißt wie es richtig wäre. Und machst trotzdem das Gleiche. Bewusstseinsarchitektur arbeitet direkt an den inneren Strukturen aus denen Reaktionen entstehen." />
+  <meta property="og:image" content="https://bewusstseinsarchitektur.de/og-image.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Julia Lauer · Bewusstseinsarchitektur" />
+  <meta name="twitter:description" content="Du weißt wie es richtig wäre. Und machst trotzdem das Gleiche." />
+  <meta name="theme-color" content="#3D1219" />
+  <link rel="canonical" href="https://bewusstseinsarchitektur.de/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "name": "Julia Lauer",
+        "jobTitle": "Bewusstseinsarchitektin",
+        "url": "https://bewusstseinsarchitektur.de/",
+        "email": "zentrum@bewusstseinsarchitektur.de",
+        "sameAs": ["https://www.instagram.com/julia.bewusstseinsarchitektur"]
+      },
+      {
+        "@type": "ProfessionalService",
+        "name": "Bewusstseinsarchitektur",
+        "description": "Bewusstseinsarchitektur — direkte Arbeit an den inneren Strukturen aus denen Reaktionen, Verhalten und Körpersymptome entstehen. Für Frauen die sich verstehen und trotzdem feststecken. 1:1 online, weltweit.",
+        "url": "https://bewusstseinsarchitektur.de/",
+        "provider": { "@type": "Person", "name": "Julia Lauer" },
+        "areaServed": "Worldwide",
+        "availableLanguage": "de"
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    /* ========================================
+       CUSTOM PROPERTIES
+    ======================================== */
+    :root {
+      --bordeaux: #3D1219;
+      --terrakotta: #c95e46;
+      --licht: #FAF8F5;
+      --weiss: #FFFFFF;
+      --text-dunkel: #1A1A1A;
+      --text-mittel: #2E2E2E;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Jost', system-ui, sans-serif;
+      --section-pad: clamp(5rem, 9vw, 9rem);
+      --container-max: 1200px;
+      --container-px: clamp(1.5rem, 5vw, 4rem);
+      --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
+
+    /* ========================================
+       RESET & BASE
+    ======================================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-weight: 400;
+      color: var(--text-dunkel);
+      background: var(--weiss);
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    @media (pointer: coarse) {
+      body { cursor: auto; }
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ========================================
+       ACCESSIBILITY
+    ======================================== */
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 1rem;
+      padding: 0.5rem 1rem;
+      background: var(--terrakotta);
+      color: var(--weiss);
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      z-index: 9999;
+      border-radius: 0 0 4px 4px;
+    }
+    .skip-link:focus {
+      top: 0;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--terrakotta);
+      outline-offset: 3px;
+    }
+
+    /* ========================================
+       CUSTOM CURSOR
+    ======================================== */
+    @media (pointer: fine) {
+      .cursor-dot {
+        position: fixed;
+        width: 6px;
+        height: 6px;
+        background: var(--terrakotta);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+        transition: transform 0.1s ease, opacity 0.3s ease;
+      }
+
+      .cursor-ring {
+        position: fixed;
+        width: 32px;
+        height: 32px;
+        border: 1.5px solid var(--terrakotta);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9998;
+        transform: translate(-50%, -50%);
+        transition: transform 0.15s ease, width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+        opacity: 0.6;
+      }
+
+      body.cursor-hover .cursor-ring {
+        width: 48px;
+        height: 48px;
+        opacity: 0.4;
+      }
+    }
+
+    /* ========================================
+       NOISE OVERLAY
+    ======================================== */
+    .noise::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      opacity: 0.03;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* ========================================
+       CONTAINER
+    ======================================== */
+    .container {
+      max-width: var(--container-max);
+      margin-inline: auto;
+      padding-inline: var(--container-px);
+    }
+
+    /* ========================================
+       TYPOGRAPHY UTILITIES
+    ======================================== */
+    .label {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--terrakotta);
+      display: block;
+      margin-bottom: 1.25rem;
+    }
+
+    .label--weiss {
+      color: rgba(255,255,255,0.55);
+    }
+
+    .label--bordeaux {
+      color: var(--bordeaux);
+    }
+
+    /* ========================================
+       BUTTONS
+    ======================================== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 0.875rem;
+      letter-spacing: 0.04em;
+      padding: 0.875rem 1.875rem;
+      border-radius: 2px;
+      border: none;
+      cursor: none;
+      transition: transform var(--transition), background var(--transition), box-shadow var(--transition);
+      text-decoration: none;
+    }
+
+    @media (pointer: coarse) {
+      .btn { cursor: pointer; }
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+    }
+
+    .btn--terrakotta {
+      background: var(--terrakotta);
+      color: var(--weiss);
+    }
+
+    .btn--light {
+      background: transparent;
+      color: var(--weiss);
+      border: 1.5px solid rgba(255,255,255,0.5);
+    }
+
+    .btn--light:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.8);
+    }
+
+    .btn--white-solid {
+      background: var(--weiss);
+      color: var(--bordeaux);
+    }
+
+    .btn--white-solid:hover {
+      background: var(--licht);
+    }
+
+    .btn--outline {
+      background: transparent;
+      color: var(--bordeaux);
+      border: 1.5px solid rgba(61,18,25,0.45);
+    }
+
+    .btn--outline:hover {
+      background: rgba(61,18,25,0.05);
+      border-color: var(--bordeaux);
+    }
+
+    .btn--big {
+      padding: 1.125rem 2.5rem;
+      font-size: 1rem;
+    }
+
+    .btn-meta {
+      display: block;
+      margin-top: 0.625rem;
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      color: rgba(255,255,255,0.7);
+    }
+
+    /* ========================================
+       ANIMATIONS
+    ======================================== */
+    .line {
+      overflow: hidden;
+    }
+
+    .line-inner {
+      display: block;
+      transform: translateY(100%);
+      opacity: 0;
+      transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
+    }
+
+    .line-inner.revealed {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    [data-reveal].revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .divider {
+      width: 0;
+      height: 1.5px;
+      background: var(--terrakotta);
+      transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+      margin: 2rem 0;
+    }
+
+    .divider.revealed {
+      width: 48px;
+    }
+
+    /* ========================================
+       NAVIGATION
+    ======================================== */
+    #nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1.5rem var(--container-px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.4s ease, box-shadow 0.4s ease, padding 0.4s ease;
+    }
+
+    #nav.scrolled {
+      background: rgba(250, 248, 245, 0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+
+    .nav-logo {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .nav-logo-name {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: 1.35rem;
+      color: var(--weiss);
+      transition: color 0.4s ease;
+      line-height: 1.2;
+    }
+
+    #nav.scrolled .nav-logo-name {
+      color: var(--bordeaux);
+    }
+
+    .nav-logo-sub {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      transition: color 0.4s ease;
+      white-space: nowrap;
+    }
+
+    #nav.scrolled .nav-logo-sub {
+      color: var(--text-mittel);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      letter-spacing: 0.06em;
+      color: rgba(255,255,255,0.72);
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--weiss);
+    }
+
+    #nav.scrolled .nav-links a {
+      color: var(--text-mittel);
+    }
+
+    #nav.scrolled .nav-links a:hover {
+      color: var(--bordeaux);
+    }
+
+    .nav-cta {
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      color: var(--weiss);
+      background: var(--terrakotta);
+      padding: 0.55rem 1.2rem;
+      border-radius: 2px;
+      transition: background 0.3s ease, transform 0.3s ease;
+      cursor: none;
+    }
+
+    @media (pointer: coarse) {
+      .nav-cta { cursor: pointer; }
+    }
+
+    .nav-cta:hover {
+      background: #b54e37;
+      transform: translateY(-1px);
+    }
+
+    /* Hamburger */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      z-index: 101;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 24px;
+      height: 1.5px;
+      background: var(--weiss);
+      transition: background 0.4s ease, transform 0.4s ease, opacity 0.4s ease;
+    }
+
+    #nav.scrolled .nav-hamburger span {
+      background: var(--bordeaux);
+    }
+
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* Drawer */
+    .nav-drawer {
+      position: fixed;
+      inset: 0;
+      background: var(--bordeaux);
+      z-index: 99;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+      transform: translateX(100%);
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .nav-drawer.open {
+      transform: translateX(0);
+    }
+
+    .nav-drawer a {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: clamp(1.6rem, 5vw, 2.2rem);
+      color: rgba(255,255,255,0.85);
+      transition: color 0.3s ease;
+    }
+
+    .nav-drawer a:hover {
+      color: var(--terrakotta);
+    }
+
+    .nav-drawer .btn {
+      margin-top: 1rem;
+    }
+
+    @media (max-width: 860px) {
+      .nav-links, .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
+    }
+
+    /* ========================================
+       SECTION 01 — HERO
+    ======================================== */
+    #hero {
+      position: relative;
+      min-height: 100svh;
+      background: var(--bordeaux);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: clamp(7rem, 12vw, 10rem) var(--container-px) var(--section-pad);
+      padding-right: 3rem;
+    }
+
+    .hero-label {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--terrakotta);
+      margin-bottom: 1.75rem;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.2s forwards;
+    }
+
+    .hero-tagline {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+      color: rgba(255,255,255,0.95);
+      margin-bottom: 1.75rem;
+    }
+
+    .hero-h1 {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 300;
+      margin-bottom: 2rem;
+    }
+
+    .hero-h1-line1 {
+      display: block;
+      font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+      color: var(--weiss);
+      line-height: 1.1;
+    }
+
+    .hero-h1-line2 {
+      display: block;
+      font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+      color: rgba(255,255,255,0.75);
+      line-height: 1.2;
+      margin-top: 0.4rem;
+    }
+
+    .hero-sub {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+      line-height: 1.75;
+      color: rgba(255,255,255,0.7);
+      max-width: 420px;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-image {
+      position: relative;
+      height: 100%;
+      min-height: 100svh;
+    }
+
+    .hero-image::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      width: 25%;
+      background: linear-gradient(to right, var(--bordeaux) 0%, transparent 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 860px) {
+      #hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .hero-content {
+        padding: 7rem var(--container-px) 3rem;
+      }
+
+      .hero-image {
+        min-height: 55vw;
+        height: 55vw;
+      }
+    }
+
+    /* ========================================
+       SECTION 02 — PROOF BAR
+    ======================================== */
+    #proof-bar {
+      position: relative;
+      background: var(--bordeaux);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 2.5rem var(--container-px);
+    }
+
+    .proof-bar-inner {
+      max-width: var(--container-max);
+      margin-inline: auto;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1fr;
+      align-items: center;
+      gap: 0 2rem;
+      text-align: center;
+    }
+
+    .proof-item-number {
+      font-family: var(--font-display);
+      font-weight: 300;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      color: var(--weiss);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .proof-item-label {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+    }
+
+    .proof-divider {
+      width: 1px;
+      background: rgba(255,255,255,0.12);
+    }
+
+    @media (max-width: 600px) {
+      .proof-bar-inner {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .proof-divider { display: none; }
+    }
+
+    /* ========================================
+       SECTION 03 — SPIEGEL
+    ======================================== */
+    #spiegel {
+      background: var(--weiss);
+      padding: var(--section-pad) var(--container-px);
+    }
+
+    .spiegel-inner {
+      max-width: 620px;
+      margin-inline: auto;
+    }
+
+    .szene {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+      line-height: 1.85;
+      color: var(--text-dunkel);
+    }
+
+    .szene + .szene {
+      margin-top: 4.5rem;
+    }
+
+    .szene-punch {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(1.3rem, 3vw, 1.9rem);
+      color: var(--bordeaux);
+      line-height: 1.3;
+      display: block;
+      margin-top: 1.25rem;
+    }
+
+    .szene-punch--small {
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+    }
+
+    .spiegel-pivot {
+      margin-top: 5rem;
+      margin-left: calc(-1 * var(--container-px));
+      margin-right: calc(-1 * var(--container-px));
+      margin-bottom: calc(-1 * var(--section-pad));
+      padding: 5rem var(--container-px) 6rem;
+      background: var(--bordeaux);
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      line-height: 1.4;
+      color: var(--weiss);
+      text-align: center;
+    }
+
+    .spiegel-pivot p {
+      margin-bottom: 0;
+      max-width: 640px;
+      margin-inline: auto;
+    }
+
+    .szene-lead {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 400;
+      font-style: italic;
+      letter-spacing: 0.04em;
+      color: rgba(46,46,46,0.45);
+      margin-bottom: 0.75rem;
+    }
+
+    /* ========================================
+       SECTION 04 — WARUM
+    ======================================== */
+    #warum {
+      background: var(--licht);
+      padding: var(--section-pad) var(--container-px);
+    }
+
+    .warum-inner {
+      max-width: 700px;
+      margin-inline: auto;
+    }
+
+    .warum-headline {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+      color: var(--bordeaux);
+      line-height: 1.2;
+      margin-bottom: 2.5rem;
+    }
+
+    .warum-text {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 1.85;
+      color: var(--text-dunkel);
+    }
+
+    .warum-text p + p {
+      margin-top: 1.5rem;
+    }
+
+    .warum-punch {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(1.8rem, 3.5vw, 3rem);
+      color: var(--terrakotta);
+      margin-top: 3.5rem;
+      text-align: center;
+      line-height: 1.3;
+    }
+
+    /* ========================================
+       SECTION 05 — FÜR WEN
+    ======================================== */
+    #fuerwen {
+      background: var(--weiss);
+      padding: var(--section-pad) var(--container-px);
+    }
+
+    .fuerwen-grid {
+      max-width: var(--container-max);
+      margin-inline: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(3rem, 6vw, 6rem);
+      align-items: start;
+    }
+
+    .fuerwen-text-col {}
+
+    .fuerwen-headline {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      color: var(--bordeaux);
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+    }
+
+    .fuerwen-sub {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(1.5rem, 2.8vw, 2.2rem);
+      color: var(--terrakotta);
+      margin-bottom: 1.5rem;
+      line-height: 1.3;
+    }
+
+    .fuerwen-intro {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 1.85;
+      color: var(--text-dunkel);
+      margin-bottom: 2.5rem;
+    }
+
+    .fuerwen-list-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem 3rem;
+    }
+
+    .fuerwen-list-col {}
+
+    .fuerwen-list-title {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--terrakotta);
+      margin-bottom: 1rem;
+    }
+
+    .fuerwen-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.625rem;
+    }
+
+    .fuerwen-list li {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--text-dunkel);
+      padding-left: 1rem;
+      position: relative;
+    }
+
+    .fuerwen-list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: rgba(201,94,70,0.4);
+      font-size: 0.7rem;
+      top: 0.15em;
+    }
+
+    .fuerwen-list-col--full {
+      grid-column: 1 / -1;
+    }
+
+    .fuerwen-close {
+      margin-top: 2.5rem;
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: var(--text-mittel);
+    }
+
+    .fuerwen-image {
+      position: sticky;
+      top: 8rem;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .fuerwen-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      max-height: 75vh;
+    }
+
+    @media (max-width: 860px) {
+      .fuerwen-grid {
+        grid-template-columns: 1fr;
+      }
+      .fuerwen-image {
+        position: relative;
+        top: 0;
+        order: -1;
+        max-height: 55vw;
+      }
+      .fuerwen-list-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ========================================
+       SECTION 06 — COACHES
+    ======================================== */
+    #coaches {
+      position: relative;
+      background: var(--bordeaux);
+      padding: var(--section-pad) var(--container-px);
+      overflow: hidden;
+    }
+
+    .coaches-inner {
+      max-width: 640px;
+      margin-inline: auto;
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+
+    .coaches-headline {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+      color: var(--weiss);
+      line-height: 1.2;
+      margin-bottom: 2.5rem;
+    }
+
+    .coaches-text {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 1.85;
+      color: rgba(255,255,255,0.82);
+    }
+
+    .coaches-text p + p {
+      margin-top: 1.5rem;
+    }
+
+    .coaches-punch {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: 1.2rem;
+      color: var(--terrakotta);
+      margin: 2.5rem 0;
+    }
+
+    .coaches-cta {
+      margin-top: 0.5rem;
+    }
+
+    /* ========================================
+       SECTION 07 — ÜBER MICH
+    ======================================== */
+    #ueber {
+      background: var(--weiss);
+      padding: var(--section-pad) var(--container-px);
+    }
+
+    .ueber-grid {
+      max-width: var(--container-max);
+      margin-inline: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(3rem, 6vw, 6rem);
+      align-items: start;
+    }
+
+    .ueber-image {
+      position: sticky;
+      top: 8rem;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .ueber-image img {
+      width: 100%;
+      object-fit: cover;
+      max-height: 75vh;
+    }
+
+    .ueber-headline {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--bordeaux);
+      line-height: 1.2;
+      margin-bottom: 2rem;
+    }
+
+    .ueber-text {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 1.85;
+      color: var(--text-dunkel);
+    }
+
+    .ueber-text p + p {
+      margin-top: 1.5rem;
+    }
+
+    .ueber-quote-inline {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 300;
+      color: var(--bordeaux);
+      font-size: 1.1rem;
+    }
+
+    .ueber-blockquote {
+      border-left: 3px solid var(--terrakotta);
+      padding: 1.25rem 1.5rem;
+      margin: 2.5rem 0;
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: 1.15rem;
+      color: var(--bordeaux);
+      line-height: 1.5;
+    }
+
+    .ueber-sub {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 0.85rem;
+      line-height: 1.75;
+      color: var(--text-mittel);
+    }
+
+    @media (max-width: 860px) {
+      .ueber-grid {
+        grid-template-columns: 1fr;
+      }
+      .ueber-image {
+        position: relative;
+        top: 0;
+        max-height: 55vw;
+      }
+    }
+
+    /* ========================================
+       SECTION 08 — METHODE
+    ======================================== */
+    #methode {
+      background: var(--licht);
+      padding: var(--section-pad) var(--container-px);
+    }
+
+    .methode-inner {
+      max-width: 900px;
+      margin-inline: auto;
+    }
+
+    .methode-headline {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+      color: var(--bordeaux);
+      line-height: 1.2;
+      margin-bottom: 2rem;
+    }
+
+    .methode-intro {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(1.1rem, 2vw, 1.25rem);
+      color: var(--text-dunkel);
+      line-height: 1.7;
+      margin-bottom: 3rem;
+    }
+
+    .methode-intro p {
+      margin-bottom: 0.25rem;
+    }
+
+    .methode-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2.5rem;
+    }
+
+    .methode-card {
+      border-top: 2px solid var(--terrakotta);
+      padding-top: 1.75rem;
+    }
+
+    .methode-card-label {
+      font-family: var(--font-body);
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--terrakotta);
+      margin-bottom: 1.25rem;
+    }
+
+    .methode-card-text {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 1.85;
+      color: var(--text-dunkel);
+    }
+
+    .methode-language-box {
+      border-left: 3px solid var(--terrakotta);
+      padding: 1.25rem 1.5rem;
+      margin-top: 2rem;
+      background: rgba(201,94,70,0.04);
+    }
+
+    .methode-language-label {
+      font-family: var(--font-body);
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--terrakotta);
+      margin-bottom: 0.875rem;
+    }
+
+    .methode-strike {
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      color: var(--text-dunkel);
+      opacity: 0.35;
+      text-decoration: line-through;
+      margin-bottom: 0.5rem;
+    }
+
+    .methode-replace {
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      color: var(--bordeaux);
+      font-weight: 400;
+      margin-bottom: 0.625rem;
+    }
+
+    .methode-mini {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-style: italic;
+      color: var(--text-mittel);
+      line-height: 1.5;
+    }
+
+    @media (max-width: 860px) {
+      .methode-cards {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ========================================
+       SECTION 09 — DAS ZIEL
+    ======================================== */
+    #ziel {
+      background: var(--weiss);
+      padding: var(--section-pad) var(--container-px);
+    }
+
+    .ziel-inner {
+      max-width: 720px;
+      margin-inline: auto;
+    }
+
+    .ziel-steps {
+      position: relative;
+      margin-bottom: 4rem;
+    }
+
+    .ziel-steps::before {
+      content: '';
+      position: absolute;
+      left: 17px;
+      top: 24px;
+      bottom: 24px;
+      width: 1px;
+      background: linear-gradient(to bottom, rgba(61,18,25,0.15) 0%, rgba(61,18,25,0.06) 100%);
+    }
+
+    .ziel-step {
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+      padding: 1.25rem 0;
+    }
+
+    .ziel-step-circle {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(61,18,25,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      color: var(--bordeaux);
+      background: var(--weiss);
+      position: relative;
+      z-index: 1;
+      transition: background 0.3s ease, border-color 0.3s ease;
+    }
+
+    .ziel-step--final .ziel-step-circle {
+      width: 44px;
+      height: 44px;
+      background: var(--bordeaux);
+      border-color: var(--bordeaux);
+      color: var(--weiss);
+      font-size: 0.75rem;
+    }
+
+    .ziel-step-content {}
+
+    .ziel-step-title {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 0.95rem;
+      color: var(--bordeaux);
+      margin-bottom: 0.3rem;
+    }
+
+    .ziel-step-text {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--text-mittel);
+    }
+
+    .ziel-close {
+      text-align: center;
+      max-width: 580px;
+      margin-inline: auto;
+    }
+
+    .ziel-close-headline {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(2rem, 4vw, 2.6rem);
+      color: var(--bordeaux);
+      line-height: 1.25;
+      margin-bottom: 1.75rem;
+    }
+
+    .ziel-close-text {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 1.85;
+      color: var(--text-dunkel);
+      margin-bottom: 1.5rem;
+    }
+
+    .ziel-close-italic {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: 1.1rem;
+      color: var(--bordeaux);
+      line-height: 1.5;
+    }
+
+    /* ========================================
+       SECTION 10 — TESTIMONIALS
+    ======================================== */
+    #testimonials {
+      position: relative;
+      background: var(--bordeaux);
+      padding: var(--section-pad) var(--container-px);
+      overflow: hidden;
+    }
+
+    .testimonials-inner {
+      max-width: var(--container-max);
+      margin-inline: auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .testimonial-card {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 2px;
+      padding: 2.5rem;
+      position: relative;
+    }
+
+    .testimonial-card::before {
+      content: '\201C';
+      font-family: var(--font-display);
+      font-size: 6rem;
+      line-height: 0.7;
+      color: var(--terrakotta);
+      opacity: 0.6;
+      display: block;
+      margin-bottom: 1.25rem;
+    }
+
+    .testimonial-quote {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(1.05rem, 1.9vw, 1.2rem);
+      line-height: 1.75;
+      color: rgba(255,255,255,0.96);
+      margin-bottom: 1.5rem;
+    }
+
+    .testimonial-author {
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--terrakotta);
+    }
+
+    .testimonials-disclaimer {
+      margin-top: 3rem;
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+      max-width: 700px;
+      margin-inline: auto;
+      text-align: center;
+    }
+
+    @media (max-width: 680px) {
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .testimonial-card--wide {
+      grid-column: 1 / -1;
+      max-width: 700px;
+      margin-inline: auto;
+      border-color: rgba(201,94,70,0.35);
+      background: rgba(201,94,70,0.07);
+      width: 100%;
+    }
+
+    /* ========================================
+       SECTION 11 — ABGRENZUNG
+    ======================================== */
+    #abgrenzung {
+      position: relative;
+      background: var(--bordeaux);
+      padding: clamp(4rem, 7vw, 7rem) var(--container-px);
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .abgrenzung-inner {
+      max-width: 560px;
+      margin-inline: auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .abgrenzung-headline {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+      color: var(--weiss);
+      line-height: 1.2;
+      margin-bottom: 1.75rem;
+    }
+
+    .abgrenzung-text {
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 1rem;
+      line-height: 1.85;
+      color: rgba(255,255,255,0.92);
+      margin-bottom: 1.25rem;
+    }
+
+    .abgrenzung-italic {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.88);
+      line-height: 1.65;
+    }
+
+    /* ========================================
+       SECTION 12 — ANGEBOTE
+    ======================================== */
+    #angebote {
+      position: relative;
+      background: var(--licht);
+      padding: var(--section-pad) var(--container-px);
+      border-top: none;
+      overflow: hidden;
+    }
+
+    .angebote-inner {
+      max-width: var(--container-max);
+      margin-inline: auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .angebote-headline {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+      color: var(--bordeaux);
+      line-height: 1.2;
+      margin-bottom: 3rem;
+    }
+
+    .angebote-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    .angebot-card {
+      background: var(--weiss);
+      border: 1px solid rgba(61,18,25,0.18);
+      border-radius: 2px;
+      padding: 2rem 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      box-shadow: 0 2px 16px rgba(61,18,25,0.06);
+    }
+
+    .angebot-card--featured {
+      background: var(--weiss);
+      border-color: var(--terrakotta);
+      border-width: 1.5px;
+      transform: translateY(-8px);
+      position: relative;
+      box-shadow: 0 4px 24px rgba(61,18,25,0.10);
+    }
+
+    .angebot-badge {
+      position: absolute;
+      top: -0.875rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--terrakotta);
+      color: var(--weiss);
+      font-family: var(--font-body);
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.875rem;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    .angebot-title {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 1.8rem;
+      color: var(--bordeaux);
+      font-weight: 400;
+    }
+
+    .angebot-meta {
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      color: rgba(61,18,25,0.88);
+      text-transform: uppercase;
+    }
+
+    .angebot-usp {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.15rem;
+      color: var(--terrakotta);
+      line-height: 1.5;
+    }
+
+    .angebot-text {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--text-dunkel);
+    }
+
+    .angebot-scarcity {
+      border-left: 3px solid var(--terrakotta);
+      padding: 0.875rem 1rem;
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: var(--text-dunkel);
+    }
+
+    .angebot-risk {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.05rem;
+      color: rgba(61,18,25,0.82);
+      line-height: 1.6;
+    }
+
+    .angebote-footer-note {
+      text-align: center;
+      margin-top: 2.5rem;
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 1.05rem;
+      color: rgba(61,18,25,0.82);
+    }
+
+    @media (max-width: 860px) {
+      .angebote-grid {
+        grid-template-columns: 1fr;
+      }
+      .angebot-card--featured {
+        transform: translateY(0);
+      }
+    }
+
+    /* ========================================
+       SECTION 13 — UNVERMEIDLICHKEIT
+    ======================================== */
+    #unvermeidlich {
+      background: var(--licht);
+      padding: var(--section-pad) var(--container-px);
+      text-align: center;
+    }
+
+    .unvermeidlich-inner {
+      max-width: 560px;
+      margin-inline: auto;
+    }
+
+    .unvermeidlich-headline {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(2.2rem, 4vw, 3rem);
+      color: var(--bordeaux);
+      line-height: 1.3;
+      margin-bottom: 2rem;
+    }
+
+    .unvermeidlich-text {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 0.95rem;
+      line-height: 1.85;
+      color: var(--text-dunkel);
+      margin-bottom: 1.5rem;
+    }
+
+    /* ========================================
+       SECTION 14 — FAQ
+    ======================================== */
+    #faq {
+      background: var(--weiss);
+      padding: var(--section-pad) var(--container-px);
+      border-top: 1px solid rgba(61,18,25,0.10);
+    }
+
+    .faq-inner {
+      max-width: var(--container-max);
+      margin-inline: auto;
+    }
+
+    .faq-headline {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      color: var(--bordeaux);
+      line-height: 1.2;
+      margin-bottom: 3rem;
+    }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 4rem;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid rgba(61,18,25,0.1);
+    }
+
+    .faq-question {
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      padding: 1.25rem 0;
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 0.95rem;
+      color: var(--bordeaux);
+      cursor: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    @media (pointer: coarse) {
+      .faq-question { cursor: pointer; }
+    }
+
+    .faq-question:hover {
+      color: var(--terrakotta);
+    }
+
+    .faq-icon {
+      flex-shrink: 0;
+      width: 18px;
+      height: 18px;
+      position: relative;
+    }
+
+    .faq-icon::before,
+    .faq-icon::after {
+      content: '';
+      position: absolute;
+      background: currentColor;
+      border-radius: 1px;
+      transition: transform 0.4s ease, opacity 0.4s ease;
+    }
+
+    .faq-icon::before {
+      width: 14px;
+      height: 1.5px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .faq-icon::after {
+      width: 1.5px;
+      height: 14px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .faq-item.open .faq-icon::after {
+      transform: translate(-50%, -50%) rotate(90deg);
+      opacity: 0;
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .faq-answer-inner {
+      padding: 0 0 1.5rem;
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 0.9rem;
+      line-height: 1.85;
+      color: var(--text-mittel);
+    }
+
+    @media (max-width: 680px) {
+      .faq-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ========================================
+       SECTION 15 — FINAL CTA
+    ======================================== */
+    #final-cta {
+      position: relative;
+      background: var(--bordeaux);
+      padding: var(--section-pad) var(--container-px);
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .final-cta-inner {
+      max-width: 580px;
+      margin-inline: auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .final-cta-headline {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      color: var(--weiss);
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+
+    .final-cta-text {
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 1rem;
+      line-height: 1.85;
+      color: rgba(255,255,255,0.78);
+      margin-bottom: 1.5rem;
+    }
+
+    .final-cta-mini {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      letter-spacing: 0.04em;
+      color: rgba(255,255,255,0.55);
+      margin-top: 0.875rem;
+    }
+
+    .final-cta-small {
+      margin-top: 1.75rem;
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.04em;
+    }
+
+    /* ========================================
+       SECTION 16 — FOOTER
+    ======================================== */
+    #footer {
+      position: relative;
+      background: var(--bordeaux);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 3.5rem var(--container-px) 2rem;
+      overflow: hidden;
+    }
+
+    .footer-inner {
+      max-width: var(--container-max);
+      margin-inline: auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 3rem;
+      align-items: start;
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .footer-logo-name {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: 1.4rem;
+      color: var(--weiss);
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    .footer-logo-sub {
+      font-family: var(--font-body);
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+
+    .footer-contact {
+      text-align: right;
+    }
+
+    .footer-contact-label {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-email {
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.78);
+      transition: color 0.3s ease;
+    }
+
+    .footer-email:hover {
+      color: var(--terrakotta);
+    }
+
+    .footer-insta {
+      display: block;
+      margin-top: 0.4rem;
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.5);
+      transition: color 0.3s ease;
+    }
+
+    .footer-insta:hover {
+      color: var(--terrakotta);
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-copy {
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.3);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.35);
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: rgba(255,255,255,0.7);
+    }
+
+    @media (max-width: 600px) {
+      .footer-top {
+        grid-template-columns: 1fr;
+      }
+      .footer-contact {
+        text-align: left;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Skip Link -->
+  <a href="#hero" class="skip-link">Zum Inhalt springen</a>
+
+  <!-- Custom Cursor -->
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
+
+  <!-- ============================================================
+       NAVIGATION
+  ============================================================ -->
+  <nav id="nav" role="navigation" aria-label="Hauptnavigation">
+    <a href="#hero" class="nav-logo" aria-label="Julia Lauer Bewusstseinsarchitektur — Startseite">
+      <span class="nav-logo-name">Julia Lauer</span>
+      <span class="nav-logo-sub">Für Frauen, die wissen wie es richtig wäre.</span>
+    </a>
+
+    <ul class="nav-links" role="list">
+      <li><a href="index.html#fuerwen">Für wen</a></li>
+      <li><a href="methode.html">Methode</a></li>
+      <li><a href="ueber-mich.html">Über mich</a></li>
+      <li><a href="index.html#angebote">Angebote</a></li>
+      <li><a href="texte.html">Texte</a></li>
+      <li><a href="freebie.html">Audio</a></li>
+    </ul>
+
+    <a href="https://calendly.com/zentrum-bewusstseinsarchitektur/30min" class="nav-cta" target="_blank" rel="noopener" aria-label="System Check starten — kostenloses Erstgespräch buchen">System Check starten →</a>
+
+    <button class="nav-hamburger" aria-label="Menü öffnen" aria-expanded="false" aria-controls="nav-drawer">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile Drawer -->
+  <div id="nav-drawer" class="nav-drawer" role="dialog" aria-label="Mobilnavigation" aria-modal="true">
+    <a href="index.html#fuerwen">Für wen</a>
+    <a href="methode.html">Methode</a>
+    <a href="ueber-mich.html">Über mich</a>
+    <a href="index.html#angebote">Angebote</a>
+    <a href="texte.html">Texte</a>
+    <a href="freebie.html">Audio</a>
+    <a href="https://calendly.com/zentrum-bewusstseinsarchitektur/30min" class="btn btn--terrakotta" target="_blank" rel="noopener">System Check starten →</a>
+  </div>
+
+  <main id="main-content">
+
+  <!-- ============================================================
+       SECTION 01 — HERO
+  ============================================================ -->
+  <section id="hero" aria-label="Hero">
+    <div class="hero-content">
+      <p class="hero-label" aria-label="Bewusstseinsarchitektur">Bewusstseinsarchitektur</p>
+
+      <div class="line" aria-hidden="true">
+        <p class="hero-tagline line-inner">Du weißt wie es richtig wäre.</p>
+      </div>
+
+      <h1 class="hero-h1">
+        <span class="line"><span class="hero-h1-line1 line-inner">Und machst <em style="color:var(--terrakotta);font-style:inherit;">trotzdem</em> das Gleiche.</span></span>
+        <span class="line"><span class="hero-h1-line2 line-inner">Du wiederholst, was in dir <em style="color:var(--terrakotta);font-style:inherit;">gespeichert</em> ist.</span></span>
+      </h1>
+
+      <p class="hero-sub" data-reveal data-delay="400">Nicht dein Verhalten ist das Problem.<br>Die Struktur dahinter.<br>Die lässt sich verändern.</p>
+
+      <div data-reveal data-delay="550">
+        <a href="https://calendly.com/zentrum-bewusstseinsarchitektur/30min" class="btn btn--terrakotta" target="_blank" rel="noopener" aria-label="System Check starten — 30 Minuten, kostenlos">
+          System Check starten →
+        </a>
+        <span class="btn-meta">30 Min &middot; kostenlos</span>
+      </div>
+    </div>
+
+    <div class="hero-image" aria-hidden="true">
+      <img
+        src="Firefly_Gemini Flash_leicht aufhellen, klarheit und tiefe halten 288336.png"
+        alt=""
+        loading="eager"
+        fetchpriority="high"
+      />
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 02 — PROOF BAR
+  ============================================================ -->
+  <section id="proof-bar" aria-label="Zahlen und Fakten">
+    <div class="proof-bar-inner">
+      <div class="proof-item" data-reveal>
+        <div class="proof-item-number">20 Jahre</div>
+        <div class="proof-item-label">Am System</div>
+      </div>
+      <div class="proof-divider" role="separator"></div>
+      <div class="proof-item" data-reveal data-delay="120">
+        <div class="proof-item-number">Ab Sitzung 1</div>
+        <div class="proof-item-label">Spürbar. Sichtbar.</div>
+      </div>
+      <div class="proof-divider" role="separator"></div>
+      <div class="proof-item" data-reveal data-delay="240">
+        <div class="proof-item-number">Dauerhaft</div>
+        <div class="proof-item-label">Nicht nur das Symptom</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 03 — SPIEGEL
+  ============================================================ -->
+  <section id="spiegel" aria-label="Erkennst du das?">
+    <div class="spiegel-inner">
+
+      <!-- Szene 1 -->
+      <div class="szene" data-reveal>
+        Du sitzt im Meeting. Alles läuft. Das Projekt wird vorgestellt. Du hörst zu, nickst. Und irgendwann wird dir klar: Das war deine Arbeit. Der Gedanke ist kurz da: Sag etwas. Und direkt danach: Lass. Zu viel. Zu kompliziert. Also bleibst du ruhig. Am Ende klatschst du sogar.
+        <em class="szene-punch">
+          Das fühlt sich nicht richtig an.<br>
+          Nicht das Meeting.<br>
+          Du.
+        </em>
+      </div>
+
+      <!-- Szene 2 -->
+      <div class="szene" data-reveal>
+        Du öffnest das Aufnahmeprogramm. Das Thema ist klar. Du weißt genau was du sagen willst. Du drückst nicht auf Aufnahme. Irgendwas stimmt nicht. Das Licht. Der Ton. Du selbst. Du klappst den Laptop zu.
+        <em class="szene-punch szene-punch--small">
+          Nächste Woche.
+        </em>
+      </div>
+
+      <!-- Szene 3 -->
+      <div class="szene" data-reveal>
+        Das Gespräch läuft gut. Sie will arbeiten. Du spürst es. Und dann kommt der Moment. Dein Preis. Du nennst eine Zahl. Aber nicht die Zahl. Die kleinere. Und direkt danach weißt du: Du hast dich gerade wieder unterboten. Nicht weil das Angebot zu wenig wert wäre. Sondern weil in dir irgendetwas im letzten Moment zurückgerutscht ist.
+      </div>
+
+      <!-- Szene 4 -->
+      <div class="szene" data-reveal>
+        Abends liegst du im Bett. Er kommt rein. Du machst die Augen zu. Stellst dich schlafend. Du bist wach. Und gleichzeitig weißt du: So willst du nicht reagieren.
+      </div>
+
+      <!-- Szene 5 -->
+      <div class="szene" data-reveal>
+        Am nächsten Morgen läuft alles weiter. Dusche. Kaffee. Vielleicht noch schnell eine Ibu. Du funktionierst. Wie immer.
+        <em class="szene-punch">
+          So möchte ich nicht weitermachen.<br>
+          Und trotzdem machst du genau so weiter.
+        </em>
+      </div>
+
+      <!-- Szene 6 -->
+      <div class="szene" data-reveal>
+        <span class="szene-lead">Und direkt danach kommt dieser Gedanke:</span>
+        <em class="szene-punch szene-punch--small">
+          Was stimmt nicht mit mir?<br>
+          Andere wären froh.
+        </em>
+      </div>
+
+    </div>
+
+    <!-- Pivot — full bleed -->
+    <div class="spiegel-pivot" data-reveal>
+      <p>Das ist kein Willensproblem.<br>Und kein Wissensproblem.<br>Es sitzt tiefer.</p>
+      <p style="margin-top:1.5rem;font-family:var(--font-body);font-size:0.95rem;font-weight:400;color:rgba(255,255,255,0.7);letter-spacing:0.03em;">Genau da setze ich an.</p>
+    </div>
+
+  </section>
+
+  <!-- ============================================================
+       SECTION 04 — WARUM
+  ============================================================ -->
+  <section id="warum" aria-labelledby="warum-headline">
+    <div class="warum-inner">
+      <span class="label label--bordeaux" data-reveal>Der Grund</span>
+
+      <div class="divider" data-divider></div>
+
+      <h2 class="warum-headline" id="warum-headline" data-reveal>
+        Du kannst alles wissen.<br>
+        Und trotzdem gleich reagieren.
+      </h2>
+
+      <p class="warum-text" data-reveal style="margin-bottom:2rem;">
+        Du merkst es in genau diesen Momenten. Wenn du weißt was du tun willst, und trotzdem etwas anderes tust. Das ist kein Versagen. Das ist der Hinweis, dass die Ursache woanders sitzt.
+      </p>
+
+      <div class="warum-text" data-reveal>
+        <p>Coaching, Therapie, Meditation. Sie setzen alle auf bewusster Ebene an. An Gedanken, Verhalten, Einsicht. Das sind Ergebnisse. Nicht Ursachen.</p>
+        <p>Die eigentlichen Ursachen sind innere Strukturen die im Unterbewusstsein gespeichert sind. Sie entstehen über Jahre. Durch Erfahrungen. Durch das was nie ausgesprochen wurde. Und sie sind schneller als jeder Gedanke.</p>
+        <p>Ich arbeite genau dort. Ohne Hypnose. Ohne Trance. Ohne Kontrollverlust. Du bleibst vollständig bei dir.</p>
+      </div>
+
+      <p class="warum-punch" data-reveal>Ich verändere nicht was sichtbar ist.<br>Ich verändere die Struktur aus der es entsteht.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 05 — FÜR WEN
+  ============================================================ -->
+  <section id="fuerwen" aria-labelledby="fuerwen-headline">
+    <div class="fuerwen-grid">
+
+      <div class="fuerwen-text-col">
+        <span class="label label--bordeaux" data-reveal>Für wen</span>
+        <div class="divider" data-divider></div>
+
+        <h2 class="fuerwen-headline" id="fuerwen-headline" data-reveal>
+          Du coachst. Du führst. Du trägst.<br>
+          Du funktionierst.
+        </h2>
+
+        <p class="fuerwen-intro" data-reveal>Diese Fähigkeiten laufen auf Autopilot. Rund um die Uhr. Auch wenn du schläfst. Und sie kosten dich. Täglich.</p>
+
+        <div class="fuerwen-list-grid" data-reveal>
+          <div class="fuerwen-list-col">
+            <p class="fuerwen-list-title">Körper</p>
+            <ul class="fuerwen-list">
+              <li>Schlaf, der nicht mehr erholt.</li>
+              <li>Eine Müdigkeit, die kein Wochenende löst.</li>
+              <li>Kieferspannung. Tinnitus. Herzklopfen nachts.</li>
+            </ul>
+          </div>
+
+          <div class="fuerwen-list-col">
+            <p class="fuerwen-list-title">Beziehungen</p>
+            <ul class="fuerwen-list">
+              <li>Nein sagen. Und dann doch noch erklären wie es geht.</li>
+              <li>Mit den Kindern nicht die sein, die man sein will.</li>
+              <li>Konflikte lösen. Und abends alleine damit sein.</li>
+            </ul>
+          </div>
+
+          <div class="fuerwen-list-col fuerwen-list-col--full">
+            <p class="fuerwen-list-title">Beruf &amp; Sichtbarkeit</p>
+            <ul class="fuerwen-list">
+              <li>Preise nennen. Und im letzten Moment nach unten gehen.</li>
+              <li>Den eigenen Traum kennen. Und ihn trotzdem verschieben.</li>
+              <li>Andere begleiten, coachen, therapieren. Und bei sich selbst nicht weiterkommen.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="fuerwen-image" data-reveal>
+        <img
+          src="IMG_2795.JPEG"
+          alt="Julia Lauer"
+          loading="lazy"
+        />
+      </div>
+
+    </div>
+
+    <p class="fuerwen-close" data-reveal style="max-width:680px; margin-inline:auto; margin-top:3.5rem; font-size:clamp(1rem,1.6vw,1.2rem); font-weight:400; color:var(--text-dunkel); text-align:center; line-height:1.75;">Der Körper erfindet das nicht. Er zeigt etwas.<br>Das hier ist kein Erschöpfungsproblem. Es ist ein Systemproblem.</p>
+
+    <div data-reveal style="max-width:680px;margin-inline:auto;margin-top:3.5rem;">
+      <p style="font-family:var(--font-body);font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--terrakotta);margin-bottom:1.5rem;">Ich höre das anders.</p>
+      <div style="padding:2rem 2.5rem;border-left:3px solid var(--terrakotta);background:rgba(201,94,70,0.04);display:flex;flex-direction:column;gap:1rem;">
+        <p style="font-family:var(--font-display);font-style:italic;font-size:clamp(1rem,1.6vw,1.1rem);color:var(--text-dunkel);line-height:1.6;">Vielleicht wurde dir gesagt:</p>
+        <p style="font-family:var(--font-display);font-style:italic;font-size:clamp(1.05rem,1.8vw,1.25rem);color:var(--text-dunkel);line-height:1.5;padding-left:1rem;border-left:2px solid rgba(201,94,70,0.3);">„Zu kontrollierend."</p>
+        <p style="font-family:var(--font-display);font-style:italic;font-size:clamp(1.05rem,1.8vw,1.25rem);color:var(--text-dunkel);line-height:1.5;padding-left:1rem;border-left:2px solid rgba(201,94,70,0.3);">„Zu perfektionistisch."</p>
+        <p style="font-family:var(--font-display);font-style:italic;font-size:clamp(1.05rem,1.8vw,1.25rem);color:var(--text-dunkel);line-height:1.5;padding-left:1rem;border-left:2px solid rgba(201,94,70,0.3);">„Zu viel."</p>
+        <p style="font-family:var(--font-body);font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--terrakotta);margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid rgba(201,94,70,0.2);">Meine Einschätzung.</p>
+        <p style="font-family:var(--font-body);font-size:0.95rem;line-height:1.85;color:var(--text-dunkel);margin-top:0.75rem;">Kontrolle ist Organisationskraft. Perfektionismus ist Qualitätswille. Verantwortung ist Stärke. Das sind keine Fehler. Das sind Kräfte die dich weit gebracht haben. Das Problem ist nicht wer du bist. Sondern: Irgendwann dienen sie dir nicht mehr. Sie halten dein System rund um die Uhr unter Strom. Und das kostet. Täglich.</p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ============================================================
+       SECTION 06 — COACHES & BEGLEITERINNEN
+  ============================================================ -->
+  <section id="coaches" class="noise" aria-labelledby="coaches-headline">
+    <div class="coaches-inner">
+
+      <h2 class="coaches-headline" id="coaches-headline" data-reveal>
+        Du erklärst es täglich anderen.<br>
+        Und kommst bei dir selbst nicht weiter.
+      </h2>
+
+      <div class="coaches-text" data-reveal>
+        <p>Du kennst die Mechanismen. Du weißt mehr über innere Prozesse als die meisten.</p>
+        <p>Und trotzdem gibt es eine Stelle, wo du keinen Zugriff auf dich selbst bekommst.</p>
+        <p>Wissen schützt nicht vor Mustern. Es erklärt sie nur besser.</p>
+      </div>
+
+      <p class="coaches-punch" data-reveal>Bewusstseinsarchitektur setzt dort an, wo dein Handwerkszeug aufhört.</p>
+
+      <p class="coaches-punch" data-reveal style="font-size:clamp(1rem,1.6vw,1.3rem);margin-top:1rem;color:rgba(255,255,255,0.75);">Wer sich selbst klar ist, führt anders.<br>Nicht weil sie mehr weiß.<br>Sondern weil sie nicht mehr gegen sich arbeitet.</p>
+
+      <div class="coaches-cta" data-reveal>
+        <a href="https://calendly.com/zentrum-bewusstseinsarchitektur/30min" class="btn btn--light" target="_blank" rel="noopener" aria-label="System Check starten">
+          System Check starten →
+        </a>
+        <span class="btn-meta" style="color: rgba(255,255,255,0.35);">30 Min &middot; kostenlos &middot; kein Pitch</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 07 — ÜBER MICH
+  ============================================================ -->
+  <section id="ueber" aria-labelledby="ueber-headline">
+    <div class="ueber-grid">
+
+      <div class="ueber-image" data-reveal>
+        <img
+          src="Ballett_Julia.JPEG"
+          alt="Julia Lauer — Ballett, Anfänge"
+          loading="lazy"
+        />
+        <img
+          src="Colorful Graffiti Circle Framed Instagram Profile Picture.png"
+          alt="Julia Lauer"
+          loading="lazy"
+          style="margin-top: 1.5rem;"
+        />
+      </div>
+
+      <div>
+        <span class="label label--bordeaux" data-reveal>Über mich</span>
+        <div class="divider" data-divider></div>
+
+        <h2 class="ueber-headline" id="ueber-headline" data-reveal>
+          Ich rede nicht über diesen Zustand.<br>Ich habe ihn im Körper erlebt.
+        </h2>
+
+        <div class="ueber-text">
+          <p data-reveal>Klassisches Ballett ab fünf. Mit 13 München, Talentschmiede des Bayerischen Staatstheaters. Leisten über jede Grenze. Bis der Körper aufgehört hat mitzumachen.</p>
+
+          <p data-reveal>Mit 15 die Prüfung vor John Neumeier. Er stellte mir eine Frage:</p>
+
+          <p data-reveal><em class="ueber-quote-inline">„Du kannst. Aber willst du das hier wirklich?"</em></p>
+
+          <p data-reveal>Danach zwanzig Jahre Arbeit mit Frauen. Faszien, Atem, Bewegung. Präzise. Wirksam.</p>
+
+          <p data-reveal>Meine Klientinnen gingen leichter raus als sie reinkamen. Und ich hatte am nächsten Morgen die Kopfschmerzen.</p>
+
+          <p data-reveal>Das hat mich zu einer Methode geführt. Nicht am Körper ansetzen. Sondern an dem was den Körper steuert.</p>
+        </div>
+
+        <blockquote class="ueber-blockquote" data-reveal>
+          „Die Methode ist der Ursprung. Bewusstseinsarchitektur ist mein Weg."
+        </blockquote>
+
+        <p class="ueber-sub" data-reveal>Körperarbeit und direkter Zugang zum Unterbewusstsein. Beides. In einer Arbeit. Mit einer Person, die diesen Zustand nicht aus Büchern kennt.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 08 — METHODE
+  ============================================================ -->
+  <section id="methode" aria-labelledby="methode-headline">
+    <div class="methode-inner">
+      <span class="label label--bordeaux" data-reveal>Methode</span>
+      <div class="divider" data-divider></div>
+
+      <h2 class="methode-headline" id="methode-headline" data-reveal>Was in einer Sitzung passiert.</h2>
+
+      <div class="methode-intro" data-reveal>
+        <p>Ich arbeite nicht daran, dass du dich besser regulierst.</p>
+        <p>Ich arbeite dort, wo deine Reaktion entsteht.</p>
+        <p>Damit sich nicht nur etwas erklärt. Sondern verändert.</p>
+      </div>
+
+      <div class="methode-cards">
+
+        <div class="methode-card" data-reveal>
+          <p class="methode-card-label">In der Sitzung</p>
+          <p class="methode-card-text">Du bringst ein Thema mit. Ich folge dem, was dein System zeigt. Nicht dem, was du darüber denkst. Dann arbeite ich direkt an der Stelle, wo das Muster sitzt. Du spürst wenn sich etwas verschiebt. Meistens noch in derselben Sitzung.</p>
+          <p class="methode-card-text" style="margin-top: 1rem; color: var(--text-mittel); font-size: 0.9rem;">Online. 60–90 Minuten. Du brauchst nichts vorzubereiten.</p>
+        </div>
+
+        <div class="methode-card" data-reveal data-delay="150">
+          <p class="methode-card-label">Was danach</p>
+          <p class="methode-card-text">Jemand fragt nach deinem Preis. Du nennst ihn. Ohne ihn im letzten Moment runterzukorrigieren.</p>
+          <p class="methode-card-text" style="margin-top:1rem;">Du sitzt in einem schwierigen Gespräch und sagst, was du meinst. Direkt. Ohne Entschuldigung danach.</p>
+          <p class="methode-card-text" style="margin-top:1rem;">Dein Körper bleibt still in einem Moment, in dem er früher angespannt gewesen wäre.</p>
+          <p class="methode-card-text" style="margin-top:1.25rem; font-style:italic; color:var(--text-mittel); font-size:0.9rem;">Nicht weil du geübt hast. Weil sich die Struktur darunter verändert hat.</p>
+        </div>
+
+        <div class="methode-card" data-reveal data-delay="300">
+          <p class="methode-card-label">Was das nicht ist</p>
+          <p class="methode-card-text">Kein Analysemarathon.<br>Kein Rumwühlen in alten Geschichten.<br>Kein Tool, das du täglich anwenden musst.</p>
+          <p class="methode-card-text" style="margin-top:1.25rem;">Keine Hypnose.<br>Keine Suggestion.<br>Kein Kontrollverlust.</p>
+          <p class="methode-card-text" style="margin-top:1.25rem; color:var(--text-mittel); font-size:0.9rem;">Und wenn sich etwas verändert hat: Du kannst selbst damit arbeiten. Keine dauerhafte Abhängigkeit.</p>
+        </div>
+
+      </div>
+
+        <p data-reveal style="
+          margin-top:4rem;
+          padding-top:3rem;
+          border-top:1px solid rgba(61,18,25,0.12);
+          font-family:var(--font-display);
+          font-style:italic;
+          font-weight:400;
+          font-size:clamp(1.4rem,2.5vw,2.2rem);
+          color:var(--bordeaux);
+          line-height:1.4;
+          text-align:center;">
+          Tiefer als Mindset-Arbeit.<br>
+          Schneller als klassische Therapie.<br>
+          Von zu Hause aus.
+        </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 09 — DAS ZIEL
+  ============================================================ -->
+  <section id="ziel" aria-labelledby="ziel-headline">
+    <div class="ziel-inner">
+      <span class="label label--bordeaux" data-reveal>Das Ziel dieser Arbeit</span>
+      <div class="divider" data-divider></div>
+
+      <h2 id="ziel-headline" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);">Das Ziel dieser Arbeit</h2>
+
+      <p data-reveal style="font-family:var(--font-body);font-size:1rem;line-height:1.75;color:var(--text-mittel);margin-bottom:3rem;">Das sind keine Ziele die du dir vornimmst. Das ist was passiert, wenn die Strukturen aufhören gegen dich zu arbeiten.</p>
+
+      <div class="ziel-steps" role="list">
+
+        <div class="ziel-step" data-reveal role="listitem">
+          <div class="ziel-step-circle" aria-label="Schritt 1">01</div>
+          <div class="ziel-step-content">
+            <p class="ziel-step-title">Du vertraust dir wieder.</p>
+            <p class="ziel-step-text">Nicht als Vorsatz. Nicht durch Übung. Deine Reaktionen, deine Entscheidungen, deine Impulse. Ohne ständiges Hinterfragen. Einfach so.</p>
+          </div>
+        </div>
+
+        <div class="ziel-step" data-reveal data-delay="80" role="listitem">
+          <div class="ziel-step-circle" aria-label="Schritt 2">02</div>
+          <div class="ziel-step-content">
+            <p class="ziel-step-title">Du führst aus dir heraus.</p>
+            <p class="ziel-step-text">Nicht gegen dich. Nicht trotz dir. Du leitest, coachst, begleitest, entscheidest. Aus einem Ort der klar ist. Das spüren andere. Ohne dass du es erklären musst.</p>
+          </div>
+        </div>
+
+        <div class="ziel-step" data-reveal data-delay="160" role="listitem">
+          <div class="ziel-step-circle" aria-label="Schritt 3">03</div>
+          <div class="ziel-step-content">
+            <p class="ziel-step-title">Die Energie gehört dir.</p>
+            <p class="ziel-step-text">Was bisher ins Regulieren, Abwägen, Kontrollieren geflossen ist, steht jetzt zur Verfügung. Für deine Arbeit. Für deine Beziehungen. Für das was wirklich zählt.</p>
+          </div>
+        </div>
+
+        <div class="ziel-step ziel-step--final" data-reveal data-delay="240" role="listitem">
+          <div class="ziel-step-circle" aria-label="Schritt 4">04</div>
+          <div class="ziel-step-content">
+            <p class="ziel-step-title">Auch dein Körper kommt zur Ruhe.</p>
+            <p class="ziel-step-text">Nicht weil du dich mehr zusammenreißt. Sondern weil das System aufhört, gegen dich zu arbeiten. Spannung lässt nach. Schlaf erholt. Der Druck der sofort da war, ist nicht mehr automatisch da.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="ziel-close">
+        <p class="ziel-close-headline" data-reveal>Die Stille, die danach entsteht, hat keinen Namen.</p>
+        <p class="ziel-close-text" data-reveal>Du hörst einfach auf, dich selbst in Frage zu stellen. Und fängst an, dir zu gehören.</p>
+        <p class="ziel-close-italic" data-reveal>Wenn innen nichts mehr gegen dich arbeitet,<br>zeigt sich das überall.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 10 — TESTIMONIALS
+  ============================================================ -->
+  <section id="testimonials" class="noise" aria-labelledby="testimonials-headline">
+    <div class="testimonials-inner">
+      <span class="label label--weiss" data-reveal>Was danach möglich wurde</span>
+      <div class="divider" data-divider style="background: rgba(255,255,255,0.2);"></div>
+
+      <h2 id="testimonials-headline" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);">Erfahrungsberichte</h2>
+
+      <div class="testimonials-grid">
+
+        <div class="testimonial-card" data-reveal>
+          <p class="testimonial-quote">„Ich habe jahrelang unter meinem Preis verkauft. Nicht weil ich den Wert nicht kannte. Sondern weil etwas in mir jedes Mal gebremst hat. Nach der Sitzung war dieser Widerstand weg. Ich nenne seitdem meine Preise ohne Zögern."</p>
+          <p class="testimonial-author">K.M. &middot; Coach</p>
+        </div>
+
+        <div class="testimonial-card" data-reveal data-delay="100">
+          <p class="testimonial-quote">„Schuldgefühle haben mich jahrelang in Entscheidungen blockiert. Ich wusste dass sie nicht rational waren. Trotzdem waren sie da. Nach der Arbeit mit Julia: weg. Nicht reduziert. Weg."</p>
+          <p class="testimonial-author">S.L. &middot; Unternehmerin</p>
+        </div>
+
+        <div class="testimonial-card" data-reveal data-delay="200">
+          <p class="testimonial-quote">„In Leistungssituationen bin ich regelmäßig unter meinen Möglichkeiten geblieben. Aufregung, Blackout, Ärger danach. Seit der Sitzung rufe ich ab was ich kann. Einfach so."</p>
+          <p class="testimonial-author">A.F. &middot; Führungskraft</p>
+        </div>
+
+        <div class="testimonial-card" data-reveal data-delay="300">
+          <p class="testimonial-quote">„Ich hatte seit Jahren chronische Rückenschmerzen. Ich habe alles versucht. Nach der Sitzung mit Julia waren sie weg. Ich verstehe es nicht vollständig. Aber es ist so."</p>
+          <p class="testimonial-author">N.H. &middot; Ärztin</p>
+        </div>
+
+        <div class="testimonial-card testimonial-card--wide" data-reveal data-delay="400">
+          <p class="testimonial-quote">„Ich begleite selbst Klientinnen. Bei mir war ich betriebsblind. Ich habe gesehen was andere blockiert, aber meine eigenen Muster nicht angefasst. Die Sitzung hat das geändert."</p>
+          <p class="testimonial-author">Hanna &middot; Coach für Selbstwert und Positionierung</p>
+        </div>
+
+      </div>
+
+      <p class="testimonials-disclaimer" data-reveal>Die beschriebenen Erfahrungen sind individuelle Erlebnisse. Bewusstseinsarchitektur ist kein therapeutisches oder medizinisches Verfahren und ersetzt keine ärztliche oder psychotherapeutische Behandlung.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 11 — ABGRENZUNG
+  ============================================================ -->
+  <section id="abgrenzung" class="noise" aria-label="Für wen diese Arbeit ist">
+    <div class="abgrenzung-inner">
+
+      <div data-reveal style="
+        width: 40px;
+        height: 1.5px;
+        background: var(--terrakotta);
+        margin: 0 auto 3rem;
+        opacity: 0.7;
+      "></div>
+
+      <p class="abgrenzung-headline" data-reveal>Das hier ist nicht für jede.</p>
+
+      <p class="abgrenzung-text" data-reveal>Nicht wenn du noch eine Erklärung brauchst. Oder den richtigen Moment abwartest.</p>
+
+      <p class="abgrenzung-text" data-reveal>Sondern wenn du bereit bist, eine alte Geschichte nicht mehr zu brauchen.</p>
+
+      <p class="abgrenzung-text" data-reveal>Was dann möglich wird: du selbst. Ohne den Widerstand gegen dich.</p>
+
+      <p class="abgrenzung-italic" data-reveal>Nicht wer versteht. Wer den nächsten Schritt geht.</p>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 12 — ANGEBOTE
+  ============================================================ -->
+  <section id="angebote" class="noise" aria-labelledby="angebote-headline">
+    <div class="angebote-inner">
+      <span class="label label--bordeaux" data-reveal>Angebote</span>
+      <div class="divider" data-divider></div>
+
+      <h2 class="angebote-headline" id="angebote-headline" data-reveal>Der nächste Schritt.</h2>
+
+      <div class="angebote-grid">
+
+        <!-- System Check -->
+        <div class="angebot-card" data-reveal>
+          <p class="angebot-title">System Check</p>
+          <p class="angebot-meta">30 Minuten &middot; kostenlos</p>
+          <p class="angebot-text">Kein Pitch. Keine Agenda. Du bringst mit was dich beschäftigt. Ich sage dir was ich sehe. Und ob diese Arbeit jetzt das Richtige für dich ist.</p>
+          <a href="https://calendly.com/zentrum-bewusstseinsarchitektur/30min" class="btn btn--outline" target="_blank" rel="noopener" aria-label="System Check buchen">
+            System Check starten →
+          </a>
+        </div>
+
+        <!-- Deep Shift -->
+        <div class="angebot-card angebot-card--featured" data-reveal data-delay="100">
+          <span class="angebot-badge">Kernangebot</span>
+          <p class="angebot-title">Deep Shift</p>
+          <p class="angebot-meta">12 Wochen &middot; 6–8 Sessions &middot; 1:1 online</p>
+          <p class="angebot-usp">Dort ansetzen, wo andere nicht rankommen.</p>
+          <p class="angebot-text">Nicht Thema für Thema. Die Struktur aus der alles entsteht.</p>
+          <p class="angebot-text" style="margin-top:0.75rem;">Du arbeitest nicht mehr gegen dich. Du führst dich. Das ist der Unterschied.</p>
+          <div class="angebot-scarcity">
+            Ich arbeite mit einer begrenzten Anzahl Klientinnen gleichzeitig. Der System Check zeigt ob und wann ein Platz frei ist.
+          </div>
+          <a href="https://calendly.com/zentrum-bewusstseinsarchitektur/30min" class="btn btn--terrakotta" target="_blank" rel="noopener" aria-label="Deep Shift anfragen">
+            Deep Shift anfragen →
+          </a>
+          <p class="angebot-risk">Starte mit dem System Check. Wenn es nicht passt, sagen wir das. Bevor irgendetwas entschieden wird.</p>
+        </div>
+
+        <!-- Focus Shift -->
+        <div class="angebot-card" data-reveal data-delay="200">
+          <p class="angebot-title">Focus Shift</p>
+          <p class="angebot-meta">1 Hauptsitzung &middot; 1 Booster &middot; 1 Thema</p>
+          <p class="angebot-usp">Für das eine Thema, das dich am meisten aufhält.</p>
+          <p class="angebot-text">Nicht besprechen. Verändern. Wir setzen direkt an der Wurzel an. Die Hauptsitzung verschiebt. Der Booster festigt.</p>
+          <p class="angebot-text" style="margin-top:0.75rem;">Für das was immer wieder kommt. Was sich nicht durch Einsicht löst.</p>
+          <a href="https://calendly.com/zentrum-bewusstseinsarchitektur/30min" class="btn btn--outline" target="_blank" rel="noopener" aria-label="Focus Shift anfragen">
+            Focus Shift anfragen →
+          </a>
+        </div>
+
+      </div>
+
+      <p class="angebote-footer-note" data-reveal>Nicht sicher was passt? Das klären wir im Gespräch.</p>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 14 — FAQ
+  ============================================================ -->
+  <section id="faq" aria-labelledby="faq-headline">
+    <div class="faq-inner">
+      <span class="label label--bordeaux" data-reveal>FAQ</span>
+      <div class="divider" data-divider></div>
+
+      <h2 class="faq-headline" id="faq-headline" data-reveal>Was dich vielleicht noch beschäftigt.</h2>
+
+      <div class="faq-grid">
+
+        <!-- Linke Spalte -->
+        <div>
+
+          <div class="faq-item" data-reveal>
+            <button class="faq-question" aria-expanded="false">
+              Für wen ist das gedacht?
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-answer" role="region">
+              <p class="faq-answer-inner">Für Frauen die spüren dass Verstehen allein nicht mehr reicht. Die reflektiert sind, viel unternommen haben. Und an einer Stelle nicht weiterkommen. Auch für Coaches, Therapeutinnen und Beraterinnen, die bei sich selbst auf dieselbe Grenze stoßen.</p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-reveal>
+            <button class="faq-question" aria-expanded="false">
+              Wie läuft eine Sitzung ab?
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-answer" role="region">
+              <p class="faq-answer-inner">Du bringst ein Thema mit. Ich folge dem, was dein System zeigt. Nicht dem, was du darüber denkst. Dann arbeite ich dort, wo das Muster sitzt. Du bleibst vollständig wach, orientiert, in Kontrolle. Viele spüren noch in derselben Sitzung eine Verschiebung. Online, 60–90 Minuten.</p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-reveal>
+            <button class="faq-question" aria-expanded="false">
+              Wie lange dauert der Prozess?
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-answer" role="region">
+              <p class="faq-answer-inner">Im Deep Shift: 12 Wochen, 6–8 Sitzungen. Was sich verändert, bestimmt dein System. Kein Schema. Manche spüren nach der ersten Sitzung eine deutliche Verschiebung.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Rechte Spalte -->
+        <div>
+
+          <div class="faq-item" data-reveal>
+            <button class="faq-question" aria-expanded="false">
+              Wie schnell spüre ich Ergebnisse?
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-answer" role="region">
+              <p class="faq-answer-inner">Viele spüren schon in der ersten Stunde etwas. Nicht weil wir oberflächlich arbeiten. Sondern weil wir genau dort ansetzen, wo die Ursache liegt.</p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-reveal>
+            <button class="faq-question" aria-expanded="false">
+              Ich habe schon alles versucht. Warum jetzt anders?
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-answer" role="region">
+              <p class="faq-answer-inner">Weil die anderen Ansätze auf bewusster Ebene angesetzt haben. An Gedanken, Einsicht, Verhalten. Das sind Ergebnisse. Die Strukturen die sie erzeugen, sitzen tiefer. Schneller als jeder Gedanke. Kein bewusster Ansatz kommt da ran. Nicht weil er schlecht ist. Sondern weil das die falsche Ebene ist. Hier arbeiten wir auf der anderen.</p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-reveal>
+            <button class="faq-question" aria-expanded="false">
+              Ist das Therapie?
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-answer" role="region">
+              <p class="faq-answer-inner">Nein. Bewusstseinsarchitektur ist kein therapeutisches Verfahren und ersetzt keine psychotherapeutische oder medizinische Behandlung. Bei akuten Erkrankungen wende dich an eine Ärztin oder Therapeutin.</p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-reveal>
+            <button class="faq-question" aria-expanded="false">
+              Ist das Hypnose?
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-answer" role="region">
+              <p class="faq-answer-inner">Nein. Du bleibst die gesamte Zeit vollständig bewusst und in Kontrolle. Kein Trancezustand. Keine Suggestion.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 15 — FINAL CTA
+  ============================================================ -->
+  <section id="final-cta" class="noise" aria-label="Bereit starten">
+    <div class="final-cta-inner">
+      <span class="label label--weiss" data-reveal>Bereit?</span>
+
+      <h2 class="final-cta-headline" data-reveal>
+        Wenn beim Lesen irgendwo etwas in dir<br>
+        ruhig genickt hat,
+      </h2>
+
+      <p class="final-cta-text" data-reveal>dann ist das kein Zufall.</p>
+
+      <p class="final-cta-text" data-reveal>30 Minuten. Wir schauen gemeinsam was dich gerade beschäftigt. Und was möglich wird, wenn das nicht mehr so viel kostet.</p>
+
+      <p class="final-cta-small" data-reveal>Nur Klarheit.</p>
+
+      <div data-reveal style="margin-top: 2rem;">
+        <a href="https://calendly.com/zentrum-bewusstseinsarchitektur/30min" class="btn btn--terrakotta btn--big" target="_blank" rel="noopener" aria-label="System Check starten — kostenloses Erstgespräch">
+          System Check starten →
+        </a>
+        <span class="final-cta-mini">30 Min &middot; kostenlos</span>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- ============================================================
+       SECTION 16 — FOOTER
+  ============================================================ -->
+  <footer id="footer" class="noise" role="contentinfo">
+    <div class="footer-inner">
+
+      <div class="footer-top">
+        <div>
+          <span class="footer-logo-name">Julia Lauer · Bewusstseinsarchitektur</span>
+          <span class="footer-logo-sub">Für Frauen, die wissen wie es richtig wäre.</span>
+        </div>
+        <div class="footer-contact">
+          <p class="footer-contact-label">Noch Fragen? Schreib mir direkt.</p>
+          <a href="mailto:zentrum@bewusstseinsarchitektur.de" class="footer-email">zentrum@bewusstseinsarchitektur.de</a>
+          <a href="https://www.instagram.com/julia.bewusstseinsarchitektur" class="footer-insta" target="_blank" rel="noopener">@julia.bewusstseinsarchitektur</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2026 Julia Lauer · Bewusstseinsarchitektur</p>
+        <ul class="footer-links" role="list">
+          <li><a href="impressum.html">Impressum</a></li>
+          <li><a href="datenschutz.html">Datenschutz</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       SCRIPTS
+  ============================================================ -->
+  <script>
+    'use strict';
+
+    // ============================================================
+    // Custom Cursor
+    // ============================================================
+    (function() {
+      if (!window.matchMedia('(pointer: fine)').matches) return;
+
+      var dot = document.querySelector('.cursor-dot');
+      var ring = document.querySelector('.cursor-ring');
+      if (!dot || !ring) return;
+
+      var mx = window.innerWidth / 2;
+      var my = window.innerHeight / 2;
+      var rx = mx, ry = my;
+      var raf;
+
+      document.addEventListener('mousemove', function(e) {
+        mx = e.clientX;
+        my = e.clientY;
+        dot.style.left = mx + 'px';
+        dot.style.top = my + 'px';
+      });
+
+      function animateRing() {
+        rx += (mx - rx) * 0.12;
+        ry += (my - ry) * 0.12;
+        ring.style.left = rx + 'px';
+        ring.style.top = ry + 'px';
+        raf = requestAnimationFrame(animateRing);
+      }
+      animateRing();
+
+      document.addEventListener('mouseenter', function() {
+        dot.style.opacity = '1';
+        ring.style.opacity = '0.6';
+      });
+
+      document.addEventListener('mouseleave', function() {
+        dot.style.opacity = '0';
+        ring.style.opacity = '0';
+      });
+
+      var interactables = document.querySelectorAll('a, button, .faq-question');
+      interactables.forEach(function(el) {
+        el.addEventListener('mouseenter', function() {
+          document.body.classList.add('cursor-hover');
+        });
+        el.addEventListener('mouseleave', function() {
+          document.body.classList.remove('cursor-hover');
+        });
+      });
+    })();
+
+    // ============================================================
+    // Navigation scroll state
+    // ============================================================
+    (function() {
+      var nav = document.getElementById('nav');
+      if (!nav) return;
+
+      function update() {
+        if (window.scrollY > 40) {
+          nav.classList.add('scrolled');
+        } else {
+          nav.classList.remove('scrolled');
+        }
+      }
+
+      window.addEventListener('scroll', update, { passive: true });
+      update();
+    })();
+
+    // ============================================================
+    // Mobile Hamburger / Drawer
+    // ============================================================
+    (function() {
+      var btn = document.querySelector('.nav-hamburger');
+      var drawer = document.getElementById('nav-drawer');
+      if (!btn || !drawer) return;
+
+      function toggle() {
+        var open = drawer.classList.toggle('open');
+        btn.classList.toggle('open', open);
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        document.body.style.overflow = open ? 'hidden' : '';
+      }
+
+      btn.addEventListener('click', toggle);
+
+      drawer.querySelectorAll('a').forEach(function(a) {
+        a.addEventListener('click', function() {
+          drawer.classList.remove('open');
+          btn.classList.remove('open');
+          btn.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = '';
+        });
+      });
+    })();
+
+    // ============================================================
+    // Intersection Observer — Reveal Animations
+    // ============================================================
+    (function() {
+      var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // Hero line-inner elements
+      function revealHero() {
+        var items = document.querySelectorAll('.hero-label, .line-inner');
+        items.forEach(function(el, i) {
+          var delay = i * 120 + 200;
+          setTimeout(function() {
+            el.classList.add('revealed');
+          }, delay);
+        });
+      }
+      revealHero();
+
+      // data-reveal elements
+      var revealEls = document.querySelectorAll('[data-reveal]');
+      if (prefersReduced) {
+        revealEls.forEach(function(el) {
+          el.classList.add('revealed');
+        });
+        document.querySelectorAll('.divider').forEach(function(el) {
+          el.classList.add('revealed');
+        });
+        return;
+      }
+
+      var revealObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            var delay = entry.target.dataset.delay ? parseInt(entry.target.dataset.delay) : 0;
+            setTimeout(function() {
+              entry.target.classList.add('revealed');
+            }, delay);
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+      revealEls.forEach(function(el) {
+        revealObserver.observe(el);
+      });
+
+      // Dividers
+      var dividers = document.querySelectorAll('[data-divider]');
+      var dividerObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            dividerObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+
+      dividers.forEach(function(el) {
+        dividerObserver.observe(el);
+      });
+    })();
+
+    // ============================================================
+    // FAQ Accordion
+    // ============================================================
+    (function() {
+      var questions = document.querySelectorAll('.faq-question');
+
+      questions.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var item = btn.closest('.faq-item');
+          var answer = item.querySelector('.faq-answer');
+          var isOpen = item.classList.contains('open');
+
+          // Close all
+          document.querySelectorAll('.faq-item.open').forEach(function(openItem) {
+            openItem.classList.remove('open');
+            openItem.querySelector('.faq-answer').style.maxHeight = '0';
+            openItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+          });
+
+          // Open clicked if it was closed
+          if (!isOpen) {
+            item.classList.add('open');
+            answer.style.maxHeight = answer.scrollHeight + 'px';
+            btn.setAttribute('aria-expanded', 'true');
+          }
+        });
+      });
+    })();
+
+    // ============================================================
+    // Smooth scroll for anchor links
+    // ============================================================
+    (function() {
+      document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+        a.addEventListener('click', function(e) {
+          var target = document.querySelector(a.getAttribute('href'));
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>

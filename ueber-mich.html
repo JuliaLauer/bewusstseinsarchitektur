@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Über mich · Julia Lauer · Bewusstseinsarchitektur</title>
+  <meta name="description" content="Julia Lauer — Bewusstseinsarchitektin. Über 20 Jahre Körperarbeit, ALL-AACHT, Yager Mind Matrix. Ich rede nicht über diesen Zustand. Ich habe ihn im Körper erlebt." />
+  <link rel="canonical" href="https://bewusstseinsarchitektur.de/ueber-mich" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ========================================
+       CUSTOM PROPERTIES
+    ======================================== */
+    :root {
+      --bordeaux: #3D1219;
+      --terrakotta: #c95e46;
+      --licht: #FAF8F5;
+      --weiss: #FFFFFF;
+      --text-dunkel: #1A1A1A;
+      --text-mittel: #2E2E2E;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Jost', system-ui, sans-serif;
+      --section-pad: clamp(5rem, 9vw, 9rem);
+      --container-max: 1200px;
+      --container-px: clamp(1.5rem, 5vw, 4rem);
+      --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+      }
+    }
+
+    /* ========================================
+       RESET & BASE
+    ======================================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--font-body);
+      font-weight: 400;
+      color: var(--text-dunkel);
+      background: var(--weiss);
+      overflow-x: hidden;
+      cursor: none;
+    }
+    @media (pointer: coarse) { body { cursor: auto; } }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ========================================
+       CURSOR
+    ======================================== */
+    @media (pointer: fine) {
+      .cursor-dot {
+        position: fixed; width: 6px; height: 6px;
+        background: var(--terrakotta); border-radius: 50%;
+        pointer-events: none; z-index: 9999;
+        transform: translate(-50%, -50%);
+        transition: transform 0.1s ease, opacity 0.3s ease;
+      }
+      .cursor-ring {
+        position: fixed; width: 32px; height: 32px;
+        border: 1.5px solid var(--terrakotta); border-radius: 50%;
+        pointer-events: none; z-index: 9998;
+        transform: translate(-50%, -50%);
+        transition: transform 0.15s ease, width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+        opacity: 0.6;
+      }
+      body.cursor-hover .cursor-ring { width: 48px; height: 48px; opacity: 0.4; }
+    }
+
+    /* ========================================
+       NOISE
+    ======================================== */
+    .noise::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      opacity: 0.03; pointer-events: none; z-index: 1;
+    }
+
+    /* ========================================
+       ANIMATIONS
+    ======================================== */
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    [data-reveal].revealed { opacity: 1; transform: translateY(0); }
+
+    .divider {
+      width: 0; height: 1.5px;
+      background: var(--terrakotta);
+      transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+      margin: 2rem 0;
+    }
+    .divider.revealed { width: 48px; }
+
+    /* ========================================
+       NAVIGATION
+    ======================================== */
+    #nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1.5rem var(--container-px);
+      display: flex; align-items: center; justify-content: space-between;
+      transition: background 0.4s ease, box-shadow 0.4s ease, padding 0.4s ease;
+    }
+    #nav.scrolled {
+      background: rgba(250, 248, 245, 0.96);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+      padding-top: 1rem; padding-bottom: 1rem;
+    }
+    .nav-logo { display: flex; flex-direction: column; }
+    .nav-logo-name {
+      font-family: var(--font-display); font-style: italic;
+      font-weight: 300; font-size: 1.35rem; color: var(--weiss);
+      transition: color 0.4s ease; line-height: 1.2;
+    }
+    #nav.scrolled .nav-logo-name { color: var(--bordeaux); }
+    .nav-logo-sub {
+      font-family: var(--font-body); font-size: 0.7rem;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(255,255,255,0.55); transition: color 0.4s ease;
+    }
+    #nav.scrolled .nav-logo-sub { color: var(--text-mittel); }
+    .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-family: var(--font-body); font-size: 0.9rem;
+      letter-spacing: 0.06em; color: rgba(255,255,255,0.72);
+      transition: color 0.3s ease;
+    }
+    .nav-links a:hover { color: var(--weiss); }
+    #nav.scrolled .nav-links a { color: var(--text-mittel); }
+    #nav.scrolled .nav-links a:hover { color: var(--bordeaux); }
+    .nav-links a.active { color: var(--terrakotta); }
+    #nav.scrolled .nav-links a.active { color: var(--terrakotta); }
+    .nav-cta {
+      font-family: var(--font-body); font-size: 0.78rem;
+      font-weight: 400; letter-spacing: 0.06em;
+      color: var(--weiss); background: var(--terrakotta);
+      padding: 0.55rem 1.2rem; border-radius: 2px;
+      transition: background 0.3s ease, transform 0.3s ease; cursor: none;
+    }
+    @media (pointer: coarse) { .nav-cta { cursor: pointer; } }
+    .nav-cta:hover { background: #b54e37; transform: translateY(-1px); }
+
+    .nav-hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 4px; z-index: 101;
+    }
+    .nav-hamburger span {
+      display: block; width: 24px; height: 1.5px; background: var(--weiss);
+      transition: background 0.4s ease, transform 0.4s ease, opacity 0.4s ease;
+    }
+    #nav.scrolled .nav-hamburger span { background: var(--bordeaux); }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    .nav-drawer {
+      position: fixed; inset: 0; background: var(--bordeaux); z-index: 99;
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; gap: 2.5rem;
+      transform: translateX(100%);
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .nav-drawer.open { transform: translateX(0); }
+    .nav-drawer a {
+      font-family: var(--font-display); font-style: italic;
+      font-size: clamp(1.6rem, 5vw, 2.2rem);
+      color: rgba(255,255,255,0.85); transition: color 0.3s ease;
+    }
+    .nav-drawer a:hover { color: var(--terrakotta); }
+
+    @media (max-width: 860px) {
+      .nav-links, .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
+    }
+
+    /* ========================================
+       LABEL UTILITY
+    ======================================== */
+    .label {
+      font-family: var(--font-body); font-weight: 400;
+      font-size: 0.75rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--terrakotta);
+      display: block; margin-bottom: 1.25rem;
+    }
+    .label--weiss { color: rgba(255,255,255,0.55); }
+    .label--bordeaux { color: var(--bordeaux); opacity: 0.85; }
+
+    /* ========================================
+       BUTTON
+    ======================================== */
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-family: var(--font-body); font-weight: 400;
+      font-size: 0.875rem; letter-spacing: 0.04em;
+      padding: 0.875rem 1.875rem; border-radius: 2px;
+      border: none; cursor: none;
+      transition: transform var(--transition), background var(--transition), box-shadow var(--transition);
+    }
+    @media (pointer: coarse) { .btn { cursor: pointer; } }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.18); }
+    .btn--terrakotta { background: var(--terrakotta); color: var(--weiss); }
+    .btn--light {
+      background: transparent; color: var(--weiss);
+      border: 1.5px solid rgba(255,255,255,0.5);
+    }
+    .btn--light:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.8); }
+
+    /* ========================================
+       PAGE HERO
+    ======================================== */
+    #page-hero {
+      position: relative;
+      background: var(--bordeaux);
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: clamp(8rem, 14vw, 12rem) var(--container-px) clamp(5rem, 9vw, 8rem);
+      overflow: hidden;
+    }
+    .page-hero-inner {
+      width: 100%;
+      max-width: var(--container-max);
+      margin-inline: auto;
+      position: relative; z-index: 2;
+    }
+    .page-hero-title {
+      font-family: var(--font-display); font-style: italic;
+      font-weight: 300; font-size: clamp(2.8rem, 6vw, 5rem);
+      color: var(--weiss); line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+    .page-hero-sub {
+      font-family: var(--font-display); font-style: italic;
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      color: var(--terrakotta); line-height: 1.5;
+    }
+
+    /* ========================================
+       SECTION: BALLETT
+    ======================================== */
+    #ballett {
+      background: var(--weiss);
+      padding: var(--section-pad) var(--container-px);
+    }
+    .ballett-grid {
+      max-width: var(--container-max);
+      margin-inline: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(3rem, 6vw, 6rem);
+      align-items: start;
+    }
+    .ballett-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .ballett-img-wrap {
+      overflow: hidden;
+      aspect-ratio: 2/3;
+    }
+    .ballett-img-wrap:nth-child(2) { margin-top: 3rem; }
+    .ballett-img-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+      transition: transform 0.8s ease;
+    }
+    .ballett-img-wrap:hover img { transform: scale(1.03); }
+    .ballett-img-caption {
+      font-family: var(--font-body); font-size: 0.68rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: rgba(26,26,26,0.4); text-align: center;
+      margin-top: 0.75rem; grid-column: 1 / -1;
+    }
+    .ballett-headline {
+      font-family: var(--font-display); font-style: italic;
+      font-weight: 300; font-size: clamp(2rem, 3.5vw, 3rem);
+      color: var(--bordeaux); line-height: 1.2; margin-bottom: 2rem;
+    }
+    .ballett-text {
+      font-family: var(--font-body); font-weight: 400;
+      font-size: 1rem; line-height: 1.85;
+      color: var(--text-dunkel); margin-bottom: 1.25rem;
+    }
+    .ballett-quote {
+      font-family: var(--font-display); font-style: italic;
+      font-size: clamp(1.1rem, 2vw, 1.3rem);
+      color: var(--text-dunkel); line-height: 1.6;
+      border-left: 3px solid var(--terrakotta);
+      padding: 1rem 1.5rem; margin: 2rem 0;
+      background: rgba(61,18,25,0.03);
+    }
+
+    @media (max-width: 860px) {
+      .ballett-grid { grid-template-columns: 1fr; }
+      .ballett-images { max-width: 480px; }
+    }
+
+    /* ========================================
+       SECTION: TIMELINE
+    ======================================== */
+    #timeline {
+      background: var(--bordeaux);
+      padding: var(--section-pad) var(--container-px);
+      position: relative; overflow: hidden;
+    }
+    .timeline-inner {
+      max-width: 860px;
+      margin-inline: auto;
+      position: relative; z-index: 2;
+    }
+    .timeline-headline {
+      font-family: var(--font-display); font-style: italic;
+      font-weight: 300; font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--weiss); line-height: 1.2; margin-bottom: 1rem;
+    }
+    .timeline-intro {
+      font-family: var(--font-display); font-style: italic;
+      font-size: clamp(1rem, 1.8vw, 1.2rem);
+      color: rgba(255,255,255,0.85); line-height: 1.65;
+      margin-bottom: 4rem; max-width: 560px;
+    }
+    .timeline-list {
+      position: relative;
+    }
+    .timeline-list::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 8px; bottom: 8px; width: 1px;
+      background: linear-gradient(to bottom, rgba(201,94,70,0.4) 0%, rgba(201,94,70,0.1) 100%);
+    }
+    .timeline-item {
+      padding: 0 0 3.5rem 2.5rem;
+      position: relative;
+    }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -4px; top: 6px;
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      border: 1.5px solid var(--terrakotta);
+      background: var(--bordeaux);
+      transition: background 0.3s ease;
+    }
+    .timeline-item:last-child::before {
+      background: var(--terrakotta);
+      box-shadow: 0 0 12px rgba(201,94,70,0.5);
+    }
+    .timeline-tag {
+      font-family: var(--font-body); font-size: 0.68rem;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--terrakotta); margin-bottom: 0.75rem; display: block;
+    }
+    .timeline-title {
+      font-family: var(--font-display); font-style: italic;
+      font-weight: 300; font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+      color: var(--weiss); line-height: 1.2; margin-bottom: 0.5rem;
+    }
+    .timeline-sub {
+      font-family: var(--font-body); font-size: 0.72rem;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(255,255,255,0.55); margin-bottom: 1rem;
+    }
+    .timeline-text {
+      font-family: var(--font-body); font-weight: 400;
+      font-size: 1rem; line-height: 1.85;
+      color: rgba(255,255,255,0.92);
+    }
+    .timeline-text p + p { margin-top: 0.75rem; }
+    .timeline-highlight {
+      margin-top: 1.75rem;
+      border-left: 3px solid var(--terrakotta);
+      padding: 1.25rem 1.5rem;
+      background: rgba(201,94,70,0.08);
+    }
+    .timeline-highlight p {
+      font-family: var(--font-display); font-style: italic;
+      font-size: clamp(1.1rem, 2vw, 1.35rem); color: var(--weiss); line-height: 1.6;
+    }
+
+    /* ========================================
+       SECTION: VERBINDUNG
+    ======================================== */
+    #verbindung {
+      background: var(--licht);
+      padding: var(--section-pad) var(--container-px);
+    }
+    .verbindung-inner {
+      max-width: 700px;
+      margin-inline: auto;
+    }
+    .verbindung-headline {
+      font-family: var(--font-display); font-style: italic;
+      font-weight: 300; font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--bordeaux); line-height: 1.2; margin-bottom: 2rem;
+    }
+    .verbindung-text {
+      font-family: var(--font-body); font-weight: 400;
+      font-size: 1rem; line-height: 1.85;
+      color: var(--text-dunkel); margin-bottom: 1.25rem;
+    }
+    .verbindung-blockquote {
+      margin: 2.5rem 0;
+      padding: 2rem 2.5rem;
+      border-left: 3px solid var(--terrakotta);
+      background: rgba(201,94,70,0.04);
+    }
+    .verbindung-blockquote p {
+      font-family: var(--font-display); font-style: italic;
+      font-size: clamp(1.1rem, 2vw, 1.35rem);
+      color: var(--text-dunkel); line-height: 1.65;
+    }
+
+    /* ========================================
+       SECTION: CREDENTIALS
+    ======================================== */
+    #credentials {
+      background: var(--weiss);
+      padding: var(--section-pad) var(--container-px);
+      border-top: 1px solid rgba(61,18,25,0.07);
+    }
+    .credentials-inner {
+      max-width: var(--container-max);
+      margin-inline: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(3rem, 6vw, 6rem);
+      align-items: start;
+    }
+    .credentials-image {
+      position: relative;
+    }
+    .credentials-image img {
+      width: 100%; aspect-ratio: 3/4;
+      object-fit: cover; object-position: center top;
+    }
+    .credentials-headline {
+      font-family: var(--font-display); font-style: italic;
+      font-weight: 300; font-size: clamp(2rem, 3.5vw, 2.8rem);
+      color: var(--bordeaux); line-height: 1.2; margin-bottom: 2.5rem;
+    }
+    .credentials-list {
+      list-style: none;
+      display: flex; flex-direction: column; gap: 1.25rem;
+    }
+    .credentials-item {
+      display: flex; gap: 1rem; align-items: flex-start;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid rgba(61,18,25,0.08);
+    }
+    .credentials-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .credentials-dot {
+      flex-shrink: 0; width: 6px; height: 6px;
+      border-radius: 50%; background: var(--terrakotta);
+      margin-top: 0.55rem;
+    }
+    .credentials-item-text {
+      font-family: var(--font-body); font-size: 1.05rem;
+      line-height: 1.6; color: var(--text-dunkel);
+    }
+    .credentials-item-text strong {
+      display: block; font-weight: 400;
+      color: var(--bordeaux); margin-bottom: 0.2rem;
+    }
+    .credentials-item-sub {
+      font-size: 0.9rem; color: rgba(26,26,26,0.5);
+    }
+
+    @media (max-width: 860px) {
+      .credentials-inner { grid-template-columns: 1fr; }
+      .credentials-image { max-width: 400px; }
+    }
+
+    /* ========================================
+       SECTION: PERSÖNLICH
+    ======================================== */
+    #persoenlich {
+      background: var(--licht);
+      padding: clamp(4rem, 7vw, 6rem) var(--container-px);
+      border-top: 1px solid rgba(61,18,25,0.07);
+    }
+    .persoenlich-inner {
+      max-width: 600px;
+      margin-inline: auto;
+      text-align: center;
+    }
+    .persoenlich-text {
+      font-family: var(--font-body); font-weight: 400;
+      font-size: 1rem; line-height: 1.85;
+      color: var(--text-dunkel); margin-bottom: 1.25rem;
+    }
+    .persoenlich-italic {
+      font-family: var(--font-display); font-style: italic;
+      font-size: clamp(1.1rem, 2vw, 1.3rem);
+      color: var(--bordeaux); line-height: 1.6;
+    }
+
+    /* ========================================
+       SECTION: CTA
+    ======================================== */
+    #ueber-cta {
+      position: relative;
+      background: var(--bordeaux);
+      padding: var(--section-pad) var(--container-px);
+      text-align: center; overflow: hidden;
+    }
+    .ueber-cta-inner {
+      max-width: 560px;
+      margin-inline: auto;
+      position: relative; z-index: 2;
+    }
+    .ueber-cta-headline {
+      font-family: var(--font-display); font-style: italic;
+      font-weight: 300; font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+      color: var(--weiss); line-height: 1.2; margin-bottom: 1.5rem;
+    }
+    .ueber-cta-text {
+      font-family: var(--font-body); font-weight: 300;
+      font-size: 1rem; line-height: 1.85;
+      color: rgba(255,255,255,0.88); margin-bottom: 2rem;
+    }
+    .btn-meta {
+      display: block; margin-top: 0.875rem;
+      font-family: var(--font-body); font-size: 0.72rem;
+      letter-spacing: 0.04em; color: rgba(255,255,255,0.6);
+    }
+
+    /* ========================================
+       FOOTER
+    ======================================== */
+    #footer {
+      position: relative; background: var(--bordeaux);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 3.5rem var(--container-px) 2rem; overflow: hidden;
+    }
+    .footer-inner { max-width: var(--container-max); margin-inline: auto; position: relative; z-index: 2; }
+    .footer-top {
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 3rem; align-items: start;
+      margin-bottom: 3rem; padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer-logo-name {
+      font-family: var(--font-display); font-style: italic;
+      font-weight: 300; font-size: 1.4rem; color: var(--weiss);
+      display: block; margin-bottom: 0.3rem;
+    }
+    .footer-logo-sub {
+      font-family: var(--font-body); font-size: 0.68rem;
+      letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.4);
+    }
+    .footer-contact { text-align: right; }
+    .footer-contact-label {
+      font-family: var(--font-body); font-size: 0.75rem;
+      color: rgba(255,255,255,0.4); margin-bottom: 0.5rem;
+    }
+    .footer-email {
+      font-family: var(--font-body); font-size: 0.9rem;
+      color: rgba(255,255,255,0.78); transition: color 0.3s ease; display: block;
+    }
+    .footer-email:hover { color: var(--terrakotta); }
+    .footer-insta {
+      display: block; margin-top: 0.4rem;
+      font-family: var(--font-body); font-size: 0.82rem;
+      color: rgba(255,255,255,0.5); transition: color 0.3s ease;
+    }
+    .footer-insta:hover { color: var(--terrakotta); }
+    .footer-bottom {
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+    }
+    .footer-copy { font-family: var(--font-body); font-size: 0.72rem; color: rgba(255,255,255,0.3); }
+    .footer-links { display: flex; gap: 1.5rem; list-style: none; }
+    .footer-links a {
+      font-family: var(--font-body); font-size: 0.72rem;
+      color: rgba(255,255,255,0.35); transition: color 0.3s ease;
+    }
+    .footer-links a:hover { color: rgba(255,255,255,0.7); }
+
+    @media (max-width: 600px) {
+      .footer-top { grid-template-columns: 1fr; }
+      .footer-contact { text-align: left; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
+
+  <!-- NAVIGATION -->
+  <nav id="nav" role="navigation" aria-label="Hauptnavigation">
+    <a href="index.html" class="nav-logo" aria-label="Julia Lauer Bewusstseinsarchitektur — Startseite">
+      <span class="nav-logo-name">Julia Lauer</span>
+      <span class="nav-logo-sub">Für Frauen, die wissen wie es richtig wäre.</span>
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="index.html#fuerwen">Für wen</a></li>
+      <li><a href="methode.html">Methode</a></li>
+      <li><a href="ueber-mich.html" class="active">Über mich</a></li>
+      <li><a href="index.html#angebote">Angebote</a></li>
+      <li><a href="texte.html">Texte</a></li>
+      <li><a href="freebie.html">Audio</a></li>
+    </ul>
+    <a href="https://calendly.com/zentrum-bewusstseinsarchitektur/30min" class="nav-cta" target="_blank" rel="noopener">System Check starten →</a>
+    <button class="nav-hamburger" aria-label="Menü öffnen" aria-expanded="false" aria-controls="nav-drawer">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div id="nav-drawer" class="nav-drawer" role="dialog" aria-label="Mobilnavigation" aria-modal="true">
+    <a href="index.html#fuerwen">Für wen</a>
+    <a href="methode.html">Methode</a>
+    <a href="ueber-mich.html">Über mich</a>
+    <a href="index.html#angebote">Angebote</a>
+    <a href="texte.html">Texte</a>
+    <a href="freebie.html">Audio</a>
+    <a href="https://calendly.com/zentrum-bewusstseinsarchitektur/30min" target="_blank" rel="noopener" style="background:var(--terrakotta);color:#fff;padding:0.875rem 1.875rem;border-radius:2px;font-family:var(--font-body);font-size:0.875rem;cursor:pointer;">System Check starten →</a>
+  </div>
+
+  <main>
+
+    <!-- HERO -->
+    <section id="page-hero" class="noise" aria-label="Über Julia Lauer">
+      <div class="page-hero-inner">
+        <span class="label label--weiss" data-reveal>Über mich</span>
+        <h1 class="page-hero-title" data-reveal>
+          Ich rede nicht<br>über diesen Zustand.
+        </h1>
+        <p class="page-hero-sub" data-reveal>Ich habe ihn im Körper erlebt.</p>
+      </div>
+    </section>
+
+    <!-- BALLETT -->
+    <section id="ballett" aria-labelledby="ballett-headline">
+      <div class="ballett-grid">
+
+        <div class="ballett-images" data-reveal>
+          <div class="ballett-img-wrap">
+            <img src="julia-ballet-2.JPG" alt="Julia Lauer — Bayerisches Staatsballett München" loading="lazy" />
+          </div>
+          <div class="ballett-img-wrap">
+            <img src="IMG_6779.JPG" alt="Julia Lauer — Ballett backstage" loading="lazy" />
+          </div>
+          <p class="ballett-img-caption">München · Bayerisches Staatsballett</p>
+        </div>
+
+        <div>
+          <span class="label label--bordeaux" data-reveal>Woher ich komme</span>
+          <div class="divider" data-divider></div>
+          <h2 class="ballett-headline" id="ballett-headline" data-reveal>
+            Ich habe Ballett getanzt,<br>solange ich denken kann.
+          </h2>
+          <p class="ballett-text" data-reveal>
+            Nicht als Hobby. Als Welt. Mit 13 nach München. Heinz-Bosl-Stiftung, Talentschmiede des Bayerischen Staatsballetts. Präzision. Haltung. Kontrolle. Leistung, die niemand hinterfragt, solange sie funktioniert.
+          </p>
+          <p class="ballett-text" data-reveal>
+            Irgendwann hat der Körper nein gesagt. Nicht laut. Aber eindeutig.
+          </p>
+          <blockquote class="ballett-quote" data-reveal>
+            Mit 15 die Frage von John Neumeier <span style="font-family:var(--font-body);font-size:0.82rem;font-style:normal;color:rgba(61,18,25,0.5);white-space:nowrap;">(Choreograf, Leiter des Hamburger Balletts)</span>:<br>„Du kannst. Aber willst du das hier wirklich?"
+          </blockquote>
+          <p class="ballett-text" data-reveal>
+            Ich habe mich selbst abgemeldet. Und bin nach Hause gefahren.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section id="timeline" class="noise" aria-labelledby="timeline-headline">
+      <div class="timeline-inner">
+        <span class="label label--weiss" data-reveal>Mein Weg</span>
+        <div class="divider" data-divider style="background: rgba(255,255,255,0.2);"></div>
+
+        <h2 class="timeline-headline" id="timeline-headline" data-reveal>
+          Jeder Schritt<br>war eine Schule.
+        </h2>
+
+        <div class="timeline-list" data-reveal>
+
+          <div class="timeline-item">
+            <span class="timeline-tag">Studium</span>
+            <h3 class="timeline-title">Diplom-Informationswissenschaften</h3>
+            <div class="timeline-text">
+              <p>Tiefenerschließung. Semantische Suche. Hierarchien, Datenbanklogik, Wenn-dann-Bedingungen. Präzise Strukturen statt ungefähres Verstehen. Das Studium hat mir eine Denkweise gegeben, die bis heute in jeder Sitzung präsent ist: Ordnung herstellen, wo andere nur Komplexität sehen.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <span class="timeline-tag">Kampfkunst · Körpersystem</span>
+            <h3 class="timeline-title"><a href="https://allaacht.de/" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(201,94,70,0.4);">ALL-AACHT<sup>™</sup></a></h3>
+            <p class="timeline-sub">by Great Grandmaster Sigung Birol Bariş Özden · SIMO und Instruktorin · Über 20 Jahre</p>
+            <div class="timeline-text">
+              <p>Kampfkunst nicht als Sport. Als Körpersystem. Hier zeigt sich, was kein Gespräch zeigt: wie ein Mensch unter echtem Druck reagiert. Schneller als jede Entscheidung. Bevor der Kopf weiß was passiert.</p>
+              <p>Das ist kein Training. Das ist Biologie.</p>
+            </div>
+            <div class="timeline-highlight">
+              <p>Wer unter echtem Druck steht, zeigt sein System. Nicht sein Denken.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <span class="timeline-tag">Bewegung · Faszien · Somatik</span>
+            <h3 class="timeline-title">Elan 'N' Motion<sup>™</sup></h3>
+            <p class="timeline-sub">Chef-Ausbilderin · by ALL-AACHT<sup>™</sup></p>
+            <div class="timeline-text">
+              <p>Als Chef-Ausbilderin: Faszientraining, Atemarbeit, PSOAS-Ausrichtung, somatische Bewegung. Der Körper ist kein Problem. Er ist der präziseste Hinweis, den es gibt.</p>
+              <p>Was er zeigt, entsteht woanders. Irgendwann kommt man nicht weiter, egal wie präzise die Körperarbeit ist. Das war der Punkt, der mich zur Yager Mind Matrix geführt hat.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <span class="timeline-tag">Methode · Zertifizierung</span>
+            <h3 class="timeline-title">Yager Mind Matrix<sup>®</sup></h3>
+            <p class="timeline-sub">Zertifizierte Coachin</p>
+            <div class="timeline-text">
+              <p>Körperbasierte Arbeit hat eine Grenze. Irgendwann bleibt etwas, das tiefer sitzt. Die Yager Mind Matrix öffnet einen Zugang, den weder Körperarbeit noch Analyse erreicht.</p>
+              <p>Kein Erinnern. Kein Analysieren. Kein Durchleben. Das System weiß selbst, was sich verändern will. Das hat mich überzeugt.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <span class="timeline-tag">Heute</span>
+            <h3 class="timeline-title" style="font-size:clamp(1.6rem,3vw,2.4rem);">Bewusstseinsarchitektur</h3>
+            <div class="timeline-text">
+              <p>Nicht eine weitere Qualifikation. Das Ergebnis aus allem.</p>
+              <p>Ballett hat mir Körperbewusstsein gegeben. Informationswissenschaft hat mir Systemdenken gegeben. Kampfkunst hat mir gezeigt wie ein Mensch unter Druck wirklich reagiert. Yager hat mir den Zugang zur Ebene gegeben, die darunter liegt.</p>
+              <p>Bewusstseinsarchitektur ist die Haltung aus der ich arbeite. Nicht die Summe der Teile. Sondern was entsteht, wenn sie zusammenfließen.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- VERBINDUNG -->
+    <section id="verbindung" aria-label="Was mich heute leitet">
+      <div class="verbindung-inner">
+        <span class="label label--bordeaux" data-reveal>Was mich heute prägt</span>
+        <div class="divider" data-divider></div>
+        <h2 class="verbindung-headline" data-reveal>Warum ich.</h2>
+
+        <p class="verbindung-text" data-reveal>
+          Zwanzig Jahre Körper. Diplom-Informationswissenschaftlerin. Direkter Zugang zum Unterbewusstsein. Das gibt es selten in einer Person. Und es macht den Unterschied.
+        </p>
+
+        <p class="verbindung-text" data-reveal>
+          Was ich an mir selbst erlebt habe, sehe ich täglich in den Frauen mit denen ich arbeite. Andere Geschichten. Dieselbe Struktur.
+        </p>
+
+        <p class="verbindung-text" data-reveal>
+          Zertifizierte Yager Mind Matrix<sup>®</sup> Coachin. Das ist die Grundlage, nicht das Versprechen. Die Methode gibt mir den Zugang. Die zwanzig Jahre geben mir den Blick.
+        </p>
+
+        <p class="verbindung-text" data-reveal style="font-family:var(--font-display);font-style:italic;font-size:clamp(1.1rem,2vw,1.35rem);color:var(--text-dunkel);line-height:1.6;border-left:3px solid var(--terrakotta);padding:1rem 1.5rem;margin:1.5rem 0;background:rgba(201,94,70,0.04);">
+          Ich verändere nicht was sichtbar ist.<br>Ich verändere die Struktur aus der es entsteht.
+        </p>
+
+        <p class="verbindung-text" data-reveal>
+          Das System hat gelernt zu funktionieren. Es kostet. Täglich. Genau dort setze ich an.
+        </p>
+      </div>
+    </section>
+
+    <!-- CREDENTIALS -->
+    <section id="credentials" aria-labelledby="credentials-headline">
+      <div class="credentials-inner">
+
+        <div class="credentials-image" data-reveal>
+          <img src="Firefly_Gemini Flash_leicht aufhellen, klarheit und tiefe halten 288336.png" alt="Julia Lauer · Bewusstseinsarchitektin" loading="lazy" />
+        </div>
+
+        <div>
+          <span class="label label--bordeaux" data-reveal>Ausbildung</span>
+          <div class="divider" data-divider></div>
+          <h2 class="credentials-headline" id="credentials-headline" data-reveal>
+            Das Fundament.
+          </h2>
+
+          <p style="font-family:var(--font-body);font-size:0.95rem;line-height:1.75;color:var(--text-mittel);margin-bottom:2rem;" data-reveal>1:1 Begleitung. Online. Weltweit.</p>
+
+          <ul class="credentials-list" data-reveal>
+            <li class="credentials-item" style="margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid rgba(61,18,25,0.1);">
+              <span class="credentials-dot" style="background:var(--terrakotta);"></span>
+              <div class="credentials-item-text">
+                <strong style="font-family:var(--font-display);font-style:italic;font-size:1.2rem;font-weight:300;">Bewusstseinsarchitektur</strong>
+                <span class="credentials-item-sub">Eigener Ansatz · Arbeit direkt an der Struktur des Unterbewusstseins · 1:1 online</span>
+              </div>
+            </li>
+            <li class="credentials-item">
+              <span class="credentials-dot"></span>
+              <div class="credentials-item-text">
+                <strong>Yager Mind Matrix<sup>®</sup></strong>
+                <span class="credentials-item-sub">Zertifizierte Coachin · Arbeit direkt im Unterbewusstsein, ohne Analyse, ohne Retraumatisierung</span>
+              </div>
+            </li>
+            <li class="credentials-item">
+              <span class="credentials-dot"></span>
+              <div class="credentials-item-text">
+                <strong>ALL-AACHT<sup>™</sup> Kampfkunst und Selbstschutz</strong>
+                <span class="credentials-item-sub">SIMO und Instruktorin · Über 20 Jahre · Kampfkunstsystem von Sigung Birol Bariş Özden</span>
+              </div>
+            </li>
+            <li class="credentials-item">
+              <span class="credentials-dot"></span>
+              <div class="credentials-item-text">
+                <strong>Elan 'N' Motion<sup>™</sup> by ALL-AACHT<sup>™</sup></strong>
+                <span class="credentials-item-sub">Chef-Ausbilderin · Faszien, Atem, PSOAS, somatische Bewegung</span>
+              </div>
+            </li>
+            <li class="credentials-item">
+              <span class="credentials-dot"></span>
+              <div class="credentials-item-text">
+                <strong>Faszien · PSOAS · Atem · Somatik</strong>
+                <span class="credentials-item-sub">Körperbasierte Arbeit mit Frauen</span>
+              </div>
+            </li>
+            <li class="credentials-item">
+              <span class="credentials-dot"></span>
+              <div class="credentials-item-text">
+                <strong>Diplom-Informationswissenschaftlerin</strong>
+                <span class="credentials-item-sub">Tiefenerschließung · Semantik · Strukturanalyse</span>
+              </div>
+            </li>
+            <li class="credentials-item">
+              <span class="credentials-dot"></span>
+              <div class="credentials-item-text">
+                <strong>Klassisches Ballett</strong>
+                <span class="credentials-item-sub">Bayerisches Staatsballett München</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- WAS SICH VERÄNDERT -->
+    <section aria-label="Was sich verändert" style="background:var(--bordeaux);padding:clamp(4rem,7vw,6rem) var(--container-px);position:relative;overflow:hidden;">
+      <div style="max-width:700px;margin-inline:auto;position:relative;z-index:2;">
+        <span class="label label--weiss" data-reveal>Was sich verändert</span>
+        <div class="divider" data-divider style="background:rgba(255,255,255,0.2);"></div>
+        <p style="font-family:var(--font-display);font-style:italic;font-weight:300;font-size:clamp(1.8rem,3.5vw,2.6rem);color:var(--weiss);line-height:1.25;margin-bottom:2rem;" data-reveal>Ich sehe es. In der Sitzung. Und danach.</p>
+        <p style="font-family:var(--font-body);font-size:1rem;line-height:1.85;color:rgba(255,255,255,0.88);margin-bottom:1.25rem;" data-reveal>Ich rieche Muster. Ich sehe blinde Flecken, auch wenn du sie nicht siehst. Ich kann empathisch sein ohne mitzuleiden. Und manchmal muss ich klar führen, auch wenn es unbequem ist. Das gehört dazu.</p>
+        <p style="font-family:var(--font-body);font-size:1rem;line-height:1.85;color:rgba(255,255,255,0.88);margin-bottom:1.25rem;" data-reveal>Ich halte keine Händchen. Ich arbeite daran, dass dein System sich selbst führen kann. Die Lösung liegt nicht bei mir. Sie liegt in dir.</p>
+        <p style="font-family:var(--font-body);font-size:1rem;line-height:1.85;color:rgba(255,255,255,0.88);margin-bottom:1.25rem;" data-reveal>Kein Machtgefälle. Keine Mentorin. Ich öffne den Raum. Du arbeitest darin.</p>
+        <p style="font-family:var(--font-body);font-size:1rem;line-height:1.85;color:rgba(255,255,255,0.88);margin-bottom:1.25rem;" data-reveal>Alte Geschichten dürfen da sein. Ich führe sie nicht fort.</p>
+        <p style="font-family:var(--font-body);font-size:1rem;line-height:1.85;color:rgba(255,255,255,0.88);margin-bottom:1.25rem;" data-reveal>Und ich brenne für meine Frauen. Ich feiere ihre Erfolge. Ich muss nicht unnahbar sein, um zu führen. Ich bin rebellisch. Aber für sie.</p>
+        <p style="font-family:var(--font-display);font-style:italic;font-size:clamp(1rem,1.8vw,1.2rem);color:var(--terrakotta);line-height:1.6;" data-reveal>Meine Arbeit ist gut, wenn du mich danach nicht mehr brauchst.</p>
+      </div>
+    </section>
+
+    <!-- TESTIMONIAL -->
+    <section aria-label="Erfahrung" style="background:var(--licht);padding:clamp(4rem,7vw,6rem) var(--container-px);border-top:1px solid rgba(61,18,25,0.07);">
+      <div style="max-width:700px;margin-inline:auto;">
+        <span class="label label--bordeaux" data-reveal>Was danach möglich wurde</span>
+        <div class="divider" data-divider></div>
+        <blockquote style="position:relative;" data-reveal>
+          <p style="font-family:var(--font-display);font-style:italic;font-size:clamp(1.05rem,1.9vw,1.25rem);line-height:1.75;color:var(--text-dunkel);margin-bottom:1.5rem;">Ich helfe Frauen dabei, für ihren Wert einzustehen. Und konnte selbst nicht meinen Preis nennen, ohne sofort nachzugeben, sobald jemand gezögert hat. Das hat mich wahnsinnig gemacht. Weil ich genau wusste was da passiert. Und es trotzdem nicht stoppen konnte. Nach unserer Arbeit war das anders. Ich nenne meinen Preis. Ich habe ihn sogar erhöht. Nicht weil ich mutiger geworden bin. Sondern weil der innere Widerstand einfach nicht mehr da ist.</p>
+          <p style="font-family:var(--font-body);font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--terrakotta);">Hanna &middot; Coach für Selbstwert und Positionierung</p>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="ueber-cta" class="noise" aria-label="System Check starten">
+      <div class="ueber-cta-inner">
+        <span class="label label--weiss" data-reveal>Bereit?</span>
+        <h2 class="ueber-cta-headline" data-reveal>
+          Ein klarer Blick.
+        </h2>
+        <p class="ueber-cta-text" data-reveal>
+          30 Minuten. Kein Umweg. Wir schauen gemeinsam hin.
+        </p>
+        <div data-reveal>
+          <a href="https://calendly.com/zentrum-bewusstseinsarchitektur/30min" class="btn btn--terrakotta" target="_blank" rel="noopener">
+            System Check starten →
+          </a>
+          <span class="btn-meta">30 Min · kostenlos · kein Pitch · vertraulich</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="footer" class="noise" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <span class="footer-logo-name">Julia Lauer · Bewusstseinsarchitektur</span>
+          <span class="footer-logo-sub">Für Frauen, die wissen wie es richtig wäre.</span>
+        </div>
+        <div class="footer-contact">
+          <a href="mailto:zentrum@bewusstseinsarchitektur.de" class="footer-email">zentrum@bewusstseinsarchitektur.de</a>
+          <a href="https://www.instagram.com/julia.bewusstseinsarchitektur" class="footer-insta" target="_blank" rel="noopener">@julia.bewusstseinsarchitektur</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2026 Julia Lauer · Bewusstseinsarchitektur</p>
+        <ul class="footer-links" role="list">
+          <li><a href="impressum.html">Impressum</a></li>
+          <li><a href="datenschutz.html">Datenschutz</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    'use strict';
+
+    // Cursor
+    (function() {
+      if (!window.matchMedia('(pointer: fine)').matches) return;
+      var dot = document.querySelector('.cursor-dot');
+      var ring = document.querySelector('.cursor-ring');
+      if (!dot || !ring) return;
+      var mx = window.innerWidth / 2, my = window.innerHeight / 2;
+      var rx = mx, ry = my;
+      document.addEventListener('mousemove', function(e) {
+        mx = e.clientX; my = e.clientY;
+        dot.style.left = mx + 'px'; dot.style.top = my + 'px';
+      });
+      (function animateRing() {
+        rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+        ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+        requestAnimationFrame(animateRing);
+      })();
+      document.querySelectorAll('a, button').forEach(function(el) {
+        el.addEventListener('mouseenter', function() { document.body.classList.add('cursor-hover'); });
+        el.addEventListener('mouseleave', function() { document.body.classList.remove('cursor-hover'); });
+      });
+    })();
+
+    // Nav scroll
+    (function() {
+      var nav = document.getElementById('nav');
+      if (!nav) return;
+      function update() { nav.classList.toggle('scrolled', window.scrollY > 40); }
+      window.addEventListener('scroll', update, { passive: true });
+      update();
+    })();
+
+    // Hamburger
+    (function() {
+      var btn = document.querySelector('.nav-hamburger');
+      var drawer = document.getElementById('nav-drawer');
+      if (!btn || !drawer) return;
+      btn.addEventListener('click', function() {
+        var open = drawer.classList.toggle('open');
+        btn.classList.toggle('open', open);
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        document.body.style.overflow = open ? 'hidden' : '';
+      });
+      drawer.querySelectorAll('a').forEach(function(a) {
+        a.addEventListener('click', function() {
+          drawer.classList.remove('open');
+          btn.classList.remove('open');
+          btn.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = '';
+        });
+      });
+    })();
+
+    // Reveal on scroll
+    (function() {
+      var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var revealEls = document.querySelectorAll('[data-reveal]');
+
+      if (prefersReduced) {
+        revealEls.forEach(function(el) { el.classList.add('revealed'); });
+        document.querySelectorAll('[data-divider]').forEach(function(el) { el.classList.add('revealed'); });
+        return;
+      }
+
+      // Hero reveals on load
+      setTimeout(function() {
+        document.querySelectorAll('#page-hero [data-reveal]').forEach(function(el, i) {
+          setTimeout(function() { el.classList.add('revealed'); }, i * 150 + 200);
+        });
+      }, 100);
+
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            var delay = entry.target.dataset.delay ? parseInt(entry.target.dataset.delay) : 0;
+            setTimeout(function() { entry.target.classList.add('revealed'); }, delay);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+      revealEls.forEach(function(el) {
+        if (!el.closest('#page-hero')) observer.observe(el);
+      });
+
+      var dividerObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            dividerObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+
+      document.querySelectorAll('[data-divider]').forEach(function(el) {
+        dividerObserver.observe(el);
+      });
+    })();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kontakt · Julia Lauer · Bewusstseinsarchitektur</title>
+  <meta name="description" content="System Check starten. 30 Minuten, kostenlos, kein Pitch. Julia Lauer, Bewusstseinsarchitektur." />
+  <link rel="canonical" href="https://bewusstseinsarchitektur.de/kontakt" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bordeaux: #3D1219;
+      --terrakotta: #c95e46;
+      --licht: #FAF8F5;
+      --weiss: #FFFFFF;
+      --text-dunkel: #1A1A1A;
+      --text-mittel: #2E2E2E;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Jost', system-ui, sans-serif;
+      --section-pad: clamp(5rem, 9vw, 9rem);
+      --container-max: 1200px;
+      --container-px: clamp(1.5rem, 5vw, 4rem);
+      --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--font-body); font-weight: 400;
+      color: var(--text-dunkel); background: var(--weiss);
+      overflow-x: hidden; cursor: none;
+    }
+    @media (pointer: coarse) { body { cursor: auto; } }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; text-decoration: none; }
+
+    @media (pointer: fine) {
+      .cursor-dot {
+        position: fixed; width: 6px; height: 6px;
+        background: var(--terrakotta); border-radius: 50%;
+        pointer-events: none; z-index: 9999;
+        transform: translate(-50%, -50%);
+        transition: transform 0.1s ease, opacity 0.3s ease;
+      }
+      .cursor-ring {
+        position: fixed; width: 32px; height: 32px;
+        border: 1.5px solid var(--terrakotta); border-radius: 50%;
+        pointer-events: none; z-index: 9998;
+        transform: translate(-50%, -50%);
+        transition: transform 0.15s ease, width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+        opacity: 0.6;
+      }
+      body.cursor-hover .cursor-ring { width: 48px; height: 48px; opacity: 0.4; }
+    }
+
+    .noise::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      opacity: 0.03; pointer-events: none; z-index: 1;
+    }
+
+    [data-reveal] {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    [data-reveal].revealed { opacity: 1; transform: translateY(0); }
+
+    .divider {
+      width: 0; height: 1.5px; background: var(--terrakotta);
+      transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1); margin: 2rem 0;
+    }
+    .divider.revealed { width: 48px; }
+
+    /* NAV */
+    #nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1.5rem var(--container-px);
+      display: flex; align-items: center; justify-content: space-between;
+      transition: background 0.4s ease, box-shadow 0.4s ease, padding 0.4s ease;
+    }
+    #nav.scrolled {
+      background: rgba(250, 248, 245, 0.96);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+      padding-top: 1rem; padding-bottom: 1rem;
+    }
+    .nav-logo { display: flex; flex-direction: column; }
+    .nav-logo-name {
+      font-family: var(--font-display); font-style: italic;
+      font-weight: 300; font-size: 1.35rem; color: var(--weiss);
+      transition: color 0.4s ease; line-height: 1.2;
+    }
+    #nav.scrolled .nav-logo-name { color: var(--bordeaux); }
+    .nav-logo-sub {
+      font-family: var(--font-body); font-size: 0.7rem;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(255,255,255,0.55); transition: color 0.4s ease; white-space: nowrap;
+    }
+    #nav.scrolled .nav-logo-sub { color: var(--text-mittel); }
+    .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-family: var(--font-body); font-size: 0.9rem;
+      letter-spacing: 0.06em; color: rgba(255,255,255,0.72); transition: color 0.3s ease;
+    }
+    .nav-links a:hover { color: var(--weiss); }
+    #nav.scrolled .nav-links a { color: var(--text-mittel); }
+    #nav.scrolled .nav-links a:hover { color: var(--bordeaux); }
+    .nav-links a.active { color: var(--terrakotta); }
+    #nav.scrolled .nav-links a.active { color: var(--terrakotta); }
+    .nav-cta {
+      font-family: var(--font-body); font-size: 0.78rem; font-weight: 400;
+      letter-spacing: 0.06em; color: var(--weiss); background: var(--terrakotta);
+      padding: 0.55rem 1.2rem; border-radius: 2px;
+      transition: background 0.3s ease, transform 0.3s ease; cursor: none;
+    }
+    @media (pointer: coarse) { .nav-cta { cursor: pointer; } }
+    .nav-cta:hover { background: #b54e37; transform: translateY(-1px); }
+    .nav-hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 4px; z-index: 101;
+    }
+    .nav-hamburger span {
+      display: block; width: 24px; height: 1.5px; background: var(--weiss);
+      transition: background 0.4s ease, transform 0.4s ease, opacity 0.4s ease;
+    }
+    #nav.scrolled .nav-hamburger span { background: var(--bordeaux); }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    .nav-drawer {
+      position: fixed; inset: 0; background: var(--bordeaux); z-index: 99;
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; gap: 2.5rem;
+      transform: translateX(100%);
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .nav-drawer.open { transform: translateX(0); }
+    .nav-drawer a {
+      font-family: var(--font-display); font-style: italic;
+      font-size: clamp(1.6rem, 5vw, 2.2rem);
+      color: rgba(255,255,255,0.85); transition: color 0.3s ease;
+    }
+    .nav-drawer a:hover { color: var(--terrakotta); }
+    @media (max-width: 860px) {
+      .nav-links, .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
+    }
+
+    .label {
+      font-family: var(--font-body); font-weight: 400;
+      font-size: 0.75rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--terrakotta);
+      display: block; margin-bottom: 1.25rem;
+    }
+    .label--weiss { color: rgba(255,255,255,0.55); }
+    .label--bordeaux { color: var(--bordeaux); opacity: 0.85; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-family: var(--font-body); font-weight: 400;
+      font-size: 0.875rem; letter-spacing: 0.04em;
+      padding: 0.875rem 1.875rem; border-radius: 2px;
+      border: none; cursor: none;
+      transition: transform var(--transition), background var(--transition), box-shadow var(--transition);
+    }
+    @media (pointer: coarse) { .btn { cursor: pointer; } }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.18); }
+    .btn--terrakotta { background: var(--terrakotta); color: var(--weiss); }
+    .btn--outline {
+      background: transparent; color: var(--bordeaux);
+      border: 1.5px solid rgba(61,18,25,0.3);
+    }
+    .btn--outline:hover { border-color: var(--bordeaux); }
+    .btn-meta {
+      display: block; margin-top: 0.875rem;
+      font-family: var(--font-body); font-size: 0.72rem;
+      letter-spacing: 0.04em; color: rgba(255,255,255,0.55);
+    }
+
+    /* HERO */
+    #page-hero {
+      position: relative; background: var(--bordeaux);
+      padding: clamp(8rem, 14vw, 12rem) var(--container-px) clamp(5rem, 9vw, 8rem);
+      overflow: hidden;
+    }
+    .page-hero-inner {
+      max-width: var(--container-max); margin-inline: auto; position: relative; z-index: 2;
+    }
+    .page-hero-title {
+      font-family: var(--font-display); font-style: italic;
+      font-weight: 300; font-size: clamp(2.8rem, 6vw, 5rem);
+      color: var(--weiss); line-height: 1.1; margin-bottom: 1.5rem;
+    }
+    .page-hero-sub {
+      font-family: var(--font-display); font-style: italic;
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      color: var(--terrakotta); line-height: 1.5;
+    }
+
+    /* HAUPTBLOCK */
+    #kontakt-main {
+      background: var(--weiss);
+      padding: var(--section-pad) var(--container-px);
+    }
+    .kontakt-grid {
+      max-width: var(--container-max); margin-inline: auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: clamp(3rem, 8vw, 8rem); align-items: start;
+    }
+    @media (max-width: 760px) {
+      .kontakt-grid { grid-template-columns: 1fr; }
+    }
+
+    .kontakt-headline {
+      font-family: var(--font-display); font-style: italic;
+      font-weight: 300; font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--bordeaux); line-height: 1.2; margin-bottom: 2rem;
+    }
+    .kontakt-text {
+      font-family: var(--font-body); font-size: 1rem;
+      line-height: 1.85; color: var(--text-dunkel); margin-bottom: 1.25rem;
+    }
+    .kontakt-cta-wrap {
+      margin-top: 2.5rem; display: flex; flex-direction: column; gap: 0.875rem; align-items: flex-start;
+    }
+
+    /* DIREKT-KONTAKT */
+    .kontakt-direkt {
+      padding-top: 3rem; border-top: 1px solid rgba(61,18,25,0.08);
+    }
+    @media (min-width: 761px) {
+      .kontakt-direkt { padding-top: 0; border-top: none; border-left: 1px solid rgba(61,18,25,0.08); padding-left: clamp(2rem, 5vw, 5rem); }
+    }
+    .kontakt-direkt-headline {
+      font-family: var(--font-display); font-style: italic;
+      font-weight: 300; font-size: clamp(1.6rem, 3vw, 2.2rem);
+      color: var(--bordeaux); line-height: 1.2; margin-bottom: 1.5rem;
+    }
+    .kontakt-direkt-text {
+      font-family: var(--font-body); font-size: 0.95rem;
+      line-height: 1.85; color: var(--text-dunkel); margin-bottom: 2rem;
+    }
+    .kontakt-link-group {
+      display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2.5rem;
+    }
+    .kontakt-link-item {
+      display: flex; flex-direction: column; gap: 0.2rem;
+    }
+    .kontakt-link-label {
+      font-family: var(--font-body); font-size: 0.68rem;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: rgba(61,18,25,0.45);
+    }
+    .kontakt-link-value {
+      font-family: var(--font-body); font-size: 1rem;
+      color: var(--text-dunkel); transition: color 0.3s ease;
+    }
+    .kontakt-link-value:hover { color: var(--terrakotta); }
+    .kontakt-hinweis {
+      padding: 1.25rem 1.5rem;
+      border-left: 2px solid rgba(61,18,25,0.12);
+      background: var(--licht);
+      font-family: var(--font-body); font-size: 0.85rem;
+      line-height: 1.75; color: rgba(26,26,26,0.55);
+    }
+
+    /* FOOTER */
+    #footer {
+      position: relative; background: var(--bordeaux);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 3.5rem var(--container-px) 2rem; overflow: hidden;
+    }
+    .footer-inner { max-width: var(--container-max); margin-inline: auto; position: relative; z-index: 2; }
+    .footer-top {
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 3rem; align-items: start;
+      margin-bottom: 3rem; padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer-logo-name {
+      font-family: var(--font-display); font-style: italic;
+      font-weight: 300; font-size: 1.4rem; color: var(--weiss);
+      display: block; margin-bottom: 0.3rem;
+    }
+    .footer-logo-sub {
+      font-family: var(--font-body); font-size: 0.68rem;
+      letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.4);
+    }
+    .footer-contact { text-align: right; }
+    .footer-email {
+      font-family: var(--font-body); font-size: 0.9rem;
+      color: rgba(255,255,255,0.78); transition: color 0.3s ease; display: block;
+    }
+    .footer-email:hover { color: var(--terrakotta); }
+    .footer-insta {
+      display: block; margin-top: 0.4rem;
+      font-family: var(--font-body); font-size: 0.82rem;
+      color: rgba(255,255,255,0.5); transition: color 0.3s ease;
+    }
+    .footer-insta:hover { color: var(--terrakotta); }
+    .footer-bottom {
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+    }
+    .footer-copy { font-family: var(--font-body); font-size: 0.72rem; color: rgba(255,255,255,0.3); }
+    .footer-links { display: flex; gap: 1.5rem; list-style: none; }
+    .footer-links a {
+      font-family: var(--font-body); font-size: 0.72rem;
+      color: rgba(255,255,255,0.35); transition: color 0.3s ease;
+    }
+    .footer-links a:hover { color: rgba(255,255,255,0.7); }
+    @media (max-width: 600px) {
+      .footer-top { grid-template-columns: 1fr; }
+      .footer-contact { text-align: left; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
+
+  <nav id="nav" role="navigation" aria-label="Hauptnavigation">
+    <a href="index.html" class="nav-logo" aria-label="Julia Lauer Bewusstseinsarchitektur Startseite">
+      <span class="nav-logo-name">Julia Lauer</span>
+      <span class="nav-logo-sub">Für Frauen, die wissen wie es richtig wäre.</span>
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="index.html#fuerwen">Für wen</a></li>
+      <li><a href="methode.html">Methode</a></li>
+      <li><a href="ueber-mich.html">Über mich</a></li>
+      <li><a href="index.html#angebote">Angebote</a></li>
+      <li><a href="texte.html">Texte</a></li>
+      <li><a href="freebie.html">Audio</a></li>
+    </ul>
+    <a href="https://calendly.com/zentrum-bewusstseinsarchitektur/30min" class="nav-cta" target="_blank" rel="noopener">System Check starten →</a>
+    <button class="nav-hamburger" aria-label="Menü öffnen" aria-expanded="false" aria-controls="nav-drawer">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div id="nav-drawer" class="nav-drawer" role="dialog" aria-label="Mobilnavigation" aria-modal="true">
+    <a href="index.html#fuerwen">Für wen</a>
+    <a href="methode.html">Methode</a>
+    <a href="ueber-mich.html">Über mich</a>
+    <a href="index.html#angebote">Angebote</a>
+    <a href="texte.html">Texte</a>
+    <a href="freebie.html">Audio</a>
+    <a href="https://calendly.com/zentrum-bewusstseinsarchitektur/30min" target="_blank" rel="noopener" style="background:var(--terrakotta);color:#fff;padding:0.875rem 1.875rem;border-radius:2px;font-family:var(--font-body);font-size:0.875rem;cursor:pointer;">System Check starten →</a>
+  </div>
+
+  <main>
+
+    <!-- HERO -->
+    <section id="page-hero" class="noise" aria-label="Kontakt">
+      <div class="page-hero-inner">
+        <span class="label label--weiss" data-reveal>Kontakt</span>
+        <h1 class="page-hero-title" data-reveal>
+          Der erste Schritt<br>beginnt hier.
+        </h1>
+        <p class="page-hero-sub" data-reveal>
+          Keine Sitzung ohne Vorgespräch.<br>Kein Pitch. Kein Verkauf.
+        </p>
+      </div>
+    </section>
+
+    <!-- HAUPTBLOCK -->
+    <section id="kontakt-main" aria-label="Kontakt aufnehmen">
+      <div class="kontakt-grid">
+
+        <!-- LINKS: System Check -->
+        <div>
+          <span class="label label--bordeaux" data-reveal>System Check</span>
+          <div class="divider" data-divider></div>
+          <h2 class="kontakt-headline" data-reveal>
+            30 Minuten.<br>Ein klarer Blick.
+          </h2>
+          <p class="kontakt-text" data-reveal>
+            Wir schauen gemeinsam was dich gerade beschäftigt. Ob diese Arbeit für dich der richtige nächste Schritt ist. Und ob wir zusammenpassen.
+          </p>
+          <p class="kontakt-text" data-reveal>
+            Kein Umweg. Keine Vorbereitung nötig. Du kommst wie du bist.
+          </p>
+          <div class="kontakt-cta-wrap" data-reveal>
+            <a href="https://calendly.com/zentrum-bewusstseinsarchitektur/30min" class="btn btn--terrakotta" target="_blank" rel="noopener">
+              System Check starten →
+            </a>
+            <span style="font-family:var(--font-body);font-size:0.72rem;letter-spacing:0.04em;color:rgba(26,26,26,0.4);">30 Min · kostenlos · kein Pitch · vertraulich</span>
+          </div>
+        </div>
+
+        <!-- RECHTS: Direkt -->
+        <div class="kontakt-direkt" data-reveal>
+          <h2 class="kontakt-direkt-headline">
+            Lieber erst<br>eine kurze Nachricht?
+          </h2>
+          <p class="kontakt-direkt-text">
+            Schreib mir direkt. Ich antworte persönlich.
+          </p>
+
+          <div class="kontakt-link-group">
+            <div class="kontakt-link-item">
+              <span class="kontakt-link-label">E-Mail</span>
+              <a href="mailto:zentrum@bewusstseinsarchitektur.de" class="kontakt-link-value">
+                zentrum@bewusstseinsarchitektur.de
+              </a>
+            </div>
+            <div class="kontakt-link-item">
+              <span class="kontakt-link-label">Instagram</span>
+              <a href="https://www.instagram.com/julia.bewusstseinsarchitektur" class="kontakt-link-value" target="_blank" rel="noopener">
+                @julia.bewusstseinsarchitektur
+              </a>
+            </div>
+          </div>
+
+          <div class="kontakt-hinweis">
+            Ich arbeite ausschließlich online und 1:1. Gruppenanfragen, Kooperationen und Presse bitte ebenfalls per E-Mail.
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer id="footer" class="noise" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <span class="footer-logo-name">Julia Lauer · Bewusstseinsarchitektur</span>
+          <span class="footer-logo-sub">Für Frauen, die wissen wie es richtig wäre.</span>
+        </div>
+        <div class="footer-contact">
+          <a href="mailto:zentrum@bewusstseinsarchitektur.de" class="footer-email">zentrum@bewusstseinsarchitektur.de</a>
+          <a href="https://www.instagram.com/julia.bewusstseinsarchitektur" class="footer-insta" target="_blank" rel="noopener">@julia.bewusstseinsarchitektur</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2026 Julia Lauer · Bewusstseinsarchitektur</p>
+        <ul class="footer-links" role="list">
+          <li><a href="impressum.html">Impressum</a></li>
+          <li><a href="datenschutz.html">Datenschutz</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    'use strict';
+    (function() {
+      if (!window.matchMedia('(pointer: fine)').matches) return;
+      var dot = document.querySelector('.cursor-dot');
+      var ring = document.querySelector('.cursor-ring');
+      if (!dot || !ring) return;
+      var mx = window.innerWidth / 2, my = window.innerHeight / 2;
+      var rx = mx, ry = my;
+      document.addEventListener('mousemove', function(e) {
+        mx = e.clientX; my = e.clientY;
+        dot.style.left = mx + 'px'; dot.style.top = my + 'px';
+      });
+      (function animateRing() {
+        rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+        ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+        requestAnimationFrame(animateRing);
+      })();
+      document.querySelectorAll('a, button').forEach(function(el) {
+        el.addEventListener('mouseenter', function() { document.body.classList.add('cursor-hover'); });
+        el.addEventListener('mouseleave', function() { document.body.classList.remove('cursor-hover'); });
+      });
+    })();
+    (function() {
+      var nav = document.getElementById('nav');
+      if (!nav) return;
+      function update() { nav.classList.toggle('scrolled', window.scrollY > 40); }
+      window.addEventListener('scroll', update, { passive: true });
+      update();
+    })();
+    (function() {
+      var btn = document.querySelector('.nav-hamburger');
+      var drawer = document.getElementById('nav-drawer');
+      if (!btn || !drawer) return;
+      btn.addEventListener('click', function() {
+        var open = drawer.classList.toggle('open');
+        btn.classList.toggle('open', open);
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        document.body.style.overflow = open ? 'hidden' : '';
+      });
+      drawer.querySelectorAll('a').forEach(function(a) {
+        a.addEventListener('click', function() {
+          drawer.classList.remove('open');
+          btn.classList.remove('open');
+          btn.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = '';
+        });
+      });
+    })();
+    (function() {
+      var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var revealEls = document.querySelectorAll('[data-reveal]');
+      if (prefersReduced) {
+        revealEls.forEach(function(el) { el.classList.add('revealed'); });
+        document.querySelectorAll('[data-divider]').forEach(function(el) { el.classList.add('revealed'); });
+        return;
+      }
+      setTimeout(function() {
+        document.querySelectorAll('#page-hero [data-reveal]').forEach(function(el, i) {
+          setTimeout(function() { el.classList.add('revealed'); }, i * 150 + 200);
+        });
+      }, 100);
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+      revealEls.forEach(function(el) {
+        if (!el.closest('#page-hero')) observer.observe(el);
+      });
+      var dividerObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            dividerObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+      document.querySelectorAll('[data-divider]').forEach(function(el) {
+        dividerObserver.observe(el);
+      });
+    })();
+  </script>
+
+</body>
+</html>

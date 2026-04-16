@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Instagram Templates — Bewusstseinsarchitektur</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,300;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #1A1A1A;
+    font-family: 'Jost', sans-serif;
+    padding: 48px;
+  }
+
+  h2 {
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #B5603A;
+    margin-bottom: 24px;
+    margin-top: 64px;
+  }
+
+  h2:first-of-type { margin-top: 0; }
+
+  /* GRID */
+  .grid {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+
+  /* ── POST 1080x1080 ── */
+  .post {
+    width: 320px;
+    height: 320px;
+    position: relative;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  /* ── REEL 1080x1920 ── */
+  .reel {
+    width: 180px;
+    height: 320px;
+    position: relative;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  /* ── CAROUSEL SLIDE ── */
+  .slide {
+    width: 320px;
+    height: 320px;
+    position: relative;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  /* ─────────────────────────
+     CAROUSEL 1 — "ENTSPANN DICH DOCH MAL"
+  ───────────────────────────*/
+
+  /* Cover */
+  .c1-cover {
+    background: #2E0F14;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 32px 28px;
+  }
+
+  .c1-tag {
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    font-size: 8px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: #B5603A;
+  }
+
+  .c1-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 40px;
+    color: #FFFFFF;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+
+  .c1-sub {
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+  }
+
+  /* Slides dark */
+  .c1-slide-dark {
+    background: #2E0F14;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 36px 32px;
+    position: relative;
+  }
+
+  .c1-slide-dark::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 100%;
+    background: #B5603A;
+  }
+
+  .c1-body {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 28px;
+    color: #FFFFFF;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    padding-left: 20px;
+  }
+
+  .c1-body em { color: #B5603A; }
+
+  .c1-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 80px;
+    color: rgba(255,255,255,0.05);
+    line-height: 1;
+    position: absolute;
+    bottom: 16px;
+    right: 24px;
+  }
+
+  /* Slides light */
+  .c1-slide-light {
+    background: #FAF8F5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 36px 32px;
+    position: relative;
+  }
+
+  .c1-slide-light::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 100%;
+    background: #B5603A;
+  }
+
+  .c1-body-dark {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 28px;
+    color: #2E0F14;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    padding-left: 20px;
+  }
+
+  .c1-body-dark em { color: #B5603A; }
+
+  .c1-num-dark {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 80px;
+    color: rgba(46,15,20,0.04);
+    line-height: 1;
+    position: absolute;
+    bottom: 16px;
+    right: 24px;
+  }
+
+  /* CTA Slide */
+  .c1-cta {
+    background: #FAF8F5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 36px 32px;
+    position: relative;
+  }
+
+  .c1-cta-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 26px;
+    color: #2E0F14;
+    line-height: 1.3;
+    margin-bottom: 24px;
+  }
+
+  .c1-cta-rule {
+    width: 32px;
+    height: 1px;
+    background: #B5603A;
+    margin-bottom: 16px;
+  }
+
+  .c1-cta-link {
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #B5603A;
+    border-bottom: 1px solid #B5603A;
+    padding-bottom: 3px;
+  }
+
+  .c1-sig {
+    position: absolute;
+    bottom: 20px;
+    right: 24px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 11px;
+    color: rgba(46,15,20,0.3);
+  }
+
+  /* ─────────────────────────
+     STATEMENT POSTS
+  ───────────────────────────*/
+
+  .stmt-dark {
+    background: #2E0F14;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 32px 28px;
+  }
+
+  .stmt-tag {
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    font-size: 8px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: #B5603A;
+  }
+
+  .stmt-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 44px;
+    color: #FFFFFF;
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+  }
+
+  .stmt-rule {
+    width: 28px;
+    height: 1px;
+    background: #B5603A;
+    margin: 12px 0;
+  }
+
+  .stmt-sub {
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+  }
+
+  .stmt-sig {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 10px;
+    color: rgba(255,255,255,0.2);
+  }
+
+  .stmt-light {
+    background: #FAF8F5;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 32px 28px;
+  }
+
+  .stmt-headline-dk {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 44px;
+    color: #2E0F14;
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+  }
+
+  .stmt-sig-dk {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 10px;
+    color: rgba(46,15,20,0.25);
+  }
+
+  /* ─────────────────────────
+     REEL COVERS
+  ───────────────────────────*/
+
+  .reel-dark {
+    background: #2E0F14;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 24px 20px;
+    height: 100%;
+  }
+
+  .reel-tag {
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    font-size: 7px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #B5603A;
+  }
+
+  .reel-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 30px;
+    color: #FFFFFF;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+
+  .reel-rule {
+    width: 24px;
+    height: 1px;
+    background: #B5603A;
+    margin: 8px 0;
+  }
+
+  .reel-sub {
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    font-size: 7px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+  }
+
+  .reel-bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .reel-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .reel-url {
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    font-size: 7px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #B5603A;
+  }
+
+  .reel-light {
+    background: #FAF8F5;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 24px 20px;
+    height: 100%;
+  }
+
+  .reel-headline-dk {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 30px;
+    color: #2E0F14;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+
+  .reel-name-dk {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: rgba(46,15,20,0.4);
+  }
+
+  /* LABELS */
+  .format-label {
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-top: 8px;
+    text-align: center;
+    width: 320px;
+  }
+
+  .format-label-reel {
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-top: 8px;
+    text-align: center;
+    width: 180px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ── CAROUSEL 1 ── -->
+<h2>Karussell — "Entspann dich doch mal" · 1080×1080px</h2>
+<div class="grid">
+
+  <!-- Cover -->
+  <div>
+    <div class="post c1-cover">
+      <div class="c1-tag">Bewusstseinsarchitektur</div>
+      <div>
+        <div class="c1-headline">„Entspann<br>dich doch<br>mal."</div>
+      </div>
+      <div class="c1-sub">Swipe →</div>
+    </div>
+    <div class="format-label">Slide 1 · Cover</div>
+  </div>
+
+  <!-- Slide 2 dunkel -->
+  <div>
+    <div class="slide c1-slide-dark">
+      <div class="c1-body">Du hörst diesen Satz.<br>Und weißt nicht,<br>wie du das<br><em>tun</em> sollst.</div>
+      <div class="c1-num">2</div>
+    </div>
+    <div class="format-label">Slide 2 · Hell auf Dunkel</div>
+  </div>
+
+  <!-- Slide 3 hell -->
+  <div>
+    <div class="slide c1-slide-light">
+      <div class="c1-body-dark">Nicht weil du<br>es nicht willst.<br>Sondern weil<br><em>dein System</em><br>nicht abschalten kann.</div>
+      <div class="c1-num-dark">3</div>
+    </div>
+    <div class="format-label">Slide 3 · Dunkel auf Hell</div>
+  </div>
+
+  <!-- Slide 4 dunkel -->
+  <div>
+    <div class="slide c1-slide-dark">
+      <div class="c1-body">Der Ausknopf<br>existiert noch.<br>Er wurde nur<br><em>überschrieben.</em></div>
+      <div class="c1-num">4</div>
+    </div>
+    <div class="format-label">Slide 4 · Hell auf Dunkel</div>
+  </div>
+
+  <!-- Slide 5 hell -->
+  <div>
+    <div class="slide c1-slide-light">
+      <div class="c1-body-dark">Genau dort<br>arbeite ich.<br>Nicht an deinem<br>Verhalten —<br><em>an der Wurzel.</em></div>
+      <div class="c1-num-dark">5</div>
+    </div>
+    <div class="format-label">Slide 5 · Dunkel auf Hell</div>
+  </div>
+
+  <!-- CTA Slide -->
+  <div>
+    <div class="slide c1-cta">
+      <div class="c1-cta-text">Wenn das klingt<br>wie das, was du<br>schon lange<br>weißt —</div>
+      <div class="c1-cta-rule"></div>
+      <div class="c1-cta-link">Klarheitsgespräch · 0€ · 30 Min</div>
+      <div class="c1-sig">bewusstseinsarchitektur.de</div>
+    </div>
+    <div class="format-label">Slide 6 · CTA</div>
+  </div>
+
+</div>
+
+<!-- ── STATEMENT POSTS ── -->
+<h2>Statement Posts · 1080×1080px</h2>
+<div class="grid">
+
+  <div>
+    <div class="post stmt-dark">
+      <div class="stmt-tag">Bewusstseinsarchitektur</div>
+      <div>
+        <div class="stmt-headline">Alles läuft.<br>Aber es<br>kostet.</div>
+        <div class="stmt-rule"></div>
+        <div class="stmt-sub">Julia Lauer</div>
+      </div>
+      <div class="stmt-sig">bewusstseinsarchitektur.de</div>
+    </div>
+    <div class="format-label">Statement · Dunkel</div>
+  </div>
+
+  <div>
+    <div class="post stmt-light">
+      <div class="stmt-tag" style="color:#B5603A;">Bewusstseinsarchitektur</div>
+      <div>
+        <div class="stmt-headline-dk">Du wählst.<br>Oder es<br>wählt.</div>
+        <div class="stmt-rule"></div>
+        <div class="stmt-sub" style="color:rgba(46,15,20,0.5);">Julia Lauer</div>
+      </div>
+      <div class="stmt-sig-dk">bewusstseinsarchitektur.de</div>
+    </div>
+    <div class="format-label">Statement · Hell</div>
+  </div>
+
+  <div>
+    <div class="post stmt-dark">
+      <div class="stmt-tag">Bewusstseinsarchitektur</div>
+      <div>
+        <div class="stmt-headline" style="font-size:32px;line-height:1.2;">„Ich habe so viel<br>versucht. Aber ich<br>bekomme es<br>nicht weg."</div>
+        <div class="stmt-rule"></div>
+        <div class="stmt-sub">Das kenne ich.</div>
+      </div>
+      <div class="stmt-sig">bewusstseinsarchitektur.de</div>
+    </div>
+    <div class="format-label">Zitat / Testimonial</div>
+  </div>
+
+</div>
+
+<!-- ── REEL COVERS ── -->
+<h2>Reel Cover · 1080×1920px</h2>
+<div class="grid">
+
+  <div>
+    <div class="reel reel-dark">
+      <div class="reel-tag">Bewusstseinsarchitektur</div>
+      <div>
+        <div class="reel-headline">Warum<br>du nicht<br>abschalten<br>kannst</div>
+        <div class="reel-rule"></div>
+        <div class="reel-sub">3 Min · Julia Lauer</div>
+      </div>
+      <div class="reel-bottom">
+        <div class="reel-name">Julia Lauer</div>
+        <div class="reel-url">bewusstseinsarchitektur.de</div>
+      </div>
+    </div>
+    <div class="format-label-reel">Reel · Dunkel</div>
+  </div>
+
+  <div>
+    <div class="reel reel-light">
+      <div class="reel-tag" style="color:#B5603A;">Bewusstseinsarchitektur</div>
+      <div>
+        <div class="reel-headline-dk">Alles läuft.<br>Aber es<br>kostet.</div>
+        <div class="reel-rule"></div>
+        <div class="reel-sub" style="color:rgba(46,15,20,0.5);">Was das wirklich bedeutet</div>
+      </div>
+      <div class="reel-bottom">
+        <div class="reel-name-dk">Julia Lauer</div>
+        <div class="reel-url">bewusstseinsarchitektur.de</div>
+      </div>
+    </div>
+    <div class="format-label-reel">Reel · Hell</div>
+  </div>
+
+  <div>
+    <div class="reel reel-dark">
+      <div class="reel-tag">Bewusstseinsarchitektur</div>
+      <div>
+        <div class="reel-headline">Der Moment<br>wo du wieder<br>wählst</div>
+        <div class="reel-rule"></div>
+        <div class="reel-sub">Bewusstseinsarchitektur-Methode</div>
+      </div>
+      <div class="reel-bottom">
+        <div class="reel-name">Julia Lauer</div>
+        <div class="reel-url">bewusstseinsarchitektur.de</div>
+      </div>
+    </div>
+    <div class="format-label-reel">Reel · Dunkel</div>
+  </div>
+
+  <div>
+    <div class="reel reel-light">
+      <div class="reel-tag" style="color:#B5603A;">Bewusstseinsarchitektur</div>
+      <div>
+        <div class="reel-headline-dk">Was unter<br>dem Denken<br>passiert</div>
+        <div class="reel-rule"></div>
+        <div class="reel-sub" style="color:rgba(46,15,20,0.5);">Erklärt in 2 Min</div>
+      </div>
+      <div class="reel-bottom">
+        <div class="reel-name-dk">Julia Lauer</div>
+        <div class="reel-url">bewusstseinsarchitektur.de</div>
+      </div>
+    </div>
+    <div class="format-label-reel">Reel · Hell</div>
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Warum Verstehen allein nichts verändert · Julia Lauer · Bewusstseinsarchitektur</title>
+  <meta name="description" content="Ein 3-minütiges Audio. Kostenlos. Für Frauen, die wissen wie es richtig wäre — und trotzdem das Gleiche tun." />
+  <link rel="canonical" href="https://bewusstseinsarchitektur.de/freebie" />
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bordeaux: #3D1219;
+      --terrakotta: #c95e46;
+      --licht: #FAF8F5;
+      --weiss: #FFFFFF;
+      --text-dunkel: #1A1A1A;
+      --text-mittel: #2E2E2E;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Jost', system-ui, sans-serif;
+      --container-px: clamp(1.5rem, 6vw, 4rem);
+      --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: var(--font-body); font-weight: 400; color: var(--text-dunkel); background: var(--weiss); overflow-x: hidden; }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; text-decoration: none; }
+
+    /* NOISE */
+    .noise::before { content: ''; position: absolute; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"); opacity: 0.03; pointer-events: none; z-index: 1; }
+
+    /* REVEAL */
+    [data-reveal] { opacity: 0; transform: translateY(24px); transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16,1,0.3,1); }
+    [data-reveal].revealed { opacity: 1; transform: translateY(0); }
+
+    /* MINIMAL NAV */
+    #nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.5rem var(--container-px); display: flex; align-items: center; justify-content: space-between; transition: background 0.4s ease, padding 0.4s ease; }
+    #nav.scrolled { background: rgba(250,248,245,0.96); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 1px 0 rgba(0,0,0,0.06); padding-top: 1rem; padding-bottom: 1rem; }
+    .nav-logo-name { font-family: var(--font-display); font-style: italic; font-weight: 300; font-size: 1.25rem; color: var(--weiss); transition: color 0.4s ease; }
+    #nav.scrolled .nav-logo-name { color: var(--bordeaux); }
+    .nav-back { font-family: var(--font-body); font-size: 0.78rem; letter-spacing: 0.06em; color: rgba(255,255,255,0.55); transition: color 0.3s ease; display: flex; align-items: center; gap: 0.4rem; }
+    #nav.scrolled .nav-back { color: var(--text-mittel); }
+    .nav-back:hover { color: var(--terrakotta); }
+    #nav.scrolled .nav-back:hover { color: var(--terrakotta); }
+
+    /* HERO */
+    #hero {
+      position: relative;
+      background: var(--bordeaux);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: clamp(7rem,12vw,10rem) var(--container-px) clamp(5rem,9vw,8rem);
+      overflow: hidden;
+    }
+    .hero-inner {
+      max-width: 720px;
+      margin-inline: auto;
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+    .hero-eyebrow {
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--terrakotta);
+      display: block;
+      margin-bottom: 2rem;
+    }
+    .hero-title {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(2.4rem, 6vw, 4.2rem);
+      color: var(--weiss);
+      line-height: 1.1;
+      margin-bottom: 1.75rem;
+    }
+    .hero-sub {
+      font-family: var(--font-body);
+      font-size: clamp(1.05rem, 1.8vw, 1.2rem);
+      line-height: 1.85;
+      color: rgba(255,255,255,0.92);
+      max-width: 520px;
+      margin: 0 auto 2.5rem;
+    }
+    .hero-detail {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.65);
+      text-transform: uppercase;
+      margin-bottom: 3rem;
+    }
+    .hero-detail span { color: rgba(255,255,255,0.38); }
+    /* BIG DECO NUMBER */
+    .hero-deco {
+      position: absolute;
+      bottom: -2rem;
+      right: -2rem;
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: clamp(12rem, 22vw, 20rem);
+      color: rgba(255,255,255,0.03);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+      z-index: 1;
+    }
+
+    /* FORM CARD */
+    .form-card {
+      background: var(--weiss);
+      border-radius: 2px;
+      padding: clamp(2rem, 5vw, 3rem);
+      max-width: 480px;
+      margin: 0 auto;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.28);
+      position: relative;
+      z-index: 3;
+    }
+    .form-card-label {
+      font-family: var(--font-body);
+      font-size: 0.76rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--terrakotta);
+      display: block;
+      margin-bottom: 1.25rem;
+    }
+    .form-card-title {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      color: var(--bordeaux);
+      line-height: 1.2;
+      margin-bottom: 1.75rem;
+    }
+    /* MAILERLITE PLACEHOLDER */
+    .ml-form-placeholder {
+      display: flex;
+      flex-direction: column;
+      gap: 0.875rem;
+    }
+    .ml-form-placeholder input[type="email"] {
+      width: 100%;
+      padding: 0.875rem 1rem;
+      border: 1px solid rgba(61,18,25,0.18);
+      border-radius: 2px;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      color: var(--text-dunkel);
+      background: var(--licht);
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+    .ml-form-placeholder input[type="email"]:focus { border-color: var(--terrakotta); }
+    .ml-form-placeholder input[type="email"]::placeholder { color: rgba(26,26,26,0.45); }
+    .ml-form-placeholder button {
+      width: 100%;
+      padding: 0.95rem 1.5rem;
+      background: var(--bordeaux);
+      color: var(--weiss);
+      border: none;
+      border-radius: 2px;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: background var(--transition), transform var(--transition);
+    }
+    .ml-form-placeholder button:hover { background: #5a1a24; transform: translateY(-1px); }
+    .form-disclaimer {
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      color: rgba(26,26,26,0.62);
+      text-align: center;
+      margin-top: 1rem;
+      line-height: 1.6;
+    }
+
+    /* WARUM SECTION */
+    #warum {
+      background: var(--licht);
+      padding: clamp(5rem,9vw,9rem) var(--container-px);
+    }
+    .warum-inner {
+      max-width: 860px;
+      margin-inline: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(3rem, 6vw, 6rem);
+      align-items: start;
+    }
+    @media (max-width: 700px) { .warum-inner { grid-template-columns: 1fr; } }
+    .section-label {
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--terrakotta);
+      display: block;
+      margin-bottom: 1.5rem;
+    }
+    .warum-title {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      color: var(--bordeaux);
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+    }
+    .warum-text {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.85;
+      color: rgba(26,26,26,0.82);
+    }
+    .punkt-list { display: flex; flex-direction: column; gap: 1.75rem; margin-top: 0.5rem; }
+    .punkt {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1.25rem;
+      align-items: start;
+    }
+    .punkt-num {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 1.6rem;
+      color: var(--terrakotta);
+      opacity: 1;
+      line-height: 1;
+      padding-top: 0.1rem;
+    }
+    .punkt-title {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--bordeaux);
+      margin-bottom: 0.35rem;
+    }
+    .punkt-text {
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      line-height: 1.7;
+      color: rgba(26,26,26,0.75);
+    }
+
+    /* ZITAT */
+    #zitat {
+      background: var(--bordeaux);
+      padding: clamp(5rem,9vw,9rem) var(--container-px);
+      position: relative;
+      overflow: hidden;
+    }
+    .zitat-inner {
+      max-width: 680px;
+      margin-inline: auto;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+    .zitat-mark {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 5rem;
+      color: rgba(255,255,255,0.07);
+      line-height: 0.5;
+      display: block;
+      margin-bottom: 1rem;
+    }
+    .zitat-text {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      color: var(--weiss);
+      line-height: 1.35;
+      margin-bottom: 1.5rem;
+    }
+    .zitat-attr {
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+    }
+
+    /* CTA REPEAT */
+    #cta-repeat {
+      background: var(--weiss);
+      padding: clamp(5rem,9vw,9rem) var(--container-px);
+      text-align: center;
+    }
+    .cta-inner { max-width: 600px; margin-inline: auto; }
+    .cta-title {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      color: var(--bordeaux);
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+    }
+    .cta-sub {
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      line-height: 1.8;
+      color: rgba(26,26,26,0.55);
+      margin-bottom: 2.5rem;
+    }
+    .cta-form { max-width: 420px; margin: 0 auto; }
+    .cta-form .ml-form-placeholder { flex-direction: row; gap: 0; }
+    .cta-form .ml-form-placeholder input[type="email"] { border-radius: 2px 0 0 2px; border-right: none; }
+    .cta-form .ml-form-placeholder button { width: auto; white-space: nowrap; border-radius: 0 2px 2px 0; padding: 0.875rem 1.5rem; }
+    @media (max-width: 500px) {
+      .cta-form .ml-form-placeholder { flex-direction: column; }
+      .cta-form .ml-form-placeholder input[type="email"] { border-radius: 2px; border-right: 1px solid rgba(61,18,25,0.18); }
+      .cta-form .ml-form-placeholder button { border-radius: 2px; width: 100%; }
+    }
+
+    /* FOOTER */
+    #footer { position: relative; background: var(--bordeaux); border-top: 1px solid rgba(255,255,255,0.08); padding: 3rem var(--container-px) 2rem; }
+    .footer-inner { max-width: 860px; margin-inline: auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer-logo { font-family: var(--font-display); font-style: italic; font-weight: 300; font-size: 1.1rem; color: rgba(255,255,255,0.6); }
+    .footer-links { display: flex; gap: 1.5rem; list-style: none; }
+    .footer-links a { font-family: var(--font-body); font-size: 0.72rem; color: rgba(255,255,255,0.3); transition: color 0.3s ease; }
+    .footer-links a:hover { color: rgba(255,255,255,0.65); }
+    @media (max-width: 500px) { .footer-inner { flex-direction: column; align-items: flex-start; } }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav" role="navigation" aria-label="Navigation">
+    <a href="index.html" class="nav-logo-name" aria-label="Zur Startseite">Julia Lauer</a>
+    <a href="index.html" class="nav-back">← Zur Website</a>
+  </nav>
+
+  <main>
+
+    <!-- HERO + FORM -->
+    <section id="hero" class="noise" aria-label="Freebie">
+      <span class="hero-deco" aria-hidden="true">3'</span>
+      <div class="hero-inner">
+
+        <span class="hero-eyebrow" data-reveal>Kostenlos · Audio · 3 Minuten</span>
+
+        <h1 class="hero-title" data-reveal>
+          Warum Verstehen<br>allein nichts verändert
+        </h1>
+
+        <p class="hero-sub" data-reveal>
+          Du weißt wie es richtig wäre. Und machst trotzdem das Gleiche.
+          Das ist kein Willensproblem. Es ist ein Strukturproblem.
+          Ich erkläre dir in drei Minuten, was dahintersteckt.
+        </p>
+
+        <p class="hero-detail" data-reveal>
+          Audio <span>·</span> Kein Opt-in-Spam <span>·</span> Jederzeit abbestellbar
+        </p>
+
+        <!-- FORM CARD -->
+        <div class="form-card" data-reveal>
+          <span class="form-card-label">Jetzt herunterladen</span>
+          <p class="form-card-title">Trag deine E-Mail ein.<br>Das Audio kommt sofort.</p>
+
+          <!--
+            MAILERLITE EMBED HIER.
+            Ersetze diesen Block mit dem eingebetteten Mailerlite-Formular-Code.
+            Bis dahin bleibt der Platzhalter unten aktiv.
+          -->
+          <div class="ml-form-placeholder">
+            <input type="email" placeholder="deine@email.de" autocomplete="email" />
+            <button type="button">Audio senden →</button>
+          </div>
+
+          <p class="form-disclaimer">
+            Kein Newsletter ohne Ankündigung. Kein Spam.<br>
+            Abmeldung jederzeit mit einem Klick.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- WARUM -->
+    <section id="warum" aria-label="Was dich erwartet">
+      <div class="warum-inner">
+        <div class="warum-left" data-reveal>
+          <span class="section-label">Was du hörst</span>
+          <h2 class="warum-title">Drei Minuten.<br>Kein Coaching-Sprech.</h2>
+          <p class="warum-text">
+            Ich erkläre dir das zentrale Missverständnis hinter dem, was Coaching, Therapie und Analyse oft nicht auflösen.
+            Kein Modell, das du auswendig lernen musst. Kein Schritt-für-Schritt-Plan.
+            Nur eine klare Erklärung, warum du dort feststeckst, wo du feststeckst.
+          </p>
+        </div>
+        <div class="warum-right" data-reveal>
+          <ul class="punkt-list" role="list">
+            <li class="punkt">
+              <span class="punkt-num">01</span>
+              <div class="punkt-body">
+                <p class="punkt-title">Warum Verstehen nicht reicht</p>
+                <p class="punkt-text">Der Denkfehler, der dafür sorgt, dass kluge Frauen dieselben Muster wiederholen.</p>
+              </div>
+            </li>
+            <li class="punkt">
+              <span class="punkt-num">02</span>
+              <div class="punkt-body">
+                <p class="punkt-title">Wo Muster wirklich gespeichert sind</p>
+                <p class="punkt-text">Nicht im Kopf. Und deshalb nicht durch Denken veränderbar.</p>
+              </div>
+            </li>
+            <li class="punkt">
+              <span class="punkt-num">03</span>
+              <div class="punkt-body">
+                <p class="punkt-title">Was stattdessen wirkt</p>
+                <p class="punkt-text">Arbeit an der Struktur. Nicht am Symptom. Ohne Analyse, ohne Retraumatisierung.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ZITAT -->
+    <section id="zitat" class="noise" aria-label="Zitat">
+      <div class="zitat-inner">
+        <span class="zitat-mark" aria-hidden="true">&ldquo;</span>
+        <p class="zitat-text" data-reveal>
+          Du kannst ein Muster verstehen und es trotzdem nicht ändern.<br>
+          Weil du es auf der falschen Ebene bearbeitest.
+        </p>
+        <p class="zitat-attr" data-reveal>Julia Lauer · Bewusstseinsarchitektur</p>
+      </div>
+    </section>
+
+    <!-- CTA REPEAT -->
+    <section id="cta-repeat" aria-label="Jetzt herunterladen">
+      <div class="cta-inner">
+        <h2 class="cta-title" data-reveal>Drei Minuten.<br>Dann weißt du, worum es geht.</h2>
+        <p class="cta-sub" data-reveal>
+          Kein Kurs. Kein Programm. Nur eine klare Erklärung.
+          Und wenn du danach wissen willst, ob das für dich relevant ist: Der System Check ist kostenlos.
+        </p>
+        <div class="cta-form" data-reveal>
+          <!--
+            MAILERLITE EMBED HIER (zweite Instanz).
+            Ersetze auch diesen Block.
+          -->
+          <div class="ml-form-placeholder">
+            <input type="email" placeholder="deine@email.de" autocomplete="email" />
+            <button type="button">Audio senden →</button>
+          </div>
+          <p class="form-disclaimer" style="margin-top:0.875rem;">Kein Spam. Abmeldung jederzeit.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="footer" role="contentinfo">
+    <div class="footer-inner">
+      <span class="footer-logo">Julia Lauer · Bewusstseinsarchitektur</span>
+      <ul class="footer-links" role="list">
+        <li><a href="impressum.html">Impressum</a></li>
+        <li><a href="datenschutz.html">Datenschutz</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script>
+    'use strict';
+    (function() {
+      var nav = document.getElementById('nav');
+      function u() { nav.classList.toggle('scrolled', window.scrollY > 40); }
+      window.addEventListener('scroll', u, {passive:true}); u();
+    })();
+    (function() {
+      var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var revealEls = document.querySelectorAll('[data-reveal]');
+      if (prefersReduced) { revealEls.forEach(function(el) { el.classList.add('revealed'); }); return; }
+      setTimeout(function() {
+        document.querySelectorAll('#hero [data-reveal]').forEach(function(el, i) {
+          setTimeout(function() { el.classList.add('revealed'); }, i * 160 + 200);
+        });
+      }, 100);
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) { entry.target.classList.add('revealed'); observer.unobserve(entry.target); }
+        });
+      }, {threshold: 0.1, rootMargin: '0px 0px -40px 0px'});
+      revealEls.forEach(function(el) { if (!el.closest('#hero')) observer.observe(el); });
+    })();
+  </script>
+</body>
+</html>
