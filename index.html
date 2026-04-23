@@ -675,10 +675,11 @@
 
     .proof-item-label {
       font-family: var(--font-body);
-      font-size: 0.75rem;
-      letter-spacing: 0.1em;
+      font-size: clamp(0.68rem, 1vw, 0.75rem);
+      letter-spacing: 0.08em;
       color: rgba(255,255,255,0.5);
       text-transform: uppercase;
+      line-height: 1.4;
     }
 
     .proof-divider {
@@ -2050,7 +2051,7 @@
     <div class="proof-bar-inner">
       <div class="proof-item" data-reveal>
         <div class="proof-item-number">20 Jahre</div>
-        <div class="proof-item-label">Am System</div>
+        <div class="proof-item-label">Körper- und Strukturarbeit mit Frauen</div>
       </div>
       <div class="proof-divider" role="separator"></div>
       <div class="proof-item" data-reveal data-delay="120">
@@ -2219,7 +2220,7 @@
           <div class="fuerwen-list-col fuerwen-list-col--full">
             <p class="fuerwen-list-title">Was du dir wünschst</p>
             <ul class="fuerwen-list">
-              <li>Dass das Wissen in dir endlich zu dir wird. Nicht als Erkenntnis. Als Wirklichkeit.</li>
+              <li>Dass das Wissen in dir endlich zu dir wird.</li>
               <li>Dass du aufhörst dich zu prüfen. Dass innen und außen nicht mehr auseinander laufen.</li>
               <li>Dass du einmal da bist, ganz, ohne zu zahlen dafür.</li>
             </ul>
@@ -2330,6 +2331,8 @@
           <p data-reveal>Meine Klientinnen gingen leichter raus als sie reinkamen. Und ich hatte am nächsten Morgen die Kopfschmerzen.</p>
 
           <p data-reveal>Das hat mich zu einer Methode geführt. Nicht am Körper ansetzen. Sondern an dem was den Körper steuert.</p>
+
+          <p data-reveal>Zertifiziert in der Yager Mind Matrix® nach Dr. Edwin Yager. Die Methode, die mir den direkten Zugang zu den Strukturen gegeben hat, an denen ich heute arbeite.</p>
         </div>
 
         <blockquote class="ueber-blockquote" data-reveal>
@@ -2454,25 +2457,6 @@
         <p class="ziel-close-italic" data-reveal>Wenn innen nichts mehr gegen dich arbeitet,<br>zeigt sich das überall.</p>
       </div>
 
-    </div>
-  </section>
-
-  <!-- ============================================================
-       SECTION 09b — VISION
-  ============================================================ -->
-  <section aria-label="Vision" style="background:var(--weiss);padding:clamp(4rem,7vw,6rem) var(--container-px);border-top:1px solid rgba(61,18,25,0.07);">
-    <div style="max-width:640px;margin-inline:auto;text-align:center;">
-      <span class="label label--bordeaux" data-reveal>Warum diese Arbeit</span>
-      <div class="divider" data-divider></div>
-      <p data-reveal style="font-family:var(--font-display);font-style:italic;font-weight:300;font-size:clamp(1.4rem,2.6vw,1.8rem);color:var(--bordeaux);line-height:1.55;margin-top:1.5rem;">
-        Wenn das was du weitergibst<br>
-        nicht mehr von deinen eigenen Mustern gefärbt ist,<br>
-        verändert sich nicht nur dein Leben.<br>
-        Sondern das aller Menschen, die mit dir arbeiten.
-      </p>
-      <p data-reveal style="font-family:var(--font-body);font-size:1rem;line-height:1.8;color:var(--text-mittel);margin-top:2rem;">
-        Das ist der Grund, warum ich mit dieser Gruppe von Frauen arbeite.
-      </p>
     </div>
   </section>
 
@@ -2698,6 +2682,7 @@
             </button>
             <div class="faq-answer" role="region">
               <p class="faq-answer-inner">Nein. Bewusstseinsarchitektur ist kein therapeutisches Verfahren und ersetzt keine psychotherapeutische oder medizinische Behandlung. Bei akuten Erkrankungen wende dich an eine Ärztin oder Therapeutin.</p>
+              <p class="faq-answer-inner" style="margin-top:1rem;">Parallel zu einer laufenden Psychotherapie oder ärztlichen Behandlung ist die Arbeit möglich, sofern dein Behandler informiert ist. Im System Check klären wir das im Einzelfall.</p>
             </div>
           </div>
 
