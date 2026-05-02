@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sieben Sätze · Julia Lauer · Bewusstseinsarchitektur</title>
+  <meta name="description" content="Ein Brief für Frauen, die andere begleiten. Sieben Sätze. Mehr nicht." />
+  <link rel="canonical" href="https://bewusstseinsarchitektur.de/saetze" />
+  <meta name="robots" content="noindex" />
+
+  <meta property="og:title" content="Sieben Sätze · Bewusstseinsarchitektur" />
+  <meta property="og:description" content="Ein Brief für Frauen, die andere begleiten." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://bewusstseinsarchitektur.de/saetze" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bordeaux: #3D1219;
+      --bordeaux-deep: #2A0C12;
+      --terrakotta: #c95e46;
+      --licht: #FAF8F5;
+      --weiss: #FFFFFF;
+      --text-dunkel: #1A1A1A;
+      --text-mittel: #2E2E2E;
+      --text-soft: rgba(26,26,26,0.62);
+      --text-light-soft: rgba(255,255,255,0.55);
+      --line-dark: rgba(61,18,25,0.18);
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Jost', system-ui, sans-serif;
+      --container-px: clamp(1.5rem, 6vw, 4rem);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--font-body);
+      font-weight: 300;
+      color: var(--text-dunkel);
+      background: var(--bordeaux);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    ::selection { background: var(--terrakotta); color: var(--weiss); }
+
+    /* ════════════════════════════════════════════════════
+       ZONE 1 — STATEMENT (Bordeaux, voller Viewport)
+       ════════════════════════════════════════════════════ */
+    .statement {
+      min-height: 100vh;
+      background: var(--bordeaux);
+      color: var(--weiss);
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      padding: 2.5rem var(--container-px) 2rem;
+      position: relative;
+    }
+
+    .brand-mark {
+      font-family: var(--font-body);
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--text-light-soft);
+      opacity: 0;
+      animation: fade-soft 1.4s 0.3s forwards ease-out;
+    }
+    .brand-mark a {
+      border-bottom: 1px solid transparent;
+      padding-bottom: 2px;
+      transition: border-color 0.3s ease, color 0.3s ease;
+    }
+    .brand-mark a:hover {
+      color: var(--weiss);
+      border-bottom-color: var(--terrakotta);
+    }
+
+    .statement-core {
+      display: grid;
+      grid-template-columns: 1fr;
+      align-items: center;
+      justify-items: center;
+      gap: 0;
+      padding: 1rem 0;
+    }
+
+    /* Großes Lot-SVG für die Statement-Zone — fällt von oben */
+    .statement-lot {
+      width: 100px;
+      height: 130px;
+      margin-bottom: 4rem;
+      overflow: visible;
+    }
+    .statement-lot .lot-bar-h {
+      stroke: var(--weiss);
+      stroke-width: 1.6;
+      opacity: 0;
+      animation: fade-soft 1s 0.6s forwards ease-out;
+    }
+    .statement-lot .lot-bar-v {
+      stroke: var(--weiss);
+      stroke-width: 1.2;
+      stroke-dasharray: 110;
+      stroke-dashoffset: 110;
+      animation: lot-grow 1.4s 1.1s forwards cubic-bezier(0.65, 0, 0.35, 1);
+    }
+    .statement-lot .lot-dot {
+      fill: var(--terrakotta);
+      opacity: 0;
+      transform-origin: 50px 130px;
+      animation: lot-land 0.7s 2.4s forwards cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes lot-grow {
+      to { stroke-dashoffset: 0; }
+    }
+    @keyframes lot-land {
+      0%   { opacity: 0; transform: scale(0.3); }
+      60%  { opacity: 1; transform: scale(1.15); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+    @keyframes fade-soft {
+      to { opacity: 1; }
+    }
+
+    .statement-headline {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(2.2rem, 5.4vw, 3.8rem);
+      line-height: 1.15;
+      letter-spacing: -0.005em;
+      text-align: center;
+      max-width: 18ch;
+      color: var(--weiss);
+      opacity: 0;
+      animation: fade-up 1.6s 2.7s forwards cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .scroll-hint {
+      font-family: var(--font-body);
+      font-size: 0.68rem;
+      font-weight: 400;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--text-light-soft);
+      text-align: center;
+      opacity: 0;
+      animation: fade-soft 1.4s 4s forwards ease-out;
+      cursor: pointer;
+      transition: color 0.3s ease;
+      user-select: none;
+    }
+    .scroll-hint:hover { color: var(--weiss); }
+    .scroll-hint .arrow {
+      display: block;
+      margin-top: 0.5rem;
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      letter-spacing: 0;
+      animation: hint-bounce 2.5s 5s infinite ease-in-out;
+    }
+    @keyframes hint-bounce {
+      0%, 100% { transform: translateY(0); opacity: 0.5; }
+      50%      { transform: translateY(4px); opacity: 1; }
+    }
+
+    /* ════════════════════════════════════════════════════
+       ZONE 2 — FORM (Off-White)
+       ════════════════════════════════════════════════════ */
+    .form-zone {
+      background: var(--licht);
+      color: var(--text-dunkel);
+      padding: clamp(5rem, 9vw, 7rem) var(--container-px) 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-inner {
+      max-width: 560px;
+      margin: 0 auto;
+      width: 100%;
+      flex: 1;
+    }
+
+    /* Kleines SVG-Lot in der Form-Zone, gleicher Stil wie auf Bestandswebsite */
+    .form-lot {
+      width: 60px;
+      height: 78px;
+      margin-bottom: 3.5rem;
+      display: block;
+    }
+    .form-lot .lot-bar-h {
+      stroke: var(--bordeaux);
+      stroke-width: 1.6;
+    }
+    .form-lot .lot-bar-v {
+      stroke: var(--bordeaux);
+      stroke-width: 1.2;
+    }
+    .form-lot .lot-dot {
+      fill: var(--terrakotta);
+    }
+
+    .preview-label {
+      font-family: var(--font-body);
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--bordeaux);
+      margin-bottom: 1.5rem;
+    }
+
+    .preview-headline {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(1.6rem, 3.2vw, 2.1rem);
+      line-height: 1.3;
+      color: var(--bordeaux);
+      margin-bottom: 2rem;
+      max-width: 22ch;
+    }
+
+    .preview-text {
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 1rem;
+      line-height: 1.78;
+      color: var(--text-dunkel);
+      margin-bottom: 0.8rem;
+      max-width: 50ch;
+    }
+
+    .preview-text.soft {
+      color: var(--text-soft);
+      font-size: 0.95rem;
+      margin-bottom: 4rem;
+    }
+
+    form {
+      border-top: 1px solid var(--line-dark);
+      padding-top: 3rem;
+    }
+
+    .field-group {
+      margin-bottom: 0.5rem;
+      position: relative;
+    }
+
+    .field-group input[type="email"] {
+      width: 100%;
+      padding: 1.15rem 0;
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 1.05rem;
+      color: var(--text-dunkel);
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--line-dark);
+      outline: none;
+      transition: border-color 0.4s ease;
+      letter-spacing: 0.01em;
+    }
+    .field-group input[type="email"]:focus {
+      border-bottom-color: var(--bordeaux);
+    }
+    .field-group input::placeholder {
+      color: rgba(26,26,26,0.32);
+      font-weight: 300;
+    }
+
+    /* Honeypot — unsichtbar */
+    .honeypot {
+      position: absolute;
+      left: -9999px;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .consent {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+      margin: 2.25rem 0 2.75rem;
+      font-size: 0.8rem;
+      line-height: 1.6;
+      color: var(--text-soft);
+      cursor: pointer;
+      user-select: none;
+    }
+    .consent input[type="checkbox"] {
+      margin-top: 0.25rem;
+      width: 13px;
+      height: 13px;
+      accent-color: var(--bordeaux);
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+    .consent a {
+      color: var(--bordeaux);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+      transition: color 0.2s ease;
+    }
+    .consent a:hover { color: var(--terrakotta); }
+
+    .submit-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.9rem;
+      padding: 1.15rem 2.4rem;
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 0.72rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--weiss);
+      background: var(--bordeaux);
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s ease, opacity 0.3s ease;
+    }
+    .submit-btn:hover { background: var(--bordeaux-deep); }
+    .submit-btn:active { transform: translateY(1px); }
+    .submit-btn:disabled { opacity: 0.55; cursor: wait; }
+    .submit-btn .arrow {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      letter-spacing: 0;
+      transition: transform 0.3s ease;
+    }
+    .submit-btn:hover .arrow { transform: translateX(5px); }
+
+    .note {
+      margin-top: 1.75rem;
+      font-size: 0.78rem;
+      color: var(--text-soft);
+      line-height: 1.6;
+      max-width: 44ch;
+    }
+
+    /* Fehlermeldung */
+    .error-msg {
+      display: none;
+      margin-top: 1.5rem;
+      padding: 0.9rem 1rem;
+      font-size: 0.85rem;
+      color: var(--bordeaux);
+      background: rgba(201, 94, 70, 0.08);
+      border-left: 2px solid var(--terrakotta);
+      line-height: 1.5;
+    }
+    .error-msg.visible { display: block; }
+
+    /* Erfolg */
+    .success {
+      display: none;
+      padding: 1rem 0;
+      border-top: 1px solid var(--line-dark);
+      padding-top: 3rem;
+    }
+    .success.visible {
+      display: block;
+      animation: fade-up 0.9s ease-out;
+    }
+    .success-headline {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(1.6rem, 3.2vw, 2.1rem);
+      line-height: 1.3;
+      color: var(--bordeaux);
+      margin-bottom: 1.5rem;
+      max-width: 22ch;
+    }
+    .success-text {
+      font-size: 0.98rem;
+      line-height: 1.78;
+      color: var(--text-dunkel);
+      max-width: 50ch;
+    }
+    .success-text + .success-text {
+      margin-top: 0.8rem;
+      color: var(--text-soft);
+      font-size: 0.9rem;
+    }
+
+    /* ════════════════════════════════════════════════════
+       FOOTER (Stil aus Bestandswebsite, dunkel)
+       ════════════════════════════════════════════════════ */
+    #footer {
+      background: var(--bordeaux);
+      color: rgba(255,255,255,0.5);
+      padding: clamp(3rem, 6vw, 4rem) var(--container-px);
+      margin-top: clamp(5rem, 8vw, 7rem);
+    }
+    .footer-inner {
+      max-width: 1100px;
+      margin-inline: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .footer-logo-symbol {
+      width: 26px;
+      height: 30px;
+      color: var(--licht);
+      flex-shrink: 0;
+    }
+    .footer-logo {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.6);
+    }
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+    .footer-links a {
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.3);
+      transition: color 0.3s ease;
+    }
+    .footer-links a:hover { color: rgba(255,255,255,0.65); }
+
+    @media (max-width: 500px) {
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+
+    /* Mobile-Anpassungen */
+    @media (max-width: 720px) {
+      .statement { padding: 2rem 1.5rem 1.5rem; }
+      .statement-headline { font-size: clamp(1.9rem, 8vw, 2.6rem); }
+      .form-zone { padding: 5rem 1.5rem 0; }
+      .submit-btn { width: 100%; justify-content: center; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .statement-lot .lot-bar-h,
+      .statement-lot .lot-dot,
+      .statement-headline,
+      .brand-mark,
+      .scroll-hint {
+        opacity: 1 !important;
+      }
+      .statement-lot .lot-bar-v {
+        stroke-dashoffset: 0 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════
+       ZONE 1 — STATEMENT
+       ═══════════════════════════════════════════════════════ -->
+  <section class="statement" aria-label="Statement">
+
+    <header class="brand-mark">
+      <a href="index.html">Bewusstseinsarchitektur</a>
+    </header>
+
+    <div class="statement-core">
+
+      <!-- Großes Lot, fällt von oben -->
+      <svg class="statement-lot" viewBox="0 0 100 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <line class="lot-bar-h" x1="20" y1="20" x2="80" y2="20" stroke-linecap="square" />
+        <line class="lot-bar-v" x1="50" y1="20" x2="50" y2="115" stroke-linecap="square" />
+        <circle class="lot-dot" cx="50" cy="124" r="5" />
+      </svg>
+
+      <h1 class="statement-headline">
+        Sieben Sätze<br>
+        für Frauen,<br>
+        die andere begleiten.
+      </h1>
+
+    </div>
+
+    <a class="scroll-hint" href="#form" aria-label="Den Brief bekommen">
+      Den Brief bekommen
+      <span class="arrow">↓</span>
+    </a>
+
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       ZONE 2 — FORM
+       ═══════════════════════════════════════════════════════ -->
+  <section class="form-zone" id="form" aria-label="Eintragung">
+
+    <div class="form-inner">
+
+      <!-- Kleines Lot, gleicher Stil wie Bestandswebsite -->
+      <svg class="form-lot" viewBox="0 0 60 78" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <line class="lot-bar-h" x1="10" y1="12" x2="50" y2="12" stroke-linecap="square" />
+        <line class="lot-bar-v" x1="35" y1="12" x2="35" y2="60" stroke-linecap="square" />
+        <circle class="lot-dot" cx="35" cy="68" r="3.5" />
+      </svg>
+
+      <p class="preview-label">Ein Brief, kein Newsletter</p>
+
+      <h2 class="preview-headline">
+        Sieben Sätze. Mehr nicht.
+      </h2>
+
+      <p class="preview-text">
+        Direkt nach Eintragung. Keine Serie, kein Funnel, keine
+        fünf Module. Nur sieben Sätze für die Stelle, an der du
+        als Begleiterin alles weißt und es bei dir selbst nicht
+        ankommt.
+      </p>
+
+      <p class="preview-text soft">
+        Wer den Brief gelesen hat und sich abmelden möchte,
+        klickt einmal.
+      </p>
+
+      <form id="optin-form"
+            method="POST"
+            action="https://e3ad9c19.sibforms.com/serve/MUIFAA920IJqfI-0J38THa5Fv1oWC9xRMdqFU1J93vmLOvsj1p73hfGu_GozTCyi2qL8NdfD56U6MsP9OXxIJv83Kwpj0jHswRSSwkui8Qr6rE-5oQ7axSUTZmTuTL20SMFBCwrUhA35R7xRRwT_Uo8f3z84yxMpjZQbFZKPPnLAfvV_WCrajAgQy1JlT6m-sQCpHJ5P1hiftzGfIA=="
+            target="hidden_iframe"
+            novalidate>
+
+        <div class="field-group">
+          <label for="email" style="position:absolute;left:-9999px;">E-Mail-Adresse</label>
+          <input
+            type="email"
+            id="email"
+            name="EMAIL"
+            placeholder="deine@email.de"
+            autocomplete="email"
+            required
+          />
+        </div>
+
+        <!-- Honeypot-Schutz, von Brevo erwartet -->
+        <input type="text" name="email_address_check" value="" class="honeypot" tabindex="-1" autocomplete="off" />
+        <input type="hidden" name="locale" value="de" />
+
+        <label class="consent" for="consent">
+          <input type="checkbox" id="consent" name="consent" required />
+          <span>
+            Ich möchte den Brief per E-Mail erhalten und akzeptiere die
+            <a href="datenschutz.html" target="_blank" rel="noopener">Datenschutzerklärung</a>.
+            Eine Abmeldung ist jederzeit möglich.
+          </span>
+        </label>
+
+        <button type="submit" class="submit-btn" id="submit-btn">
+          Brief lesen <span class="arrow">→</span>
+        </button>
+
+        <div class="error-msg" id="error-msg" role="alert"></div>
+
+      </form>
+
+      <!-- Verstecktes iframe für Form-Submit ohne Seitenwechsel -->
+      <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" aria-hidden="true"></iframe>
+
+      <div class="success" id="success" role="status" aria-live="polite">
+        <h2 class="success-headline">
+          Schau in dein Postfach.
+        </h2>
+        <p class="success-text">
+          Eine Mail wartet auf dich. Bestätige sie kurz, dann
+          ist der Brief bei dir.
+        </p>
+        <p class="success-text">
+          Falls sie nicht in den nächsten Minuten ankommt,
+          schau im Spam-Ordner nach.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       FOOTER (Stil aus Bestandswebsite)
+       ═══════════════════════════════════════════════════════ -->
+  <footer id="footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <svg class="footer-logo-symbol" viewBox="0 0 180 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <line x1="30" y1="60" x2="150" y2="60" stroke="currentColor" stroke-width="2.4" stroke-linecap="square" />
+          <line x1="105" y1="60" x2="105" y2="140" stroke="currentColor" stroke-width="1.6" stroke-linecap="square" opacity="0.7" />
+          <circle cx="105" cy="148" r="4.5" fill="var(--terrakotta)" />
+        </svg>
+        <span class="footer-logo">Julia Lauer · Bewusstseinsarchitektur</span>
+      </div>
+      <ul class="footer-links" role="list">
+        <li><a href="impressum.html">Impressum</a></li>
+        <li><a href="datenschutz.html">Datenschutz</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script>
+    'use strict';
+    (function() {
+      var form = document.getElementById('optin-form');
+      var submitBtn = document.getElementById('submit-btn');
+      var successEl = document.getElementById('success');
+      var errorEl = document.getElementById('error-msg');
+      var emailInput = document.getElementById('email');
+      var consentInput = document.getElementById('consent');
+      var submitted = false;
+
+      function showError(text) {
+        errorEl.textContent = text;
+        errorEl.classList.add('visible');
+      }
+      function hideError() {
+        errorEl.classList.remove('visible');
+      }
+
+      form.addEventListener('submit', function(e) {
+        if (submitted) { e.preventDefault(); return; }
+        hideError();
+
+        var email = emailInput.value.trim();
+        var consent = consentInput.checked;
+
+        if (!email || email.indexOf('@') === -1 || email.indexOf('.') === -1) {
+          e.preventDefault();
+          showError('Bitte gib eine gültige E-Mail-Adresse ein.');
+          emailInput.focus();
+          return;
+        }
+        if (!consent) {
+          e.preventDefault();
+          showError('Bitte bestätige die Datenschutz-Hinweise.');
+          consentInput.focus();
+          return;
+        }
+
+        submitted = true;
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = 'Wird gesendet…';
+
+        setTimeout(function() {
+          form.style.display = 'none';
+          successEl.classList.add('visible');
+          successEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 1200);
+      });
+    })();
+  </script>
+
+</body>
+</html>
