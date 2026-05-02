@@ -118,6 +118,16 @@
     .artikel-card:hover .artikel-titel { color: #6a1a24; }
     .artikel-teaser { font-family: var(--font-body); font-size: 0.845rem; line-height: 1.75; color: rgba(26,26,26,0.5); margin-bottom: 1.5rem; }
     .artikel-link { font-family: var(--font-body); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--terrakotta); display: inline-flex; align-items: center; gap: 0.4rem; transition: gap 0.3s ease; margin-top: auto; }
+
+    /* CTA: Sieben Sätze */
+    #texte-cta { position: relative; background: var(--bordeaux); padding: var(--section-pad) var(--container-px); text-align: center; overflow: hidden; }
+    .texte-cta-inner { max-width: 560px; margin-inline: auto; position: relative; z-index: 2; }
+    .texte-cta-headline { font-family: var(--font-display); font-style: italic; font-weight: 300; font-size: clamp(2.2rem, 4.5vw, 3.2rem); color: var(--weiss); line-height: 1.2; margin-bottom: 1.5rem; }
+    .texte-cta-text { font-family: var(--font-body); font-weight: 300; font-size: 1rem; line-height: 1.85; color: rgba(255,255,255,0.88); margin-bottom: 2rem; }
+    .btn { display: inline-block; padding: 1.125rem 2.5rem; font-family: var(--font-body); font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; transition: all 0.3s ease; }
+    .btn--terrakotta { background: var(--terrakotta); color: var(--weiss); }
+    .btn--terrakotta:hover { background: #b54e37; transform: translateY(-1px); }
+    .btn-meta { display: block; margin-top: 0.875rem; font-family: var(--font-body); font-size: 0.72rem; letter-spacing: 0.04em; color: rgba(255,255,255,0.55); }
     .artikel-card:hover .artikel-link { gap: 0.7rem; }
     /* FOOTER */
     #footer { position: relative; background: var(--bordeaux); border-top: 1px solid rgba(255,255,255,0.08); padding: 3.5rem var(--container-px) 2rem; overflow: hidden; }
@@ -349,6 +359,27 @@
         </div>
       </div>
     </section>
+
+    <!-- CTA: Sieben Sätze -->
+    <section id="texte-cta" class="noise" aria-label="Sieben Sätze">
+      <div class="texte-cta-inner">
+        <span class="label label--weiss" data-reveal>Wenn ein Text dich erreicht hat</span>
+        <h2 class="texte-cta-headline" data-reveal>
+          Sieben Sätze.
+        </h2>
+        <p class="texte-cta-text" data-reveal>
+          Ein Brief, der beschreibt, was die Texte umkreisen.<br>
+          Direkt nach Eintragung. Keine Serie. Kein Funnel.
+        </p>
+        <div data-reveal>
+          <a href="saetze.html" class="btn btn--terrakotta">
+            Sieben Sätze lesen →
+          </a>
+          <span class="btn-meta">Ein Brief · kein Newsletter · zwei Minuten</span>
+        </div>
+      </div>
+    </section>
+
   </main>
   <footer id="footer" class="noise" role="contentinfo">
     <div class="footer-inner">
