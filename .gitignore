@@ -8,3 +8,42 @@ Thumbs.db
 
 # Claude-interne Einstellungen
 .claude/settings.local.json
+
+# Interne Arbeitsdateien
+*.docx
+*.zip
+Manifest_*.md
+Manifest_*.pdf
+Positionierung_*.md
+Positionierung_*.docx
+Brief*.pdf
+document_pdf.pdf
+Kopie*.pdf
+VORLAGE*.pdf
+
+# Freebie-Originale (PDFs/Source-Dateien)
+/freebie/
+
+# Marken-Asset-Originale (Lot-Logo Quellordner)
+/Lot-Logo/
+/lot-grafiken/
+
+# HTML-Mockups
+signatur-bordeaux.html
+signatur-bordeaux-vorschau.html
+
+# Lose Lot-Logo-Originale im Root (nicht von HTML referenziert)
+/01-lot-bordeaux-*.png
+/01-lot-bordeaux-*.svg
+/04-lot-bordeaux-*.png
+/04-lot-bordeaux-*.svg
+/05-logo-vertikal-bordeaux.svg
+/07-logo-horizontal-bordeaux.svg
+
+# Manifest-Dateien mit Leerzeichen im Namen
+/Manifest *.pdf
+/Manifest *.md
+/Manifest *.docx
+/Positionierung *.pdf
+/Positionierung *.md
+/Positionierung *.docx
