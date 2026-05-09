@@ -32,6 +32,9 @@ VORLAGE*.pdf
 signatur-bordeaux.html
 signatur-bordeaux-vorschau.html
 
+# Interne Prompt-Dokumente
+/FINAL-WEBSITE-PROMPT.md
+
 # Lose Lot-Logo-Originale im Root (nicht von HTML referenziert)
 /01-lot-bordeaux-*.png
 /01-lot-bordeaux-*.svg
