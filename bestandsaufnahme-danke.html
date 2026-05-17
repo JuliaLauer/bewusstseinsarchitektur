@@ -130,29 +130,9 @@
       line-height: 1.8;
       color: rgba(255,255,255,0.55);
       max-width: 38ch;
-      margin: 0 auto 4rem auto;
+      margin: 0 auto;
       opacity: 0;
       animation: fadeIn 1.4s ease-out 1.05s forwards;
-    }
-
-    /* DOMAIN LINK */
-    .danke-domain-link {
-      display: inline-block;
-      font-family: var(--font-body);
-      font-size: 0.78rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.55);
-      padding: 0.875rem 0;
-      border-bottom: 1px solid rgba(255,255,255,0.18);
-      transition: color var(--transition), border-color var(--transition);
-      opacity: 0;
-      animation: fadeIn 1.4s ease-out 1.25s forwards;
-    }
-
-    .danke-domain-link:hover {
-      color: var(--terrakotta);
-      border-bottom-color: var(--terrakotta);
     }
 
     /* ANIMATION */
@@ -167,7 +147,7 @@
       .danke-label { font-size: 0.68rem; margin-bottom: 1.5rem; }
       .danke-headline { font-size: clamp(2.2rem, 9vw, 3rem); margin-bottom: 2rem; }
       .danke-text { font-size: 1rem; }
-      .danke-text-soft { font-size: 0.88rem; margin-bottom: 3rem; }
+      .danke-text-soft { font-size: 0.88rem; margin-bottom: 0; }
     }
   </style>
 </head>
@@ -185,21 +165,13 @@
       <span class="danke-label">Bestätigt</span>
 
       <h1 class="danke-headline">
-        Schau in dein Postfach.
-      </h1>
-
-      <p class="danke-text">
         Der Brief ist unterwegs.
-      </p>
+      </h1>
 
       <p class="danke-text-soft">
         In den nächsten Minuten in deinem Postfach.
         Falls nicht, schau im Spam-Ordner nach.
       </p>
-
-      <a href="https://bewusstseinsarchitektur.de" class="danke-domain-link">
-        bewusstseinsarchitektur.de
-      </a>
 
     </div>
   </main>
