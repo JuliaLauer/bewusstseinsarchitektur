@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Die Stelle, an der du stehst · Eine Klärung · Julia Lauer · Bewusstseinsarchitektur</title>
+  <meta name="description" content="Eine Klärung in vier Schritten, für Frauen, die andere begleiten. Du beschreibst die Stelle, an der du stehst, und weißt am Ende, wo du stehst und was sie braucht." />
+  <link rel="canonical" href="https://bewusstseinsarchitektur.de/die-stelle" />
+
+  <meta property="og:title" content="Die Stelle, an der du stehst · Eine Klärung · Bewusstseinsarchitektur" />
+  <meta property="og:description" content="Eine Klärung in vier Schritten, für Frauen, die andere begleiten." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://bewusstseinsarchitektur.de/die-stelle" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bordeaux: #3D1219;
+      --bordeaux-deep: #2A0C12;
+      --terrakotta: #c95e46;
+      --licht: #FAF8F5;
+      --weiss: #FFFFFF;
+      --text-dunkel: #1A1A1A;
+      --text-mittel: #2E2E2E;
+      --text-soft: rgba(26,26,26,0.78);
+      --text-light-soft: rgba(255,255,255,0.55);
+      --line-dark: rgba(61,18,25,0.18);
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Jost', system-ui, sans-serif;
+      --container-px: clamp(1.5rem, 6vw, 4rem);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--font-body);
+      font-weight: 300;
+      color: var(--text-dunkel);
+      background: var(--bordeaux);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    a { color: inherit; text-decoration: none; }
+    ::selection { background: var(--terrakotta); color: var(--weiss); }
+
+    /* ════════════════════════════════════════════════════
+       ZONE 1 — STATEMENT (Bordeaux, voller Viewport)
+       ════════════════════════════════════════════════════ */
+    .statement {
+      min-height: 100vh;
+      background: var(--bordeaux);
+      color: var(--weiss);
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      padding: 2.5rem var(--container-px) 2rem;
+      position: relative;
+    }
+    .brand-mark {
+      font-family: var(--font-body);
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--text-light-soft);
+      opacity: 0;
+      animation: fade-soft 1.4s 0.3s forwards ease-out;
+    }
+    .brand-mark a {
+      border-bottom: 1px solid transparent;
+      padding-bottom: 2px;
+      transition: border-color 0.3s ease, color 0.3s ease;
+    }
+    .brand-mark a:hover { color: var(--weiss); border-bottom-color: var(--terrakotta); }
+
+    .statement-core {
+      display: grid;
+      grid-template-columns: 1fr;
+      align-items: center;
+      justify-items: center;
+      gap: 0;
+      padding: 1rem 0;
+    }
+    .statement-lot { width: 100px; height: 130px; margin-bottom: 3rem; overflow: visible; }
+    .statement-lot .lot-bar-h {
+      stroke: var(--weiss); stroke-width: 1.6; opacity: 0;
+      animation: fade-soft 1s 0.6s forwards ease-out;
+    }
+    .statement-lot .lot-bar-v {
+      stroke: var(--weiss); stroke-width: 1.2;
+      stroke-dasharray: 110; stroke-dashoffset: 110;
+      animation: lot-grow 1.4s 1.1s forwards cubic-bezier(0.65, 0, 0.35, 1);
+    }
+    .statement-lot .lot-dot {
+      fill: var(--terrakotta); opacity: 0; transform-origin: 50px 130px;
+      animation: lot-land 0.7s 2.4s forwards cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    @keyframes lot-grow { to { stroke-dashoffset: 0; } }
+    @keyframes lot-land {
+      0% { opacity: 0; transform: scale(0.3); }
+      60% { opacity: 1; transform: scale(1.15); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+    @keyframes fade-soft { to { opacity: 1; } }
+
+    .statement-eyebrow {
+      font-family: var(--font-body);
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--text-light-soft);
+      margin-bottom: 1.75rem;
+      text-align: center;
+      opacity: 0;
+      animation: fade-up 1.6s 2.5s forwards cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .statement-headline {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(2.4rem, 6vw, 4.2rem);
+      line-height: 1.12;
+      letter-spacing: -0.005em;
+      text-align: center;
+      max-width: 16ch;
+      color: var(--weiss);
+      opacity: 0;
+      animation: fade-up 1.6s 2.7s forwards cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .statement-sub {
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: clamp(0.95rem, 2vw, 1.1rem);
+      line-height: 1.7;
+      text-align: center;
+      max-width: 34ch;
+      margin-top: 2rem;
+      color: rgba(255,255,255,0.7);
+      opacity: 0;
+      animation: fade-up 1.6s 3s forwards cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .scroll-hint {
+      font-family: var(--font-body);
+      font-size: 0.68rem;
+      font-weight: 400;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--text-light-soft);
+      text-align: center;
+      opacity: 0;
+      animation: fade-soft 1.4s 3.6s forwards ease-out;
+      cursor: pointer;
+      transition: color 0.3s ease;
+      user-select: none;
+    }
+    .scroll-hint:hover { color: var(--weiss); }
+    .scroll-hint .arrow {
+      display: block; margin-top: 0.5rem;
+      font-family: var(--font-display); font-size: 1.1rem; letter-spacing: 0;
+      animation: hint-bounce 2.5s 4.6s infinite ease-in-out;
+    }
+    @keyframes hint-bounce {
+      0%, 100% { transform: translateY(0); opacity: 0.5; }
+      50% { transform: translateY(4px); opacity: 1; }
+    }
+
+    /* ════════════════════════════════════════════════════
+       ZONE 2 — INHALT (Off-White)
+       ════════════════════════════════════════════════════ */
+    .content {
+      background: var(--licht);
+      color: var(--text-dunkel);
+      padding: clamp(5rem, 9vw, 7.5rem) var(--container-px) 0;
+    }
+    .content-inner { max-width: 580px; margin: 0 auto; width: 100%; }
+
+    .form-lot { width: 60px; height: 78px; margin-bottom: 3.5rem; display: block; }
+    .form-lot .lot-bar-h { stroke: var(--bordeaux); stroke-width: 1.6; }
+    .form-lot .lot-bar-v { stroke: var(--bordeaux); stroke-width: 1.2; }
+    .form-lot .lot-dot { fill: var(--terrakotta); }
+
+    .block { margin-bottom: clamp(3.5rem, 7vw, 5.5rem); }
+
+    .block-label {
+      font-family: var(--font-body);
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--bordeaux);
+      margin-bottom: 1.5rem;
+    }
+    .block-headline {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(1.7rem, 3.6vw, 2.4rem);
+      line-height: 1.25;
+      color: var(--bordeaux);
+      margin-bottom: 1.75rem;
+      max-width: 24ch;
+    }
+    .text {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 1.02rem;
+      line-height: 1.8;
+      color: var(--text-dunkel);
+      margin-bottom: 1.1rem;
+      max-width: 52ch;
+    }
+    .text.soft { color: var(--text-soft); font-size: 0.95rem; }
+    .text.italic { font-style: italic; color: var(--text-soft); }
+
+    /* Schmerz-Spiegelung, als ruhige Zeilengruppe */
+    .mirror {
+      border-left: 2px solid var(--terrakotta);
+      padding-left: 1.75rem;
+      margin: 0 0 1.1rem;
+    }
+    .mirror p {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(1.25rem, 2.8vw, 1.6rem);
+      line-height: 1.5;
+      color: var(--bordeaux);
+      max-width: 30ch;
+    }
+
+    /* Die vier Schritte */
+    .steps { list-style: none; margin: 0 0 1rem; }
+    .steps li {
+      display: grid;
+      grid-template-columns: 2.5rem 1fr;
+      gap: 1rem;
+      padding: 1.4rem 0;
+      border-bottom: 1px solid var(--line-dark);
+      align-items: baseline;
+    }
+    .steps li:first-child { border-top: 1px solid var(--line-dark); }
+    .step-num {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 1.5rem;
+      color: var(--terrakotta);
+      line-height: 1;
+    }
+    .step-body h3 {
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 1rem;
+      letter-spacing: 0.01em;
+      color: var(--text-dunkel);
+      margin-bottom: 0.35rem;
+    }
+    .step-body p {
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 0.92rem;
+      line-height: 1.7;
+      color: var(--text-soft);
+      max-width: 46ch;
+    }
+
+    /* Für wen / nicht für wen */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+    @media (max-width: 560px) { .two-col { grid-template-columns: 1fr; gap: 2rem; } }
+    .col-label {
+      font-family: var(--font-body);
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--bordeaux);
+      margin-bottom: 1.1rem;
+    }
+    .col-list { list-style: none; }
+    .col-list li {
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: var(--text-soft);
+      padding: 0.55rem 0;
+      border-bottom: 1px solid var(--line-dark);
+    }
+
+    /* Ehrliche Grenze, leicht abgesetzt */
+    .honest {
+      background: rgba(201, 94, 70, 0.05);
+      border-left: 2px solid var(--terrakotta);
+      padding: 1.75rem 2rem;
+      margin-bottom: 1.1rem;
+    }
+    .honest p { font-size: 0.98rem; line-height: 1.75; color: var(--text-mittel); max-width: 50ch; margin-bottom: 0.8rem; }
+    .honest p:last-child { margin-bottom: 0; }
+
+    /* ════════════════════════════════════════════════════
+       ZONE 3 — KAUF (Bordeaux, eine Aktion)
+       ════════════════════════════════════════════════════ */
+    .buy {
+      background: var(--bordeaux);
+      color: var(--weiss);
+      padding: clamp(5rem, 9vw, 7rem) var(--container-px);
+      margin-top: clamp(4rem, 8vw, 6rem);
+    }
+    .buy-inner { max-width: 520px; margin: 0 auto; text-align: center; }
+
+    .buy-price {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(3rem, 8vw, 4.5rem);
+      line-height: 1;
+      color: var(--weiss);
+      margin-bottom: 0.5rem;
+    }
+    .buy-price .old {
+      font-size: 0.4em;
+      color: rgba(255,255,255,0.4);
+      text-decoration: line-through;
+      margin-left: 0.5rem;
+      font-style: normal;
+    }
+    .buy-scarcity {
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--terrakotta);
+      margin-bottom: 2.5rem;
+    }
+    .buy-desc {
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 1rem;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.8);
+      max-width: 42ch;
+      margin: 0 auto 2.75rem;
+    }
+    .buy-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.9rem;
+      padding: 1.25rem 2.8rem;
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 0.74rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--bordeaux);
+      background: var(--licht);
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+    .buy-btn:hover { background: var(--weiss); }
+    .buy-btn:active { transform: translateY(1px); }
+    .buy-btn .arrow {
+      font-family: var(--font-display); font-size: 1.05rem; letter-spacing: 0;
+      transition: transform 0.3s ease;
+    }
+    .buy-btn:hover .arrow { transform: translateX(5px); }
+
+    .buy-reassure {
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 0.8rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.5);
+      max-width: 40ch;
+      margin: 2rem auto 0;
+    }
+
+    /* ════════════════════════════════════════════════════
+       FOOTER
+       ════════════════════════════════════════════════════ */
+    #footer {
+      background: var(--bordeaux-deep);
+      color: rgba(255,255,255,0.5);
+      padding: clamp(3rem, 6vw, 4rem) var(--container-px);
+    }
+    .footer-inner {
+      max-width: 1100px; margin-inline: auto;
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 2rem; flex-wrap: wrap;
+    }
+    .footer-brand { display: flex; align-items: center; gap: 0.75rem; }
+    .footer-logo-symbol { width: 26px; height: 30px; color: var(--licht); flex-shrink: 0; }
+    .footer-logo {
+      font-family: var(--font-display); font-style: italic; font-weight: 300;
+      font-size: 1.1rem; color: rgba(255,255,255,0.6);
+    }
+    .footer-links { display: flex; gap: 1.5rem; list-style: none; }
+    .footer-links a {
+      font-family: var(--font-body); font-size: 0.72rem;
+      color: rgba(255,255,255,0.3); transition: color 0.3s ease;
+    }
+    .footer-links a:hover { color: rgba(255,255,255,0.65); }
+    @media (max-width: 500px) { .footer-inner { flex-direction: column; align-items: flex-start; } }
+
+    @media (max-width: 720px) {
+      .statement { padding: 2rem 1.5rem 1.5rem; }
+      .content { padding: 4.5rem 1.5rem 0; }
+      .buy-btn { width: 100%; justify-content: center; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .statement-lot .lot-bar-h, .statement-lot .lot-dot,
+      .statement-headline, .statement-eyebrow, .statement-sub,
+      .brand-mark, .scroll-hint { opacity: 1 !important; }
+      .statement-lot .lot-bar-v { stroke-dashoffset: 0 !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════
+       ZONE 1 — STATEMENT
+       ═══════════════════════════════════════════════════════ -->
+  <section class="statement" aria-label="Statement">
+    <header class="brand-mark">
+      <a href="index.html">Bewusstseinsarchitektur</a>
+    </header>
+
+    <div class="statement-core">
+      <svg class="statement-lot" viewBox="0 0 100 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <line class="lot-bar-h" x1="20" y1="20" x2="80" y2="20" stroke-linecap="square" />
+        <line class="lot-bar-v" x1="65" y1="20" x2="65" y2="115" stroke-linecap="square" />
+        <circle class="lot-dot" cx="65" cy="124" r="5" />
+      </svg>
+
+      <p class="statement-eyebrow">Eine Klärung in vier Schritten</p>
+
+      <h1 class="statement-headline">
+        Die Stelle,<br>an der du stehst.
+      </h1>
+
+      <p class="statement-sub">
+        Für Frauen, die andere begleiten. Und bei sich selbst
+        an einer Stelle stehen, die sich nicht bewegt.
+      </p>
+    </div>
+
+    <a class="scroll-hint" href="#inhalt" aria-label="Mehr erfahren">
+      Was das hier ist
+      <span class="arrow">↓</span>
+    </a>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       ZONE 2 — INHALT
+       ═══════════════════════════════════════════════════════ -->
+  <section class="content" id="inhalt" aria-label="Über die Klärung">
+    <div class="content-inner">
+
+      <svg class="form-lot" viewBox="0 0 60 78" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <line class="lot-bar-h" x1="10" y1="12" x2="50" y2="12" stroke-linecap="square" />
+        <line class="lot-bar-v" x1="35" y1="12" x2="35" y2="60" stroke-linecap="square" />
+        <circle class="lot-dot" cx="35" cy="68" r="3.5" />
+      </svg>
+
+      <!-- Spiegelung -->
+      <div class="block">
+        <p class="text">
+          Bei deinen Klientinnen siehst du in Sekunden, worum es geht.
+          Bei dir selbst stehst du an einer Stelle, an der du seit Jahren
+          nicht weiterkommst.
+        </p>
+        <div class="mirror">
+          <p>Du weißt so viel. Und lebst es trotzdem nicht.</p>
+        </div>
+        <p class="text">
+          Du hast es benannt. Du hast es bearbeitet. Du hast es vermutlich
+          auf mehreren Wegen versucht. Und es ist immer noch da.
+        </p>
+        <p class="text italic">
+          Was es ist, ist Nebensache. Dass es bleibt, ist die Frage.
+        </p>
+      </div>
+
+      <!-- Was es ist -->
+      <div class="block">
+        <p class="block-label">Was das hier ist</p>
+        <h2 class="block-headline">Sechzig Minuten, an deren Ende du auf dem Papier hast, was du vorher gespürt hast.</h2>
+        <p class="text">
+          Keine Methode, kein Programm, kein weiteres Werkzeug für deine
+          Arbeit mit anderen. Eine Klärung für dich. Du gehst durch vier
+          Schritte und weißt am Ende, wo du wirklich stehst.
+        </p>
+      </div>
+
+      <!-- Die vier Schritte -->
+      <div class="block">
+        <p class="block-label">Vier Schritte</p>
+        <ol class="steps">
+          <li>
+            <span class="step-num">I</span>
+            <div class="step-body">
+              <h3>Inventur</h3>
+              <p>Du beschreibst die Stelle, an der du stehst. Nicht analytisch. Eine Bestandsaufnahme.</p>
+            </div>
+          </li>
+          <li>
+            <span class="step-num">II</span>
+            <div class="step-body">
+              <h3>Womit du gearbeitet hast</h3>
+              <p>Du siehst, mit welchen Mitteln du es bisher versucht hast, und warum sie an dieser Stelle nicht greifen.</p>
+            </div>
+          </li>
+          <li>
+            <span class="step-num">III</span>
+            <div class="step-body">
+              <h3>Die Schwelle</h3>
+              <p>Du erkennst, wo das Verstehen aufhört zu wirken. Nicht als Schwäche. Als Eigenschaft der Ebene.</p>
+            </div>
+          </li>
+          <li>
+            <span class="step-num">IV</span>
+            <div class="step-body">
+              <h3>Standortbestimmung</h3>
+              <p>Du weißt, an welchem von vier Standorten du stehst. Und was deine nächste Bewegung ist.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <!-- Für wen -->
+      <div class="block">
+        <p class="block-label">Für wen</p>
+        <div class="two-col">
+          <div>
+            <p class="col-label">Für dich, wenn</p>
+            <ul class="col-list">
+              <li>du andere begleitest, als Coachin, Therapeutin, Ärztin, Heilpraktikerin, Mentorin</li>
+              <li>du bei dir an einer Stelle stehst, die du genauso klar siehst wie bei anderen</li>
+              <li>du dich selbst beobachten kannst, ohne dich dabei zu verlieren</li>
+            </ul>
+          </div>
+          <div>
+            <p class="col-label">Nicht, wenn</p>
+            <ul class="col-list">
+              <li>du gerade in einer akuten Krise bist. Das hier ist kein Krisenraum</li>
+              <li>du eine neue Methode für deine Arbeit suchst. Das hier ist keine</li>
+              <li>du am Anfang stehst, dich selbst zu beobachten</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ehrliche Grenze -->
+      <div class="block">
+        <p class="block-label">Was es nicht kann</p>
+        <div class="honest">
+          <p>
+            Diese Klärung löst nichts auf und verändert kein Muster. Sie ersetzt
+            keine Therapie, keine ärztliche Behandlung, kein Coaching.
+          </p>
+          <p>
+            Die Stelle, von der du am Ende weißt, dass du an ihr stehst, kannst
+            du mit dieser Klärung nicht überschreiten. Das geht an anderer Stelle,
+            mit anderen Mitteln. Was diese Klärung kann, ist dir zu zeigen, wo
+            genau du stehst. Das ist nicht alles. Es ist der Anfang.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       ZONE 3 — KAUF
+       ═══════════════════════════════════════════════════════ -->
+  <section class="buy" aria-label="Die Klärung bekommen">
+    <div class="buy-inner">
+      <p class="buy-price">27 €<span class="old">37 €</span></p>
+      <p class="buy-scarcity">Für die ersten fünfzig</p>
+      <p class="buy-desc">
+        Du bekommst die Klärung sofort als Dokument. Du arbeitest sie
+        einmal durch, in deinem Tempo, an einem Ort, an dem niemand etwas
+        von dir will.
+      </p>
+
+      <!-- CopeCart-Checkout. Platzhalter-Link nach Einrichtung ersetzen. -->
+      <a class="buy-btn" href="CHECKOUT_LINK_HIER_EINSETZEN" target="_blank" rel="noopener">
+        Die Klärung bekommen <span class="arrow">→</span>
+      </a>
+
+      <p class="buy-reassure">
+        Einmalig, kein Abo. Nach dem Kauf kommt das Dokument direkt in
+        dein Postfach.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════════════════ -->
+  <footer id="footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <svg class="footer-logo-symbol" viewBox="0 0 180 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <line x1="30" y1="60" x2="150" y2="60" stroke="currentColor" stroke-width="2.4" stroke-linecap="square" />
+          <line x1="105" y1="60" x2="105" y2="140" stroke="currentColor" stroke-width="1.6" stroke-linecap="square" opacity="0.7" />
+          <circle cx="105" cy="148" r="4.5" fill="var(--terrakotta)" />
+        </svg>
+        <span class="footer-logo">Julia Lauer · Bewusstseinsarchitektur</span>
+      </div>
+      <ul class="footer-links" role="list">
+        <li><a href="impressum.html">Impressum</a></li>
+        <li><a href="datenschutz.html">Datenschutz</a></li>
+      </ul>
+    </div>
+  </footer>
+
+</body>
+</html>
