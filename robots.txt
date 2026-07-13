@@ -1,0 +1,10 @@
+# robots.txt · bewusstseinsarchitektur.de
+
+User-agent: *
+Allow: /
+
+# Nicht-öffentliche Arbeitsdateien (Workbook-Quellen, Karussell-Vorlagen)
+Disallow: /freebie/
+Disallow: /Content/
+
+Sitemap: https://bewusstseinsarchitektur.de/sitemap.xml
