@@ -21,5 +21,65 @@
     <loc>https://bewusstseinsarchitektur.de/kontakt</loc>
     <priority>0.6</priority>
   </url>
+  <url>
+    <loc>https://bewusstseinsarchitektur.de/texte</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://bewusstseinsarchitektur.de/texte/abends</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://bewusstseinsarchitektur.de/texte/der-neid</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://bewusstseinsarchitektur.de/texte/der-koerper-weiss</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://bewusstseinsarchitektur.de/texte/die-alten-geschichten</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://bewusstseinsarchitektur.de/texte/eigene-stimmigkeit</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://bewusstseinsarchitektur.de/texte/der-punkt-vor-der-erschoepfung</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://bewusstseinsarchitektur.de/texte/funktionieren</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://bewusstseinsarchitektur.de/texte/mein-rahmen</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://bewusstseinsarchitektur.de/texte/innere-arbeit</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://bewusstseinsarchitektur.de/texte/mit-welcher-instanz</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://bewusstseinsarchitektur.de/texte/warum-frauen-funktionieren</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://bewusstseinsarchitektur.de/texte/was-sich-ordnet</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://bewusstseinsarchitektur.de/texte/wenn-eindeutigkeit</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://bewusstseinsarchitektur.de/texte/wo-entscheidungen</loc>
+    <priority>0.5</priority>
+  </url>
 
 </urlset>
